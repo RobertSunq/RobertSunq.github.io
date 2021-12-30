@@ -489,21 +489,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-18
+                    2021-12-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    657
+                    761
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -526,13 +526,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="git-note"><a href="#git-note" class="headerlink" title="git_note"></a>git_note</h1><h2 id="脑图"><a href="#脑图" class="headerlink" title="脑图"></a>脑图</h2><hr>
-<blockquote>
+                <h2 id="命令脑图"><a href="#命令脑图" class="headerlink" title="命令脑图"></a>命令脑图</h2><blockquote>
 <p>鹅厂程序猿常用的 Git 命令思维导图</p>
 </blockquote>
 <p><img src="/2021/12/18/tool/git-note/git-notes-0000.svg" alt="脑图"></p>
-<h2 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h2><hr>
-<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><code>git</code>的配置级别主要分为三类</p>
+<h2 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h2><h3 id="配置级别"><a href="#配置级别" class="headerlink" title="配置级别"></a>配置级别</h3><p><code>git</code>的配置级别主要分为三类</p>
 <blockquote>
 <ol>
 <li>仓库级别 <code>local</code> [优先级最高]<ol>
@@ -572,7 +570,7 @@
 <li><code>git config --global user.name “XXX” </code>                # 用户级</li>
 </ul>
 </blockquote>
-<h3 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h3><ol>
+<h2 id="功能性配置"><a href="#功能性配置" class="headerlink" title="功能性配置"></a>功能性配置</h2><h3 id="通用SSH配置"><a href="#通用SSH配置" class="headerlink" title="通用SSH配置"></a>通用SSH配置</h3><ol>
 <li>首先确保用户名与账号的配置完成</li>
 <li>生成密钥对</li>
 </ol>
@@ -611,7 +609,25 @@ origin  git@github.com:XXX/XXXproject.git (push)
 
 
 
-<hr>
+<h3 id="多仓库源多密钥设置"><a href="#多仓库源多密钥设置" class="headerlink" title="多仓库源多密钥设置"></a>多仓库源多密钥设置</h3><p>通过在配置项中指定服务器与对应的密钥对，来达到在同一个机器上对不同的git仓库使用不同的密钥对进行匹配。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">% <span class="token function">vim</span> ~/.ssh/config
+
+<span class="token comment"># 在config文件中增加一下内容</span>
+
+Host github.com
+	HostName github.com
+	User 账号
+	IdentityFile <span class="token operator">&lt;</span>自定义的目录<span class="token operator">&gt;</span>/id_rsa
+	IdentitiesOnly <span class="token function">yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map">脑图来源</a>：<a target="_blank" rel="noopener" href="https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map">https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map</a></p>
 
                 
@@ -736,60 +752,50 @@ origin  git@github.com:XXX/XXXproject.git (push)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/18/tool/git-note/">
+                <a href="/2021/12/30/note/command-note/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="git_note">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="命令备忘录">
                         
-                        <span class="card-title">git_note</span>
+                        <span class="card-title">命令备忘录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            git的基础操作汇总，相关平台的配置使用。
+                            各类操作系统常用命令备忘录
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-30
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/tool/" class="post-category">
-                                    tool
+                            <a href="/categories/note/" class="post-category">
+                                    note
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/git/">
-                        <span class="chip bg-color">git</span>
+                    <a href="/tags/command/">
+                        <span class="chip bg-color">command</span>
                     </a>
                     
-                    <a href="/tags/tool/">
-                        <span class="chip bg-color">tool</span>
-                    </a>
-                    
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
-                    </a>
-                    
-                    <a href="/tags/configuration/">
-                        <span class="chip bg-color">configuration</span>
+                    <a href="/tags/note/">
+                        <span class="chip bg-color">note</span>
                     </a>
                     
                 </div>
@@ -1042,7 +1048,7 @@ origin  git@github.com:XXX/XXXproject.git (push)
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">730</span>
+                        class="white-color">873</span>
             
             
             
