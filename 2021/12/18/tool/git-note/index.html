@@ -610,15 +610,15 @@ origin  git@github.com:XXX/XXXproject.git (push)
 
 
 <h3 id="多仓库源多密钥设置"><a href="#多仓库源多密钥设置" class="headerlink" title="多仓库源多密钥设置"></a>多仓库源多密钥设置</h3><p>通过在配置项中指定服务器与对应的密钥对，来达到在同一个机器上对不同的git仓库使用不同的密钥对进行匹配。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">% <span class="token function">vim</span> ~/.ssh/config
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">% vim ~/.ssh/config
 
-<span class="token comment"># 在config文件中增加一下内容</span>
+# 在config文件中增加一下内容
 
 Host github.com
 	HostName github.com
 	User 账号
-	IdentityFile <span class="token operator">&lt;</span>自定义的目录<span class="token operator">&gt;</span>/id_rsa
-	IdentitiesOnly <span class="token function">yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	IdentityFile &lt;自定义的目录&gt;/id_rsa
+	IdentitiesOnly yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
