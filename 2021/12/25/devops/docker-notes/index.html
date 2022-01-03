@@ -584,7 +584,7 @@
 <p><strong>操作系统进程层面上的隔离</strong></p>
 <p><img src="/2021/12/25/devops/docker-notes/0013.png" alt="0013"></p>
 <h4 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h4><p>C/S模式：docker-client，docker-service</p>
-<p><img src="/2021/12/25/devops/docker-notes/static%5Cimages%5Cdocker-notes%5C0000.png" alt="0000"></p>
+<p><img src="/2021/12/25/devops/docker-notes/0000.png" alt="0000"></p>
 <p>Docker daemon（守护进程）：Docker Client通过命令行与Docker Damon通信，完成Docker相关操作</p>
 <p>Images（镜像）：类似于软件安装包</p>
 <p>Containers（容器）：软件的运行</p>
@@ -624,7 +624,7 @@ B <span class="token arrow operator">--&gt;</span> C<span class="token text stri
 <li><p>容器内部的端口号是私有独立的，如果外部的想要访问，就需要通过linux服务器的端口号进行端口映射。</p>
 </li>
 </ol>
-<p><img src="/2021/12/25/devops/docker-notes/static%5Cimages%5Cdocker-notes%5C0002.png" alt="0002"></p>
+<p><img src="/2021/12/25/devops/docker-notes/0002.png" alt="0002"></p>
 <p>Docker 为什么比VM快</p>
 <ol>
 <li><p>docker更少的抽象层</p>
@@ -632,9 +632,9 @@ B <span class="token arrow operator">--&gt;</span> C<span class="token text stri
 <li><p>docker利用的是宿主机的内核，vm需要的是Guest OS</p>
 </li>
 </ol>
-<p><img src="/2021/12/25/devops/docker-notes/static%5Cimages%5Cdocker-notes%5C0003.png" alt="0003"></p>
+<p><img src="/2021/12/25/devops/docker-notes/0003.png" alt="0003"></p>
 <p>所以新建一个容器的时候，docker 不需要像虚拟机一样重新加载操作系统内核，避免引导。虚拟机时加载Guest OS，分钟级别的，而docker时利用宿主机的操作系统，省略了这个复杂的过程，秒级。</p>
-<p><img src="/2021/12/25/devops/docker-notes/static%5Cimages%5Cdocker-notes%5C0004.png" alt="0004"></p>
+<p><img src="/2021/12/25/devops/docker-notes/0004.png" alt="0004"></p>
 <h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><h4 id="环境查看"><a href="#环境查看" class="headerlink" title="环境查看"></a>环境查看</h4><p>已在centos7上进行安装为例</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 查看系统内核版本
 [root@centos7 ~]$ uname -r<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -689,7 +689,7 @@ hello-world   latest    d1165f221234   4 months ago   13.3kB
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/static%5Cimages%5Cdocker-notes%5C0001.png" alt="0001"></p>
+<p><img src="/2021/12/25/devops/docker-notes/0001.png" alt="0001"></p>
 <h4 id="快速卸载"><a href="#快速卸载" class="headerlink" title="快速卸载"></a>快速卸载</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 1、卸载依赖 
 [root@centos7 ~]$ yum remove docker-ce docker-ce-cli containerd.io
 
@@ -1177,7 +1177,7 @@ root                32718               32697               33                  
 
 
 
-<p><img src="/2021/12/25/devops/docker-notes/static%5Cimages%5Cdocker-notes%5C0005.png" alt="0005"></p>
+<p><img src="/2021/12/25/devops/docker-notes/0005.png" alt="0005"></p>
 <h4 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker attach      
 # Attach local standard input, output, and error streams to a running container		
 # 当前shell下attach连接指定运行镜像
