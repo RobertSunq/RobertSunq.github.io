@@ -30,7 +30,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -600,7 +600,8 @@ Docker Compose version v2.2.2
 <li><p>创建项目目录</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ cd /home/qing
 [root@qing centos]$ mkdir composetest
-[root@qing centos]$ cd composetest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+[root@qing centos]$ cd composetest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>创建python应用<code>app.py</code></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ vim app.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -627,7 +628,10 @@ cache <span class="token operator">=</span> redis<span class="token punctuation"
 <span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token comment"># 访问页面返回字符串 并调用cache自增</span>
 <span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     count <span class="token operator">=</span> get_hit_count<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token string">'Hello World! I have been seen {} times.\n'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+    <span class="token keyword">return</span> <span class="token string">'Hello World! I have been seen {} times.\n'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+</li>
 <li><p>创建依赖说明<code>requirements.txt</code></p>
 <pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">flask
 redis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
@@ -695,7 +699,7 @@ NETWORK ID     NAME                  DRIVER    SCOPE
 <blockquote>
 <p>因此，在<code>app.py</code>中，可以通过redis的服务名来进行连接，因为在同一个网络下。</p>
 </blockquote>
-<p><img src="/2022/01/05/devops/docker-compose/0000.png" alt="0000"></p>
+<p><img src="/.io//0000.png" alt="0000"></p>
 <h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 在工作目录下
 [root@qing centos]$ cd /home/qing/composetest
 # 方式一
@@ -814,7 +818,7 @@ NETWORK ID     NAME                  DRIVER    SCOPE
 <blockquote>
 <p>服务中的配置项，可以在官网上查看</p>
 </blockquote>
-<p><img src="/2022/01/05/devops/docker-compose/0001.png" alt="0001"></p>
+<p><img src="/.io//0001.png" alt="0001"></p>
 <h3 id="测试开源项目"><a href="#测试开源项目" class="headerlink" title="测试开源项目"></a>测试开源项目</h3><h4 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h4><blockquote>
 <p>官网连接：<a target="_blank" rel="noopener" href="https://docs.docker.com/samples/wordpress/">https://docs.docker.com/samples/wordpress/</a></p>
 </blockquote>
@@ -867,7 +871,7 @@ NETWORK ID     NAME                  DRIVER    SCOPE
 <h3 id="简单实战"><a href="#简单实战" class="headerlink" title="简单实战"></a>简单实战</h3><ol>
 <li><p>编写项目微服务</p>
 <blockquote>
-<p><a href="!%5Bimg%5D(file:///C:%5CUsers%5CRobert%5CAppData%5CRoaming%5CTencent%5CQQTempSys%5B5UQ%5BBL(6~BS2JV6W%7DN6%5B%25S.png)https://github.com/RobertSunq/data/blob/master/qing/blog/hexo/docker_compose_demo.zip" title="下载链接">demo</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/RobertSunq/data/blob/master/qing/blog/hexo/docker_compose_demo.zip" title="下载链接">demo</a></p>
 </blockquote>
 </li>
 <li><p>dockerfile构建镜像</p>
@@ -879,7 +883,10 @@ CMD ["--server.port=12233"] # 设置端口号
 
 EXPOSE 12233 # 暴露端口号
 
-ENTRYPOINT ["java", "-Xmx500m", "-jar", "-Dspring.profiles.active=docker", "/app/app.jar"] # 启动jar包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+ENTRYPOINT ["java", "-Xmx500m", "-jar", "-Dspring.profiles.active=docker", "/app/app.jar"] # 启动jar包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+</li>
 <li><p>docker-compose.yml编排项目</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.8'</span>
 <span class="token key atrule">services</span><span class="token punctuation">:</span>
@@ -909,7 +916,10 @@ ENTRYPOINT ["java", "-Xmx500m", "-jar", "-Dspring.profiles.active=docker", "/app
       <span class="token key atrule">MYSQL_ROOT_HOST</span><span class="token punctuation">:</span> <span class="token string">'%'</span> <span class="token comment"># 所有ip均可链接当前数据库</span>
 <span class="token comment"># 挂载卷配置</span>
 <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-  <span class="token key atrule">db-data</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+  <span class="token key atrule">db-data</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+</li>
 <li><p>放入到服务器</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ pwd
 /home/qing/demo_app
