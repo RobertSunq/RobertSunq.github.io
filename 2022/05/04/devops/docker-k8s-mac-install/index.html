@@ -445,12 +445,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/kubernetes/">
-                                <span class="chip bg-color">kubernetes</span>
-                            </a>
-                        
                             <a href="/tags/docker/">
                                 <span class="chip bg-color">docker</span>
+                            </a>
+                        
+                            <a href="/tags/kubernetes/">
+                                <span class="chip bg-color">kubernetes</span>
                             </a>
                         
                             <a href="/tags/tools/">
@@ -531,44 +531,53 @@
 <h2 id="Docker-Desktop-安装"><a href="#Docker-Desktop-安装" class="headerlink" title="Docker Desktop 安装"></a>Docker Desktop 安装</h2><ol>
 <li>在docker官网上下载对应芯片版本的<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/mac/install/">Docker Desktop</a> dmg文件</li>
 </ol>
-<p><img src="/.io//0001.png" alt="下载"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0001.png" class="" title="下载">
+
 <hr>
 <ol start="2">
 <li>打开下载的dmg文件 安装docker</li>
 </ol>
-<p><img src="/.io//0002.png" alt="安装"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0002.png" class="" title="安装">
+
 <ol start="3">
 <li>在启动台找到docker的图标即可启动</li>
 </ol>
-<p><img src="/.io//0003.png" alt="启动"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0003.png" class="" title="启动">
+
+
+
 <h2 id="Kubernetes-安装"><a href="#Kubernetes-安装" class="headerlink" title="Kubernetes 安装"></a>Kubernetes 安装</h2><blockquote>
 <p>这里没有使用docker destop自带的k8s安装按钮安装应用，而是使用阿里云的k8s-for-docker-desktop来进行安装。</p>
 </blockquote>
 <ol>
 <li>在docker desktop中查看关联的k8s版本</li>
 </ol>
-<p><img src="/.io//0004.png" alt="关联的k8s版本"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0004.png" class="" title="关联的k8s版本">
+
 <ol start="2">
 <li>访问<a target="_blank" rel="noopener" href="https://github.com/AliyunContainerService/k8s-for-docker-desktop">k8s-for-docker-desktop</a>的github项目地址找到对应的版本下载项目</li>
 </ol>
-<p><img src="/.io//0005.png" alt="下载"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0005.png" class="" title="下载">
+
 <ol start="3">
 <li><p>解压文件，执行其中的脚本 load_images.sh</p>
 <blockquote>
 <p>如果安装时下载资源比较慢，可以为docker daemon配置国内的镜像加速，阿里云镜像服务或者中科大镜像加速地址：<a target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></p>
 </blockquote>
-<p><img src="/.io//0007.png" alt="配置镜像加速"></p>
-</li>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0007.png" class="" title="配置镜像加速"></li>
 </ol>
-<p><img src="/.io//0006.png" alt="执行load_images.sh"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0006.png" class="" title="执行load_images.sh">
+
 <ol start="4">
 <li>等待执行成功，可以执行命令 kubectl version 查看版本来确定是否安装成功</li>
 </ol>
-<p><img src="/.io//0008.png" alt="查看安装版本"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0008.png" class="" title="查看安装版本">
+
 <ol start="5">
 <li>打开docker desktop控制面板查看相关信息</li>
 </ol>
-<p><img src="/.io//0009.png" alt="查看相关信息"></p>
+<img src="/2022/05/04/devops/docker-k8s-mac-install/0009.png" class="" title="查看相关信息">
+
 <ol start="6">
 <li><p>配置kubernetes</p>
 <blockquote>
@@ -652,12 +661,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/kubernetes/">
-                                    <span class="chip bg-color">kubernetes</span>
-                                </a>
-                            
                                 <a href="/tags/docker/">
                                     <span class="chip bg-color">docker</span>
+                                </a>
+                            
+                                <a href="/tags/kubernetes/">
+                                    <span class="chip bg-color">kubernetes</span>
                                 </a>
                             
                                 <a href="/tags/tools/">
@@ -747,12 +756,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/kubernetes/">
-                        <span class="chip bg-color">kubernetes</span>
-                    </a>
-                    
                     <a href="/tags/docker/">
                         <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/kubernetes/">
+                        <span class="chip bg-color">kubernetes</span>
                     </a>
                     
                     <a href="/tags/tools/">

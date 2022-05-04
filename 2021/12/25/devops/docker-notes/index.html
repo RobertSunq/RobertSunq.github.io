@@ -485,7 +485,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-29
+                    2022-05-04
                 </div>
                 
 
@@ -549,7 +549,8 @@
 <p><strong>缺点：</strong></p>
 <p>对物理服务器资源的消耗，在物理服务器创建一台虚拟机时，便需要虚拟出一套硬件并在上面运行完整的操作系统，每台虚拟机都占用许多的服务器资源。是在<strong>物理层面上的隔离</strong>，启动慢 占用内存大，分钟级启动。当需要启动多个虚拟机时需要花费很大的时间</p>
 <p><strong>物理资源层面上的隔离</strong></p>
-<p><img src="/.io//0012.png" alt="0012"></p>
+<img src="/2021/12/25/devops/docker-notes/0012.png" class="" width="0012">
+
 <h4 id="Docker容器化技术"><a href="#Docker容器化技术" class="headerlink" title="Docker容器化技术"></a>Docker容器化技术</h4><p>也是一种虚拟化技术。镜像：包含所需要的最基础环境（最核心的Linux环境4M + 其他环境），没有其他额外的文件，只集成需要的便可以做到很小巧，启动运行镜像也十分快速，秒级别启动。</p>
 <p><strong>优点：</strong></p>
 <ul>
@@ -580,9 +581,15 @@
 <p><strong>缺点：</strong></p>
 <p>由于是<strong>操作系统进程层面上的隔离</strong>不是绝对的物理隔离，所以在安全性上时低于虚拟机的。</p>
 <p><strong>操作系统进程层面上的隔离</strong></p>
-<p><img src="/.io//0013.png" alt="0013"></p>
+<img src="/2021/12/25/devops/docker-notes/0013.png" class="" width="0013">
+
+
+
+
+
 <h4 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h4><p>C/S模式：docker-client，docker-service</p>
-<p><img src="/.io//0000.png" alt="0000"></p>
+<img src="/2021/12/25/devops/docker-notes/0000.png" class="" width="0000">
+
 <p>Docker daemon（守护进程）：Docker Client通过命令行与Docker Damon通信，完成Docker相关操作</p>
 <p>Images（镜像）：类似于软件安装包</p>
 <p>Containers（容器）：软件的运行</p>
@@ -622,7 +629,8 @@ B <span class="token arrow operator">--&gt;</span> C<span class="token text stri
 <li><p>容器内部的端口号是私有独立的，如果外部的想要访问，就需要通过linux服务器的端口号进行端口映射。</p>
 </li>
 </ol>
-<p><img src="/.io//0002.png" alt="0002"></p>
+<img src="/2021/12/25/devops/docker-notes/0002.png" class="" width="0002">
+
 <p>Docker 为什么比VM快</p>
 <ol>
 <li><p>docker更少的抽象层</p>
@@ -630,9 +638,13 @@ B <span class="token arrow operator">--&gt;</span> C<span class="token text stri
 <li><p>docker利用的是宿主机的内核，vm需要的是Guest OS</p>
 </li>
 </ol>
-<p><img src="/.io//0003.png" alt="0003"></p>
+<img src="/2021/12/25/devops/docker-notes/0003.png" class="" width="0003">
+
 <p>所以新建一个容器的时候，docker 不需要像虚拟机一样重新加载操作系统内核，避免引导。虚拟机时加载Guest OS，分钟级别的，而docker时利用宿主机的操作系统，省略了这个复杂的过程，秒级。</p>
-<p><img src="/.io//0004.png" alt="0004"></p>
+<img src="/2021/12/25/devops/docker-notes/0004.png" class="" width="0004">
+
+
+
 <h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><h4 id="环境查看"><a href="#环境查看" class="headerlink" title="环境查看"></a>环境查看</h4><p>已在centos7上进行安装为例</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 查看系统内核版本</span>
 <span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ <span class="token function">uname</span> -r<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -687,7 +699,8 @@ hello-world   latest    d1165f221234   <span class="token number">4</span> month
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/.io//0001.png" alt="0001"></p>
+<img src="/2021/12/25/devops/docker-notes/0001.png" class="" width="0001">
+
 <h4 id="快速卸载"><a href="#快速卸载" class="headerlink" title="快速卸载"></a>快速卸载</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 1、卸载依赖 </span>
 <span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ yum remove docker-ce docker-ce-cli containerd.io
 
@@ -841,7 +854,8 @@ bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  s
 <span class="token punctuation">[</span>root@75dcc58b2b3d /<span class="token punctuation">]</span>$ <span class="token builtin class-name">exit</span>	<span class="token comment"># 从容器中退出</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/.io//0014.png" alt="0014"></p>
+<img src="/2021/12/25/devops/docker-notes/0014.png" class="" width="0014">
+
 <p><strong>查看所有运行的容器</strong></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span>	<span class="token comment"># 查看运行中的容器</span>
 <span class="token comment">###################################################</span>
@@ -1175,7 +1189,10 @@ root                <span class="token number">32718</span>               <span 
 
 
 
-<p><img src="/.io//0005.png" alt="0005"></p>
+<img src="/2021/12/25/devops/docker-notes/0005.png" class="" width="0005">
+
+
+
 <h4 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker attach      
 <span class="token comment"># Attach local standard input, output, and error streams to a running container		</span>
 <span class="token comment"># 当前shell下attach连接指定运行镜像</span>
@@ -1452,17 +1469,24 @@ root@714059eea83c$ docker <span class="token builtin class-name">exec</span> -it
 
 
 <p>精简后的OS，rootfs可以很小，只包含最基本的命令，工具和程序库就可以了，因为底层直接用Host到Kernel，自己只需要提供rootfs就可以了。达到公用bootfs的目的。</p>
-<p><img src="/.io//0006.png" alt="0006"></p>
-<p><img src="/.io//0007.png" alt="0007"></p>
+<img src="/2021/12/25/devops/docker-notes/0006.png" class="" width="0006">
+
+<img src="/2021/12/25/devops/docker-notes/0007.png" class="" width="0007">
+
+
+
 <blockquote>
 <p>进一步说明</p>
 </blockquote>
 <p>所有的Docker镜像都起始于一个既相互镜像层，当进行修改或者增加新的内容时，就会在当前镜像层之上，创建一个新的镜像层。</p>
-<p><img src="/.io//0008.png" alt="0008"></p>
+<img src="/2021/12/25/devops/docker-notes/0008.png" class="" width="0008">
+
 <p>在添加额外的镜像层的同时，镜像始终保持是当前所有镜像的组合。及每个镜像层包含了3个文件，而镜像包含了来及两个镜像层的六个文件</p>
-<p><img src="/.io//0009.png" alt="0009"></p>
+<img src="/2021/12/25/devops/docker-notes/0009.png" class="" width="0009">
+
 <p>一个稍微复杂的三层镜像，在外部看来整个镜像只有6个文件，因为最上层中的app2.0是app1.0的一个更新版本。</p>
-<p><img src="/.io//0010.png" alt="0010"></p>
+<img src="/2021/12/25/devops/docker-notes/0010.png" class="" width="0010">
+
 <p>这种情况下，上层镜像层中的文件覆盖了底层镜像层中的文件，使得文件的更新版本作为一个新镜像层添加到镜像中。</p>
 <p>Docker通过存储引擎（新版本采用快照机制）的方式来实现镜像层堆栈，并保证多镜像层对外展示为统一 文件系统。</p>
 <p>Linux上可用的存储引擎由AUFS、Overlay2、Device Mapper、Btrfs以及ZFS。顾名思义，每种存储引擎都基于Linux中对应的文件系统或者块设备技术，并且每种存储引擎都有其独特的性能特点</p>
@@ -1506,7 +1530,10 @@ root@sdfj0adf98 /$ <span class="token function">cp</span> -r webapps.dist/* weba
 <span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">logout</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/.io//0011.png" alt="0011"></p>
+<img src="/2021/12/25/devops/docker-notes/0011.png" class="" width="0011">
+
+
+
 <h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><p>Q：数据可用放在容器里面么？</p>
 <p>A：不能，因为容器如果被删除，会导致数据永久的丢失，所以需要<strong>数据持久化</strong></p>
 <p>所以就有了容器的卷技术，容器之间可用有一个数据共享，将Docker容器中产生的数据同步到本地中 —— 目录挂载，将我们容器内的目录，挂载到Linux上面。将宿主机的内存共享给容器，双向绑定。</p>
@@ -1644,7 +1671,10 @@ bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  s
 
 
 <h3 id="容器间共享数据"><a href="#容器间共享数据" class="headerlink" title="容器间共享数据"></a>容器间共享数据</h3><p>通过数据卷容器来达到容器间的共享</p>
-<p><img src="/.io//0015.png" alt="0015"></p>
+<img src="/2021/12/25/devops/docker-notes/0015.png" class="" width="0015">
+
+
+
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 启动父容器</span>
 <span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it --name docker01 qing/centos:1.0 <span class="token function">bash</span>
 
@@ -1668,7 +1698,8 @@ bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  s
 <p>/# 表示注释</p>
 <p>每个指令都会创建提交一个新的镜像层，并提交。</p>
 </blockquote>
-<p><img src="/.io//0016.png" alt="0016"></p>
+<img src="/2021/12/25/devops/docker-notes/0016.png" class="" width="0016">
+
 <h3 id="指令简述"><a href="#指令简述" class="headerlink" title="指令简述"></a>指令简述</h3><table>
 <thead>
 <tr>
@@ -1919,11 +1950,13 @@ Login Succeeded
 <li>创建容器镜像</li>
 <li>根据阿里云上的操作指南进行提交</li>
 </ol>
-<h2 id="流程小结"><a href="#流程小结" class="headerlink" title="流程小结"></a>流程小结</h2><p><img src="/.io//0017.png" alt="0017"></p>
+<h2 id="流程小结"><a href="#流程小结" class="headerlink" title="流程小结"></a>流程小结</h2><img src="/2021/12/25/devops/docker-notes/0017.png" class="" width="0017">
+
 <h2 id="Docker-网络"><a href="#Docker-网络" class="headerlink" title="Docker 网络"></a>Docker 网络</h2><h3 id="实验查看"><a href="#实验查看" class="headerlink" title="实验查看"></a>实验查看</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 查看IP地址</span>
 <span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">ip</span> addr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/.io//0018.png" alt="0018"></p>
+<img src="/2021/12/25/devops/docker-notes/0018.png" class="" width="0018">
+
 <p>Q：docker如何处理容器网络访问的？</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name tomcat01 tomcat
 
@@ -1943,7 +1976,8 @@ Login Succeeded
 
 <span class="token comment"># 与图片0018中的 docker0 172.18.0.1/16 可用得知该网络与docker0属于同一个网段</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/.io//0019.png" alt="0019"></p>
+<img src="/2021/12/25/devops/docker-notes/0019.png" class="" width="0019">
+
 <h3 id="原理简述"><a href="#原理简述" class="headerlink" title="原理简述"></a>原理简述</h3><ol>
 <li><p>每启动一个docker容器，docker就会给docker容器分配一个ip，只要安装了docker，就会有一个网卡docker0。通过桥接模式，使用的技术veth-pair技术进行连接。</p>
 </li>
@@ -1953,12 +1987,13 @@ Login Succeeded
 <p>veth-pair 就是一对虚拟设备接口，都是成对出现，一段连着协议，一段彼此相连。基于此特性，veth-pair充当一个桥梁，连接各种虚拟网络设备的</p>
 <p>OpenStac、Docker容器之间的连接、OVS的连接，都是使用veth-pair 技术</p>
 </blockquote>
-<p><img src="/.io//0020.png" alt="0020"></p>
+<img src="/2021/12/25/devops/docker-notes/0020.png" class="" width="0020">
 </li>
 <li><p>所以在启动多个容器的时候，由于都是由docker0分配的网卡的ip都属于同一个网段，所以容器之间也是可以相互访问的。</p>
 </li>
 </ol>
-<p><img src="/.io//0021.png" alt="0021"></p>
+<img src="/2021/12/25/devops/docker-notes/0021.png" class="" width="0021">
+
 <ol start="4">
 <li>所以，在启动容器时不指定网络的情况下，都是哟docker来分配一个默认的可用IP，且由docker0来进行路由</li>
 </ol>
@@ -1967,7 +2002,10 @@ Login Succeeded
 <p>Docker使用的是Linux的桥接，宿主机中的一个网卡docker0就是Docker的网桥 </p>
 <p>docker中的所有网络接口都是虚拟的，虚拟的转发效率高、</p>
 </blockquote>
-<p><img src="/.io//0022.png" alt="0022"></p>
+<img src="/2021/12/25/devops/docker-notes/0022.png" class="" width="0022">
+
+
+
 <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><h4 id="–Link"><a href="#–Link" class="headerlink" title="–Link"></a>–Link</h4><blockquote>
 <p>但是并不推荐使用 –link 进行容器连接。因为部分的自定义网络不适于使用docker0 进行路由，例如：不支持使用容器名进行连接</p>
 </blockquote>
@@ -1999,19 +2037,22 @@ PING tomcat02 <span class="token punctuation">(</span><span class="token number"
 </blockquote>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker inspect tomcat03<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/.io//0023.png" alt="0023"></p>
+<img src="/2021/12/25/devops/docker-notes/0023.png" class="" width="0023">
+
 <blockquote>
 <p>也可以通过查看hosts配置</p>
 </blockquote>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat03 <span class="token function">cat</span> /etc/hosts
 <span class="token comment"># 可以理解为在host文件中添加了域名映射</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/.io//0024.png" alt="0024"></p>
+<img src="/2021/12/25/devops/docker-notes/0024.png" class="" width="0024">
+
 <h3 id="自定义网络"><a href="#自定义网络" class="headerlink" title="自定义网络"></a>自定义网络</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker network <span class="token function">ls</span> <span class="token comment"># 查看所有网络</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<p><img src="/.io//0025.png" alt="0025"></p>
+<img src="/2021/12/25/devops/docker-notes/0025.png" class="" width="0025">
+
 <h4 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h4><ul>
 <li>bridge：桥接模式 （docker 默认）</li>
 <li>none：不配置网络</li>
@@ -2042,13 +2083,15 @@ PING tomcat02 <span class="token punctuation">(</span><span class="token number"
 <span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat-net-01 <span class="token function">ping</span> tomcat-net-02
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/.io//0026.png" alt="0026"></p>
+<img src="/2021/12/25/devops/docker-notes/0026.png" class="" width="0026">
+
 <h4 id="将不同网络连接"><a href="#将不同网络连接" class="headerlink" title="将不同网络连接"></a>将不同网络连接</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 将网络docker0下的tomcat01连接到 mynet网络下（达成一个容器两个ip）</span>
 <span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker network connect mynet tomcat01<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
-<p><img src="/.io//0027.png" alt="0027"></p>
+<img src="/2021/12/25/devops/docker-notes/0027.png" class="" width="0027">
+
 <h4 id="demo-redis集群"><a href="#demo-redis集群" class="headerlink" title="demo-redis集群"></a>demo-redis集群</h4><blockquote>
 <p>分片 集群 高可用</p>
 </blockquote>
@@ -2124,8 +2167,9 @@ OK <span class="token comment"># 可以看出保存到了3号节点</span>
 <blockquote>
 <p>为了文件高亮，以及可以直接连接仓库</p>
 </blockquote>
-<p><img src="/.io//0028.png" alt="0028"></p>
-<p><img src="/.io//0029.png" alt="0029"></p>
+<img src="/2021/12/25/devops/docker-notes/0028.png" class="" width="0028">
+
+<img src="/2021/12/25/devops/docker-notes/0029.png" class="" width="0029">
 </li>
 <li><p>通过package进行打包</p>
 <blockquote>
@@ -2136,7 +2180,7 @@ OK <span class="token comment"># 可以看出保存到了3号节点</span>
 <blockquote>
 <p>其他功能暂未研究</p>
 </blockquote>
-<p><img src="/.io//0030.png" alt="0030"></p>
+<img src="/2021/12/25/devops/docker-notes/0030.png" class="" width="0030">
 </li>
 <li><p>通过Dockerfile构建镜像与发布</p>
 </li>
