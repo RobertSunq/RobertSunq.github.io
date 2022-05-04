@@ -485,14 +485,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-26
+                    2022-04-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.7k
+                    10.8k
                 </div>
                 
 
@@ -549,7 +549,7 @@
 <p><strong>缺点：</strong></p>
 <p>对物理服务器资源的消耗，在物理服务器创建一台虚拟机时，便需要虚拟出一套硬件并在上面运行完整的操作系统，每台虚拟机都占用许多的服务器资源。是在<strong>物理层面上的隔离</strong>，启动慢 占用内存大，分钟级启动。当需要启动多个虚拟机时需要花费很大的时间</p>
 <p><strong>物理资源层面上的隔离</strong></p>
-<p><img src="/2021/12/25/devops/docker-notes/0012.png" alt="0012"></p>
+<p><img src="/.io//0012.png" alt="0012"></p>
 <h4 id="Docker容器化技术"><a href="#Docker容器化技术" class="headerlink" title="Docker容器化技术"></a>Docker容器化技术</h4><p>也是一种虚拟化技术。镜像：包含所需要的最基础环境（最核心的Linux环境4M + 其他环境），没有其他额外的文件，只集成需要的便可以做到很小巧，启动运行镜像也十分快速，秒级别启动。</p>
 <p><strong>优点：</strong></p>
 <ul>
@@ -580,9 +580,9 @@
 <p><strong>缺点：</strong></p>
 <p>由于是<strong>操作系统进程层面上的隔离</strong>不是绝对的物理隔离，所以在安全性上时低于虚拟机的。</p>
 <p><strong>操作系统进程层面上的隔离</strong></p>
-<p><img src="/2021/12/25/devops/docker-notes/0013.png" alt="0013"></p>
+<p><img src="/.io//0013.png" alt="0013"></p>
 <h4 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h4><p>C/S模式：docker-client，docker-service</p>
-<p><img src="/2021/12/25/devops/docker-notes/0000.png" alt="0000"></p>
+<p><img src="/.io//0000.png" alt="0000"></p>
 <p>Docker daemon（守护进程）：Docker Client通过命令行与Docker Damon通信，完成Docker相关操作</p>
 <p>Images（镜像）：类似于软件安装包</p>
 <p>Containers（容器）：软件的运行</p>
@@ -622,7 +622,7 @@ B <span class="token arrow operator">--&gt;</span> C<span class="token text stri
 <li><p>容器内部的端口号是私有独立的，如果外部的想要访问，就需要通过linux服务器的端口号进行端口映射。</p>
 </li>
 </ol>
-<p><img src="/2021/12/25/devops/docker-notes/0002.png" alt="0002"></p>
+<p><img src="/.io//0002.png" alt="0002"></p>
 <p>Docker 为什么比VM快</p>
 <ol>
 <li><p>docker更少的抽象层</p>
@@ -630,93 +630,93 @@ B <span class="token arrow operator">--&gt;</span> C<span class="token text stri
 <li><p>docker利用的是宿主机的内核，vm需要的是Guest OS</p>
 </li>
 </ol>
-<p><img src="/2021/12/25/devops/docker-notes/0003.png" alt="0003"></p>
+<p><img src="/.io//0003.png" alt="0003"></p>
 <p>所以新建一个容器的时候，docker 不需要像虚拟机一样重新加载操作系统内核，避免引导。虚拟机时加载Guest OS，分钟级别的，而docker时利用宿主机的操作系统，省略了这个复杂的过程，秒级。</p>
-<p><img src="/2021/12/25/devops/docker-notes/0004.png" alt="0004"></p>
+<p><img src="/.io//0004.png" alt="0004"></p>
 <h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><h4 id="环境查看"><a href="#环境查看" class="headerlink" title="环境查看"></a>环境查看</h4><p>已在centos7上进行安装为例</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 查看系统内核版本
-[root@centos7 ~]$ uname -r<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 查看系统内核版本</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ <span class="token function">uname</span> -r<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 查看系统版本
-[root@centos7 ~]$ cat /etc/os-release<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 查看系统版本</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ <span class="token function">cat</span> /etc/os-release<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h4><p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/" title="install">官方手册</a> <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
-# 1、卸载历史版本的docker
-[root@centos7 ~]$ yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
+<span class="token comment"># 1、卸载历史版本的docker</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ yum remove docker <span class="token punctuation">\</span>
+                  docker-client <span class="token punctuation">\</span>
+                  docker-client-latest <span class="token punctuation">\</span>
+                  docker-common <span class="token punctuation">\</span>
+                  docker-latest <span class="token punctuation">\</span>
+                  docker-latest-logrotate <span class="token punctuation">\</span>
+                  docker-logrotate <span class="token punctuation">\</span>
                   docker-engine
                   
-# 2、安装基础安装包
-[root@centos7]$ yum install -y yum-utils
+<span class="token comment"># 2、安装基础安装包</span>
+<span class="token punctuation">[</span>root@centos7<span class="token punctuation">]</span>$ yum <span class="token function">install</span> -y yum-utils
  
-# 3、设置镜像仓库
-# yum-config-manager \
-#    --add-repo \
-#     https://download.docker.com/linux/centos/docker-ce.repo # 默认是国外仓库
+<span class="token comment"># 3、设置镜像仓库</span>
+<span class="token comment"># yum-config-manager \</span>
+<span class="token comment">#    --add-repo \</span>
+<span class="token comment">#     https://download.docker.com/linux/centos/docker-ce.repo # 默认是国外仓库</span>
     
-[root@centos7 ~]$ yum-config-manager \
-    --add-repo \
-    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # 阿里云的镜像地址
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ yum-config-manager <span class="token punctuation">\</span>
+    --add-repo <span class="token punctuation">\</span>
+    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo <span class="token comment"># 阿里云的镜像地址</span>
     
-# 4、更新yum
-[root@centos7 ~]$ yum makecache fast
+<span class="token comment"># 4、更新yum</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ yum makecache fast
 
-# 5、安装 ce--社区，ee--企业  核心、客户端、容器
-[root@centos7 ~]$ yum install docker-ce docker-ce-cli containerd.io
-# 指定版本 yum install docker-ce--&lt;VERSION_STRING&gt; docker-ce-cli--&lt;VERSION_STRING&gt; containerd.io
-# 查看其他版本
-# [root@centos7 ~]$ yum list docker-ce --showduplicates | sort -r
+<span class="token comment"># 5、安装 ce--社区，ee--企业  核心、客户端、容器</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ yum <span class="token function">install</span> docker-ce docker-ce-cli containerd.io
+<span class="token comment"># 指定版本 yum install docker-ce--&lt;VERSION_STRING&gt; docker-ce-cli--&lt;VERSION_STRING&gt; containerd.io</span>
+<span class="token comment"># 查看其他版本</span>
+<span class="token comment"># [root@centos7 ~]$ yum list docker-ce --showduplicates | sort -r</span>
 
-# 6、启动
-[root@centos7 ~]$ systemctl start docker
+<span class="token comment"># 6、启动</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ systemctl start docker
 
-# 7、验证docker是否启动成功
-[root@centos7 ~]$ docker version
-[root@centos7 ~]$ docker run hello-world
+<span class="token comment"># 7、验证docker是否启动成功</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ docker version
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ docker run hello-world
 
-# 8、查看下载的镜像
-[root@centos7 ~]$ docker images
+<span class="token comment"># 8、查看下载的镜像</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ docker images
 REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
-hello-world   latest    d1165f221234   4 months ago   13.3kB
+hello-world   latest    d1165f221234   <span class="token number">4</span> months ago   <span class="token number">13</span>.3kB
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/0001.png" alt="0001"></p>
-<h4 id="快速卸载"><a href="#快速卸载" class="headerlink" title="快速卸载"></a>快速卸载</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 1、卸载依赖 
-[root@centos7 ~]$ yum remove docker-ce docker-ce-cli containerd.io
+<p><img src="/.io//0001.png" alt="0001"></p>
+<h4 id="快速卸载"><a href="#快速卸载" class="headerlink" title="快速卸载"></a>快速卸载</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 1、卸载依赖 </span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ yum remove docker-ce docker-ce-cli containerd.io
 
-# 2、删除资源
-[root@centos7 ~]$ rm -rf /var/lib/docker
-[root@centos7 ~]$ rm -rf /var/lib/containerd
+<span class="token comment"># 2、删除资源</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ <span class="token function">rm</span> -rf /var/lib/docker
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ <span class="token function">rm</span> -rf /var/lib/containerd
 
-# /var/lib/docker docker的默认工作路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># /var/lib/docker docker的默认工作路径</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 以阿里云为列
-[root@centos7 ~]$ mkdir -p /etc/docker # 创建文件
-# 编写配置文件 下面的地址需要换成阿里云中自己实例中创建的
-[root@centos7 ~]$ tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+<h4 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 以阿里云为列</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ <span class="token function">mkdir</span> -p /etc/docker <span class="token comment"># 创建文件</span>
+<span class="token comment"># 编写配置文件 下面的地址需要换成阿里云中自己实例中创建的</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ <span class="token function">tee</span> /etc/docker/daemon.json <span class="token operator">&lt;&lt;-</span><span class="token string">'EOF'
 {
 	"registry-mirrors":["https://qiyb9988.mirror.aliyuncs.com"]
 }
-EOF
-[root@centos7 ~]$ systemctl daemon-reload # 编译配置文件
-[root@centos7 ~]$ systemctl restart docker # 重启docker
-[root@centos7 ~]$
+EOF</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ systemctl daemon-reload <span class="token comment"># 编译配置文件</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ systemctl restart docker <span class="token comment"># 重启docker</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h2 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h2><h4 id="基本帮助"><a href="#基本帮助" class="headerlink" title="基本帮助"></a>基本帮助</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@centos7 ~]$ 
+<h2 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h2><h4 id="基本帮助"><a href="#基本帮助" class="headerlink" title="基本帮助"></a>基本帮助</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ 
 
-## 帮助文档 https://docs.docker.com/reference/
-[root@centos7 ~]$ docker version #  显示docker版本信息
-[root@centos7 ~]$ docker info # 显示docker的系统信息，包括镜像和容器的数量
+<span class="token comment">## 帮助文档 https://docs.docker.com/reference/</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ docker version <span class="token comment">#  显示docker版本信息</span>
+<span class="token punctuation">[</span>root@centos7 ~<span class="token punctuation">]</span>$ docker info <span class="token comment"># 显示docker的系统信息，包括镜像和容器的数量</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
@@ -724,43 +724,43 @@ EOF
 <h4 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h4><p><a target="_blank" rel="noopener" href="https://docs.docker.com/reference/" title="reference">官方命令说明</a>  <a target="_blank" rel="noopener" href="https://docs.docker.com/reference/">https://docs.docker.com/reference/</a></p>
 <p><a target="_blank" rel="noopener" href="https://hub.docker.com/" title="dockerHub">官方仓库</a>    <a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></p>
 <p><strong>查看与搜索镜像</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ docker images 
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker images 
 REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
-hello-world   latest    d1165f221234   4 months ago   13.3kB
+hello-world   latest    d1165f221234   <span class="token number">4</span> months ago   <span class="token number">13</span>.3kB
 
-#################################
-# REPOSITORY	镜像的仓库源
-# TAG			镜像的标签
-# IMAGE ID		镜像的ID
-# CREATED		镜像的创建时间
-# SIZE			镜像的大小
+<span class="token comment">#################################</span>
+<span class="token comment"># REPOSITORY	镜像的仓库源</span>
+<span class="token comment"># TAG			镜像的标签</span>
+<span class="token comment"># IMAGE ID		镜像的ID</span>
+<span class="token comment"># CREATED		镜像的创建时间</span>
+<span class="token comment"># SIZE			镜像的大小</span>
 
-# 可选项
-#	--all , -a		查看所有镜像
-#	--quiet , -q	只显示镜像ID
-#################################
+<span class="token comment"># 可选项</span>
+<span class="token comment">#	--all , -a		查看所有镜像</span>
+<span class="token comment">#	--quiet , -q	只显示镜像ID</span>
+<span class="token comment">#################################</span>
 
-########################################################################
-[root@qing centos]$ docker search mysql  # 搜索镜像
+<span class="token comment">########################################################################</span>
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker search mysql  <span class="token comment"># 搜索镜像</span>
 NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-mysql                             MySQL is a widely used, open-source relation…   11099     [OK]       
-mariadb                           MariaDB Server is a high performing open sou…   4209      [OK]       
+mysql                             MySQL is a widely used, open-source relation…   <span class="token number">11099</span>     <span class="token punctuation">[</span>OK<span class="token punctuation">]</span>       
+mariadb                           MariaDB Server is a high performing <span class="token function">open</span> sou…   <span class="token number">4209</span>      <span class="token punctuation">[</span>OK<span class="token punctuation">]</span>       
 
-# 可选项，通过搜索来过滤
---filter=STARS=3000 # 搜索出来的镜像是STARS大于3000的
+<span class="token comment"># 可选项，通过搜索来过滤</span>
+--filter<span class="token operator">=</span>STARS<span class="token operator">=</span><span class="token number">3000</span> <span class="token comment"># 搜索出来的镜像是STARS大于3000的</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>下载镜像</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ docker pull mysql  # 下载镜像
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker pull mysql  <span class="token comment"># 下载镜像</span>
 
-Using default tag: latest  # 不声明tag，默认时 latest
+Using default tag: latest  <span class="token comment"># 不声明tag，默认时 latest</span>
 latest: Pulling from library/mysql
-b4d181a07f80: Download complete  # 分层下载，docker image的核心 联合文件系统？
+b4d181a07f80: Download complete  <span class="token comment"># 分层下载，docker image的核心 联合文件系统？</span>
 a462b60610f5: Download complete 
 578fafb77ab8: Download complete 
-524046006037: Download complete 
+<span class="token number">524046006037</span>: Download complete 
 d0cbe54c8855: Download complete 
 aa18e05cc46d: Download complete 
 32ca814c833f: Download complete 
@@ -769,22 +769,22 @@ ad042b682e0f: Download complete
 71d327c6bb78: Download complete 
 165d1d10a3fa: Download complete 
 2f40c47d0626: Download complete 
-Digest: sha256:52b8406e4c32b8cf0557f1b74517e14c5393aff5cf0384eff62d9e81f4985d4b #签名
-Status: Downloaded newer image for mysql:latest
-docker.io/library/mysql:latest	# 真实地址
+Digest: sha256:52b8406e4c32b8cf0557f1b74517e14c5393aff5cf0384eff62d9e81f4985d4b <span class="token comment">#签名</span>
+Status: Downloaded newer image <span class="token keyword">for</span> mysql:latest
+docker.io/library/mysql:latest	<span class="token comment"># 真实地址</span>
 
-######## 等价于
-# docker pull musql
-# docker pull docker.io/library/mysql:latest
+<span class="token comment">######## 等价于</span>
+<span class="token comment"># docker pull musql</span>
+<span class="token comment"># docker pull docker.io/library/mysql:latest</span>
 
-################################
-[root@qing centos]$ docker pull mysql:5.7  # 指定版本
+<span class="token comment">################################</span>
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker pull mysql:5.7  <span class="token comment"># 指定版本</span>
 
-5.7: Pulling from library/mysql
-b4d181a07f80: Already exists # 共用分层文件，节省空间和下载速度，不用重复下载
+<span class="token number">5.7</span>: Pulling from library/mysql
+b4d181a07f80: Already exists <span class="token comment"># 共用分层文件，节省空间和下载速度，不用重复下载</span>
 a462b60610f5: Already exists 
 578fafb77ab8: Already exists 
-524046006037: Already exists 
+<span class="token number">524046006037</span>: Already exists 
 d0cbe54c8855: Already exists 
 aa18e05cc46d: Already exists 
 32ca814c833f: Already exists 
@@ -793,121 +793,121 @@ bca6a5b14385: Pull complete
 309f36297c75: Pull complete 
 7d75cacde0f8: Pull complete 
 Digest: sha256:1a2f9cd257e75cc80e9118b303d1648366bc2049101449bf2c8d82b022ea86b7
-Status: Downloaded newer image for mysql:5.7
+Status: Downloaded newer image <span class="token keyword">for</span> mysql:5.7
 docker.io/library/mysql:5.7
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>删除镜像</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 删除镜像 rmi -&gt; remove image
-[root@qing centos]$ docker rmi -f [image id]  # 删除指定镜像
-[root@qing centos]$ docker rmi -f $(docker images -aq)  # 删除所有，${} 传递参数，查出所有的image id
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 删除镜像 rmi -&gt; remove image</span>
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker rmi -f <span class="token punctuation">[</span>image id<span class="token punctuation">]</span>  <span class="token comment"># 删除指定镜像</span>
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker rmi -f <span class="token variable"><span class="token variable">$(</span>docker images -aq<span class="token variable">)</span></span>  <span class="token comment"># 删除所有，${} 传递参数，查出所有的image id</span>
 
 
-# [root@qing centos]$ docker rmi -f (mysql5.7) 会发现只删除了mysql5.7不同的文件，和mysql8公用的部分并没有删除 
-# 待确定？注意这里删除的是镜像，运行过的镜像创建的容器并没有被删除 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># [root@qing centos]$ docker rmi -f (mysql5.7) 会发现只删除了mysql5.7不同的文件，和mysql8公用的部分并没有删除 </span>
+<span class="token comment"># 待确定？注意这里删除的是镜像，运行过的镜像创建的容器并没有被删除 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h4 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h4><blockquote>
 <p>通过镜像来创建容器</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 以下载并启动 centos镜像为列子
-[root@qing centos]$ docker pull centos<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 以下载并启动 centos镜像为列子</span>
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker pull centos<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><strong>新建容器并启动</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ docker run [可选参数] image
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker run <span class="token punctuation">[</span>可选参数<span class="token punctuation">]</span> image
 
-###################################################
-# --name="name"		容器名字 tomcat01 tomcat02，用来区分容器
-# -d				后台方式运行 ja nohup
-# -it				使用交互方式运行，进入容器查看内容
-	# -t	交互式操作
-	# -i	终端
-# -p				指定容器的端口 -p 8080:8080
-	# -p 主机端口：容器端口  (常用)
-	# -p ip:主机端口:容器端口
-	# -p 容器端口
-	# 容器端口
-# -P				随机指定端口
+<span class="token comment">###################################################</span>
+<span class="token comment"># --name="name"		容器名字 tomcat01 tomcat02，用来区分容器</span>
+<span class="token comment"># -d				后台方式运行 ja nohup</span>
+<span class="token comment"># -it				使用交互方式运行，进入容器查看内容</span>
+	<span class="token comment"># -t	交互式操作</span>
+	<span class="token comment"># -i	终端</span>
+<span class="token comment"># -p				指定容器的端口 -p 8080:8080</span>
+	<span class="token comment"># -p 主机端口：容器端口  (常用)</span>
+	<span class="token comment"># -p ip:主机端口:容器端口</span>
+	<span class="token comment"># -p 容器端口</span>
+	<span class="token comment"># 容器端口</span>
+<span class="token comment"># -P				随机指定端口</span>
 
-###################################################
-# 启动并进入容器
-[root@qing centos]$ docker run -it centos /bin/bash
-# 放在镜像名后的是命令，打开一个交互式 Shell，因此用的是 /bin/bash。
-[root@75dcc58b2b3d /]$ ls	# 此时主机已经指向启动的容器，此时centos为基础版本。
+<span class="token comment">###################################################</span>
+<span class="token comment"># 启动并进入容器</span>
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ docker run -it centos /bin/bash
+<span class="token comment"># 放在镜像名后的是命令，打开一个交互式 Shell，因此用的是 /bin/bash。</span>
+<span class="token punctuation">[</span>root@75dcc58b2b3d /<span class="token punctuation">]</span>$ <span class="token function">ls</span>	<span class="token comment"># 此时主机已经指向启动的容器，此时centos为基础版本。</span>
 bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-[root@75dcc58b2b3d /]$ exit	# 从容器中退出
+<span class="token punctuation">[</span>root@75dcc58b2b3d /<span class="token punctuation">]</span>$ <span class="token builtin class-name">exit</span>	<span class="token comment"># 从容器中退出</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/0014.png" alt="0014"></p>
+<p><img src="/.io//0014.png" alt="0014"></p>
 <p><strong>查看所有运行的容器</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker ps	# 查看运行中的容器
-###################################################
-#		列出当前正在运行的容器
-# -a	列出当前正在运行的容器+历史运行过的容器
-# -n=?	显示最近创建的容器个数
-# -q	只显示容器的编号
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span>	<span class="token comment"># 查看运行中的容器</span>
+<span class="token comment">###################################################</span>
+<span class="token comment">#		列出当前正在运行的容器</span>
+<span class="token comment"># -a	列出当前正在运行的容器+历史运行过的容器</span>
+<span class="token comment"># -n=?	显示最近创建的容器个数</span>
+<span class="token comment"># -q	只显示容器的编号</span>
 
-###################################################
-[root@qing /]$ docker ps -a	# 查看所有运行过的容器
+<span class="token comment">###################################################</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span> -a	<span class="token comment"># 查看所有运行过的容器</span>
 CONTAINER ID   IMAGE         COMMAND       CREATED         STATUS                       PORTS     NAMES
-3c8ef01a7eb6   centos        "/bin/bash"   6 minutes ago   Exited (130) 5 minutes ago             nice_austin
-ceafc51e6972   hello-world   "/hello"      2 days ago      Exited (0) 2 days ago                  focused_burnell
+3c8ef01a7eb6   centos        <span class="token string">"/bin/bash"</span>   <span class="token number">6</span> minutes ago   Exited <span class="token punctuation">(</span><span class="token number">130</span><span class="token punctuation">)</span> <span class="token number">5</span> minutes ago             nice_austin
+ceafc51e6972   hello-world   <span class="token string">"/hello"</span>      <span class="token number">2</span> days ago      Exited <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token number">2</span> days ago                  focused_burnell
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>退出容器</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># exit 停止当前容器并退出
-# Ctrl + P + Q 仅退出当前容器，不停止运行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># exit 停止当前容器并退出</span>
+<span class="token comment"># Ctrl + P + Q 仅退出当前容器，不停止运行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>删除容器</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker rm 容器id			# 删除指定容器，不能删除正在运行的容器 rm -f 强制删除
-[root@qing /]$ docker rm -f $(docker ps -aq)# 删除所有容器
-[root@qing /]$ docker ps -a -q|xargs docker rm	# 删除所有的容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">rm</span> 容器id			<span class="token comment"># 删除指定容器，不能删除正在运行的容器 rm -f 强制删除</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">rm</span> -f <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -aq<span class="token variable">)</span></span><span class="token comment"># 删除所有容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span> -a -q<span class="token operator">|</span><span class="token function">xargs</span> docker <span class="token function">rm</span>	<span class="token comment"># 删除所有的容器</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>启动和停止容器</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker start 容器id	# 启动容器
-[root@qing /]$ docker restart 容器id	# 重启容器
-[root@qing /]$ docker stop 容器id		# 停止当前正在运行的容器
-[root@qing /]$ docker kill 容器id		# 强制停止容器
-[root@qing /]$ docker start 容器id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker start 容器id	<span class="token comment"># 启动容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker restart 容器id	<span class="token comment"># 重启容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker stop 容器id		<span class="token comment"># 停止当前正在运行的容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">kill</span> 容器id		<span class="token comment"># 强制停止容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker start 容器id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <hr>
 <h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p><strong>后台启动</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 命令 docker run -d 镜像名！
-[root@qing /]$ docker run -d centos		# 后台启动
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 命令 docker run -d 镜像名！</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d centos		<span class="token comment"># 后台启动</span>
 
-# 输入docker ps ， 发现centos停止了
+<span class="token comment"># 输入docker ps ， 发现centos停止了</span>
 
-# 常见的坑：
-	# docker容器使用后台运行，就必须要有一个前台的进程，docker发现没有应用，就会自动停止
-	# nginx，容器启动后，发现自己没有提供服务，就会立刻停止，就没有程序了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 常见的坑：</span>
+	<span class="token comment"># docker容器使用后台运行，就必须要有一个前台的进程，docker发现没有应用，就会自动停止</span>
+	<span class="token comment"># nginx，容器启动后，发现自己没有提供服务，就会立刻停止，就没有程序了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>查看日志</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker logs --help
-[root@qing /]$ docker logs	-tf --tail 10 容器id	# -f 保留打印窗口，-t 添加时间戳 --tail 10 最后10行
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker logs --help
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker logs	-tf --tail <span class="token number">10</span> 容器id	<span class="token comment"># -f 保留打印窗口，-t 添加时间戳 --tail 10 最后10行</span>
 
-# 自定义shell脚本
-# "while true;do echo qing;sleep 1; done"
-# [root@qing /]$ docker run -d centos /bin/sh -c "while true;do echo qing;sleep 1;done"
-# -c 执行命令
+<span class="token comment"># 自定义shell脚本</span>
+<span class="token comment"># "while true;do echo qing;sleep 1; done"</span>
+<span class="token comment"># [root@qing /]$ docker run -d centos /bin/sh -c "while true;do echo qing;sleep 1;done"</span>
+<span class="token comment"># -c 执行命令</span>
 
 
-[root@qing /]$ docker top 容器id		# 查看容器内进程信息
-UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
-root                32718               32697               33                  23:07               ?                   00:00:23            /bin/sh -c while true;do echo qing;sheep 1;done
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">top</span> 容器id		<span class="token comment"># 查看容器内进程信息</span>
+<span class="token environment constant">UID</span>                 PID                 <span class="token environment constant">PPID</span>                C                   STIME               TTY                 TIME                CMD
+root                <span class="token number">32718</span>               <span class="token number">32697</span>               <span class="token number">33</span>                  <span class="token number">23</span>:07               ?                   00:00:23            /bin/sh -c <span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span><span class="token keyword">do</span> <span class="token builtin class-name">echo</span> qing<span class="token punctuation">;</span>sheep <span class="token number">1</span><span class="token punctuation">;</span><span class="token keyword">done</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -916,9 +916,9 @@ root                32718               32697               33                  
 
 
 <p><strong>查看容器元数据</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker inspect 容器id		# 查看容器信息
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker inspect 容器id		<span class="token comment"># 查看容器信息</span>
 
-# "Id" 比通过ps查询到的要长，ps中只是对其进行了部分截取<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># "Id" 比通过ps查询到的要长，ps中只是对其进行了部分截取</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <details>
   <summary>
@@ -1142,212 +1142,212 @@ root                32718               32697               33                  
 
 
 <p><strong>进入当前正在运行的容器</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 通常容器都是使用后台方式运行的，需要进入容器修改一些配置
-# -it  通过交互模式运行
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 通常容器都是使用后台方式运行的，需要进入容器修改一些配置</span>
+<span class="token comment"># -it  通过交互模式运行</span>
 
-[root@qing /]$ docker exec -it 容器id /bin/bash  # 进入后台运行的容器，/bin/bash 位置		开启一个新的终端，可以进行一些操作(常用)
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it 容器id /bin/bash  <span class="token comment"># 进入后台运行的容器，/bin/bash 位置		开启一个新的终端，可以进行一些操作(常用)</span>
 
-[root@qing /]$ docker attach 容器id		#  进入正在执行的容器	进入正在运行的中断，不会启动新的进程<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker attach 容器id		<span class="token comment">#  进入正在执行的容器	进入正在运行的中断，不会启动新的进程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>从容器内拷贝文件到宿主机</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker cp 容器id:容器内路径	目的主机路径	# 容器内文件拷贝到主机
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">cp</span> 容器id:容器内路径	目的主机路径	<span class="token comment"># 容器内文件拷贝到主机</span>
 
-# test 进入之前启动的centos容器内
+<span class="token comment"># test 进入之前启动的centos容器内</span>
 
-[root@qing /]$ docker ps
-[root@qing /]$ docker attach ${id}
-[root@qing /]$ ls
-[root@qing /]$ cd /home
-[root@qing /]$ touch test.java
-[root@qing /]$ exit # 注意 此处是退出了容器，容器停止运行，但是在没有被清理时容器的数据依旧存在
-[root@qing /]$ docker ps -a
-[root@qing /]$ docker cp ${id}:/home/test.java /home # 类似与socp命令
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker attach <span class="token variable">${id}</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">ls</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> /home
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">touch</span> test.java
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token builtin class-name">exit</span> <span class="token comment"># 注意 此处是退出了容器，容器停止运行，但是在没有被清理时容器的数据依旧存在</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span> -a
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">cp</span> <span class="token variable">${id}</span>:/home/test.java /home <span class="token comment"># 类似与socp命令</span>
 
-## 拷贝时一个手动的过程，后期使用中可以通过 -v 卷的方式，实现自动同步，将容器中的目录与宿主机的进行同步<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">## 拷贝时一个手动的过程，后期使用中可以通过 -v 卷的方式，实现自动同步，将容器中的目录与宿主机的进行同步</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p><strong>其他</strong></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
-[root@qing /]$ docker --help<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker --help<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
-<p><img src="/2021/12/25/devops/docker-notes/0005.png" alt="0005"></p>
-<h4 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker attach      
-# Attach local standard input, output, and error streams to a running container		
-# 当前shell下attach连接指定运行镜像
+<p><img src="/.io//0005.png" alt="0005"></p>
+<h4 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker attach      
+<span class="token comment"># Attach local standard input, output, and error streams to a running container		</span>
+<span class="token comment"># 当前shell下attach连接指定运行镜像</span>
 
-[root@qing /]$ docker build
-# Build an image from a Dockerfile
-# 通过Dockerfile 定制镜像
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker build
+<span class="token comment"># Build an image from a Dockerfile</span>
+<span class="token comment"># 通过Dockerfile 定制镜像</span>
 
-[root@qing /]$ docker commit
-# Create a new image from a container's changes
-# 提交当前容器为新的镜像
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker commit
+<span class="token comment"># Create a new image from a container's changes</span>
+<span class="token comment"># 提交当前容器为新的镜像</span>
 
-[root@qing /]$ docker cp
-# Copy files/folders between a container and the local filesystem
-# 从容器中拷贝指定文件或目录到宿主机中
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">cp</span>
+<span class="token comment"># Copy files/folders between a container and the local filesystem</span>
+<span class="token comment"># 从容器中拷贝指定文件或目录到宿主机中</span>
 
-[root@qing /]$ docker create
-# Create a new container
-# 创建一个新的容器，同run，但不启动容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker create
+<span class="token comment"># Create a new container</span>
+<span class="token comment"># 创建一个新的容器，同run，但不启动容器</span>
 
-[root@qing /]$ docker diff
-# Inspect changes to files or directories on a container's filesystem
-# 查看docker容器的变化
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">diff</span>
+<span class="token comment"># Inspect changes to files or directories on a container's filesystem</span>
+<span class="token comment"># 查看docker容器的变化</span>
 
-[root@qing /]$ docker events
-# Get real time events from the server
-# 从docker服务获取容器实时事件
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker events
+<span class="token comment"># Get real time events from the server</span>
+<span class="token comment"># 从docker服务获取容器实时事件</span>
 
-[root@qing /]$ docker exec
-# Run a command in a running container
-# 在已存在的容器上运行命令
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span>
+<span class="token comment"># Run a command in a running container</span>
+<span class="token comment"># 在已存在的容器上运行命令</span>
 
-[root@qing /]$ docker export
-# Export a container's filesystem as a tar archive
-# 到处容器的内容流作为一个tar归档文件，对应import
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">export</span>
+<span class="token comment"># Export a container's filesystem as a tar archive</span>
+<span class="token comment"># 到处容器的内容流作为一个tar归档文件，对应import</span>
 
-[root@qing /]$ docker history
-# Show the history of an image
-# 查看一个镜像的历史
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">history</span>
+<span class="token comment"># Show the history of an image</span>
+<span class="token comment"># 查看一个镜像的历史</span>
 
-[root@qing /]$ docker images
-# List images
-# 列出当前系统中所有的镜像
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker images
+<span class="token comment"># List images</span>
+<span class="token comment"># 列出当前系统中所有的镜像</span>
 
-[root@qing /]$ docker import
-# Import the contents from a tarball to create a filesystem image
-# 从tar包中的内容创建一个新的文件系统，对应export
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">import</span>
+<span class="token comment"># Import the contents from a tarball to create a filesystem image</span>
+<span class="token comment"># 从tar包中的内容创建一个新的文件系统，对应export</span>
 
-[root@qing /]$ docker info
-# Display system-wide information
-# 显示系统相关信息
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker info
+<span class="token comment"># Display system-wide information</span>
+<span class="token comment"># 显示系统相关信息</span>
 
-[root@qing /]$ docker inspect
-# Return low-level information on Docker objects
-# 查看容器详细信息
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker inspect
+<span class="token comment"># Return low-level information on Docker objects</span>
+<span class="token comment"># 查看容器详细信息</span>
 
-[root@qing /]$ docker kill
-# Kill one or more running containers
-# kill指定docker容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">kill</span>
+<span class="token comment"># Kill one or more running containers</span>
+<span class="token comment"># kill指定docker容器</span>
 
-[root@qing /]$ docker load
-# Load an image from a tar archive or STDIN
-# 从一个tar包中加载一个镜像，对应save
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker load
+<span class="token comment"># Load an image from a tar archive or STDIN</span>
+<span class="token comment"># 从一个tar包中加载一个镜像，对应save</span>
 
-[root@qing /]$ docker login
-# Log in to a Docker registry
-# 注册或者登录一个docker源服务器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker login
+<span class="token comment"># Log in to a Docker registry</span>
+<span class="token comment"># 注册或者登录一个docker源服务器</span>
 
-[root@qing /]$ docker logout
-# Log out from a Docker registry
-# 从当前docker registry退出
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">logout</span>
+<span class="token comment"># Log out from a Docker registry</span>
+<span class="token comment"># 从当前docker registry退出</span>
 
-[root@qing /]$ docker logs
-# Fetch the logs of a container
-# 输出当前容器日志信息
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker logs
+<span class="token comment"># Fetch the logs of a container</span>
+<span class="token comment"># 输出当前容器日志信息</span>
 
-[root@qing /]$ docker pause
-# Pause all processes within one or more containers
-# 暂停容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker pause
+<span class="token comment"># Pause all processes within one or more containers</span>
+<span class="token comment"># 暂停容器</span>
 
-[root@qing /]$ docker port
-# List port mappings or a specific mapping for the container
-# 查看映射端口对应容器内幕源端口
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker port
+<span class="token comment"># List port mappings or a specific mapping for the container</span>
+<span class="token comment"># 查看映射端口对应容器内幕源端口</span>
 
-[root@qing /]$ docker ps
-# List containers
-# 列出容器列表
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span>
+<span class="token comment"># List containers</span>
+<span class="token comment"># 列出容器列表</span>
 
-[root@qing /]$ docker pull
-# Pull an image or a repository from a registry
-# 从docker镜像源服务器拉取指定镜像或者库镜像
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker pull
+<span class="token comment"># Pull an image or a repository from a registry</span>
+<span class="token comment"># 从docker镜像源服务器拉取指定镜像或者库镜像</span>
 
-[root@qing /]$ docker push
-# Push an image or a repository to a registry
-# 推送指定镜像或者库镜像到dicker源服务器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker push
+<span class="token comment"># Push an image or a repository to a registry</span>
+<span class="token comment"># 推送指定镜像或者库镜像到dicker源服务器</span>
 
-[root@qing /]$ docker rename
-# Rename a container
-# 对容器重命名
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">rename</span>
+<span class="token comment"># Rename a container</span>
+<span class="token comment"># 对容器重命名</span>
 
-[root@qing /]$ docker restart
-# Restart one or more containers
-# 重启运行的容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker restart
+<span class="token comment"># Restart one or more containers</span>
+<span class="token comment"># 重启运行的容器</span>
 
-[root@qing /]$ docker rm
-# Remove one or more containers
-# 移除一个或者多个容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">rm</span>
+<span class="token comment"># Remove one or more containers</span>
+<span class="token comment"># 移除一个或者多个容器</span>
 
-[root@qing /]$ docker rmi
-# Remove one or more images
-# 移除一个或者多个镜像，五容器使用该镜像才可删除，否则需要删除相关容器才可以或者强制删除
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker rmi
+<span class="token comment"># Remove one or more images</span>
+<span class="token comment"># 移除一个或者多个镜像，五容器使用该镜像才可删除，否则需要删除相关容器才可以或者强制删除</span>
 
-[root@qing /]$ docker run
-# Run a command in a new container
-# 创建一个新的容器并运行一个命令
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run
+<span class="token comment"># Run a command in a new container</span>
+<span class="token comment"># 创建一个新的容器并运行一个命令</span>
 
-[root@qing /]$ docker save
-# Save one or more images to a tar archive (streamed to STDOUT by default)
-# 保存一个镜像为一个tar包，对应load
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker save
+<span class="token comment"># Save one or more images to a tar archive (streamed to STDOUT by default)</span>
+<span class="token comment"># 保存一个镜像为一个tar包，对应load</span>
 
-[root@qing /]$ docker search
-# Search the Docker Hub for images
-# 在docker hub中搜索镜像
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker search
+<span class="token comment"># Search the Docker Hub for images</span>
+<span class="token comment"># 在docker hub中搜索镜像</span>
 
-[root@qing /]$ docker start
-# Start one or more stopped containers
-# 启动容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker start
+<span class="token comment"># Start one or more stopped containers</span>
+<span class="token comment"># 启动容器</span>
 
-[root@qing /]$ docker stats
-# Display a live stream of container(s) resource usage statistics
-# 显示容器资源的状态
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker stats
+<span class="token comment"># Display a live stream of container(s) resource usage statistics</span>
+<span class="token comment"># 显示容器资源的状态</span>
 
-[root@qing /]$ docker stop
-# Stop one or more running containers
-# 停止容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker stop
+<span class="token comment"># Stop one or more running containers</span>
+<span class="token comment"># 停止容器</span>
 
-[root@qing /]$ docker tag
-# Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
-# 给源镜像打一个标签
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker tag
+<span class="token comment"># Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE</span>
+<span class="token comment"># 给源镜像打一个标签</span>
 
-[root@qing /]$ docker top
-# Display the running processes of a container
-# 查看容器中运行的进程信息
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">top</span>
+<span class="token comment"># Display the running processes of a container</span>
+<span class="token comment"># 查看容器中运行的进程信息</span>
 
-[root@qing /]$ docker unpause
-# Unpause all processes within one or more containers
-# 取消暂停容器
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker unpause
+<span class="token comment"># Unpause all processes within one or more containers</span>
+<span class="token comment"># 取消暂停容器</span>
 
-[root@qing /]$ docker update
-# Update configuration of one or more containers
-# 更新一个或者多个容器的配置
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker update
+<span class="token comment"># Update configuration of one or more containers</span>
+<span class="token comment"># 更新一个或者多个容器的配置</span>
 
-[root@qing /]$ docker version
-# Show the Docker version information
-# 查看docker版本号
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker version
+<span class="token comment"># Show the Docker version information</span>
+<span class="token comment"># 查看docker版本号</span>
 
-[root@qing /]$ docker wait
-# Block until one or more containers stop, then print their exit codes
-# 截取容器停止时的退出状态值。
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">wait</span>
+<span class="token comment"># Block until one or more containers stop, then print their exit codes</span>
+<span class="token comment"># 截取容器停止时的退出状态值。</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker search nginx
-[root@qing /]$ docker pull nginx
-[root@qing /]$ docker run -d --name nginx00 -p 2233:80 nginx
-# 后台启动nginx 并设置名称 nginx00 映射端口 宿主机2233 -&gt; 容器80
-[root@qing /]$ docker ps
-[root@qing /]$ curl localhost:2233
-[root@qing /]$ docker exec -it nginx00 /bin/bash
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker search nginx
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker pull nginx
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d --name nginx00 -p <span class="token number">2233</span>:80 nginx
+<span class="token comment"># 后台启动nginx 并设置名称 nginx00 映射端口 宿主机2233 -&gt; 容器80</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">curl</span> localhost:2233
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it nginx00 /bin/bash
 
-root@fca2fac49368:/$ whereis nginx 
+root@fca2fac49368:/$ <span class="token function">whereis</span> nginx 
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -1357,18 +1357,18 @@ root@fca2fac49368:/$ whereis nginx
 <p><strong>解决方案</strong></p>
 <p>在容器外部宿主机上提供一个映射路径，达到在容器外修改文件，容器内不就可以修改的目的，-v 数据卷</p>
 </blockquote>
-<h4 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a><strong>tomcat</strong></h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker run -it --rm tomcat:9.0 # 一般用来测试，用完就删除，及--rm
-[root@qing /]$ docker search tomcat
-[root@qing /]$ docker pull tomcat:9.0
-[root@qing /]$ docker run -d --name tomcat9.0_00 -p 2233:8080 tomcat:9.0
-[root@qing /]$ docker ps
-[root@qing /]$ curl localhost:2233
-root@714059eea83c$ docker exec -it tomcat9.0_00 /bin/bash
-ls -al
-cd /usr/local/tomcat
-cp -r webapps.dist/* webapps
-# 实际上，这里启动的时阉割版镜像，及默认最小的镜像，所以不必要的都被剔除掉了
-# 故：linux命令少，没有webapps。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a><strong>tomcat</strong></h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it --rm tomcat:9.0 <span class="token comment"># 一般用来测试，用完就删除，及--rm</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker search tomcat
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker pull tomcat:9.0
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d --name tomcat9.0_00 -p <span class="token number">2233</span>:8080 tomcat:9.0
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">curl</span> localhost:2233
+root@714059eea83c$ docker <span class="token builtin class-name">exec</span> -it tomcat9.0_00 /bin/bash
+<span class="token function">ls</span> -al
+<span class="token builtin class-name">cd</span> /usr/local/tomcat
+<span class="token function">cp</span> -r webapps.dist/* webapps
+<span class="token comment"># 实际上，这里启动的时阉割版镜像，及默认最小的镜像，所以不必要的都被剔除掉了</span>
+<span class="token comment"># 故：linux命令少，没有webapps。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>存在问题</p>
@@ -1376,21 +1376,21 @@ cp -r webapps.dist/* webapps
 <p>解决方案</p>
 <p>同上</p>
 </blockquote>
-<h4 id="es-kibana"><a href="#es-kibana" class="headerlink" title="es+kibana"></a><strong>es+kibana</strong></h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># elasticsearch 暴露的端口很多、十分的耗内存、数据一般需要放置到安全目录 挂载
-# 官方启动命令
-# $ docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag
-# --net somenetwork ？ docker的网络配置
+<h4 id="es-kibana"><a href="#es-kibana" class="headerlink" title="es+kibana"></a><strong>es+kibana</strong></h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># elasticsearch 暴露的端口很多、十分的耗内存、数据一般需要放置到安全目录 挂载</span>
+<span class="token comment"># 官方启动命令</span>
+<span class="token comment"># $ docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag</span>
+<span class="token comment"># --net somenetwork ？ docker的网络配置</span>
 
-[root@qing /]$ docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.2
-# 启动后十分的卡 docker stats 查看cpu状态
-[root@qing /]$ docker stats  ${id}?
-[root@qing /]$ docker stop elasticsearch
-# 添加限制的启动
-[root@qing /]$ docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmax512m" elasticsearch:7.6.2
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d --name elasticsearch -p <span class="token number">9200</span>:9200 -p <span class="token number">9300</span>:9300 -e <span class="token string">"discovery.type=single-node"</span> elasticsearch:7.6.2
+<span class="token comment"># 启动后十分的卡 docker stats 查看cpu状态</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker stats  <span class="token variable">${id}</span>?
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker stop elasticsearch
+<span class="token comment"># 添加限制的启动</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d --name elasticsearch -p <span class="token number">9200</span>:9200 -p <span class="token number">9300</span>:9300 -e <span class="token string">"discovery.type=single-node"</span> -e <span class="token assign-left variable">ES_JAVA_OPTS</span><span class="token operator">=</span><span class="token string">"-Xms64m -Xmax512m"</span> elasticsearch:7.6.2
 
-[root@qing /]$ curl localhost:9200
-####################################
-# kibana 连接  es
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">curl</span> localhost:9200
+<span class="token comment">####################################</span>
+<span class="token comment"># kibana 连接  es</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
@@ -1400,11 +1400,11 @@ cp -r webapps.dist/* webapps
 <li>rancher（CI/CD）</li>
 </ul>
 <h4 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h4><p>Docker图像化管理工具，提供了一个后台面板</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@qing /]$ docker run -d -p 8088:9000 \
---restart=always -v /var/run/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">root@qing /<span class="token punctuation">]</span>$ docker run -d -p <span class="token number">8088</span>:9000 <span class="token punctuation">\</span>
+--restart<span class="token operator">=</span>always -v /var/run/docker.sock:/var/run/docker.sock --privileged<span class="token operator">=</span>true portainer/portainer
 
-# -v 挂载  宿主机:容器
-# --privileged 授权<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># -v 挂载  宿主机:容器</span>
+<span class="token comment"># --privileged 授权</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -1428,41 +1428,41 @@ cp -r webapps.dist/* webapps
 <p>docker的镜像实际上由一层一层的文件系统组成，这种层级的文件系统UnionFS。</p>
 <p>bootfs（boot file system）主要包含bootloader和kernel，bootloader主要是引导加载kernel，Linux刚启动时会加载bootfs文件系统，在Docker镜像的最底层就是bootfs。这一层与我们典型的Linux/Unix系统一样的，包含boot加载器和内核。当boot加载完成之后整个内核就都在内存中了，此时内存的使用权已有bootfs转交给内核，此时系统也会卸载bootfs。</p>
 <p>rootfs（root file system），在bootfs之上，包含典型Linux系统中的/dev 、/proc、/bin、/etc等标准目录和文件。rootfs就是各种不同的操作系统发行版本，eg. Ubuntu Centos…</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker inspect 镜像id		# 查看镜像信息
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker inspect 镜像id		<span class="token comment"># 查看镜像信息</span>
 
-# rootFS
-#  "RootFS": {
-#             "Type": "layers",
-#             "Layers": [
-#                 "sha256:764055ebc9a7a290b64d17cf9ea550f1099c202d83795aa967428ebdf335c9f7",
-#                 "sha256:71a14cc55692a4edac5da18be420acf085c681ec95f7af5ff64bb1c236440d59",
-#                 "sha256:50854886015e8e202f3197c6a95ae60632a432aba673188bb7c3f9ee80ed2f30",
-#                 "sha256:1952fb2b0eb4d355f05a815c6d804243f089e05c0b8f3b1c1eaf0a1109e8293a",
-#                 "sha256:893f6aea2ce23f813c44180ccb7a41e8a4d151cb02f7c365cc4e837c0872b211",
-#                 "sha256:b8d0aeaeeee8ed55cb6bfc7e061d0bb0491e91024790c45d0c56b07c29cea080",
-#                 "sha256:d7cde20f3f6895bd6e6b2ef5767ee60d7034babe62093340ac22df5c8622db74",
-#                 "sha256:ae8fcba6091c17b6691f9a1c49621f193e2f475b3eee44d83b4f78b0d0fd31ae",
-#                 "sha256:1a4de2199d77be12009ed995b8db1c5a85d9a9b5e19673a8af4824de03f4ce0a",
-#                 "sha256:eeabd280c12ee308111950fd99ba8ffdd75130b6d948ba6a34fe6221b82f20dd",
-#                 "sha256:cd0c4980990f734130353adfa00f88ba57bc946b868468d633eeb75abd465fa0",
-#                 "sha256:027a41439ba438753333f44da1bc57b86e2211f708ace53343cc733151dc2380"
-#             ]
-#         },<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># rootFS</span>
+<span class="token comment">#  "RootFS": {</span>
+<span class="token comment">#             "Type": "layers",</span>
+<span class="token comment">#             "Layers": [</span>
+<span class="token comment">#                 "sha256:764055ebc9a7a290b64d17cf9ea550f1099c202d83795aa967428ebdf335c9f7",</span>
+<span class="token comment">#                 "sha256:71a14cc55692a4edac5da18be420acf085c681ec95f7af5ff64bb1c236440d59",</span>
+<span class="token comment">#                 "sha256:50854886015e8e202f3197c6a95ae60632a432aba673188bb7c3f9ee80ed2f30",</span>
+<span class="token comment">#                 "sha256:1952fb2b0eb4d355f05a815c6d804243f089e05c0b8f3b1c1eaf0a1109e8293a",</span>
+<span class="token comment">#                 "sha256:893f6aea2ce23f813c44180ccb7a41e8a4d151cb02f7c365cc4e837c0872b211",</span>
+<span class="token comment">#                 "sha256:b8d0aeaeeee8ed55cb6bfc7e061d0bb0491e91024790c45d0c56b07c29cea080",</span>
+<span class="token comment">#                 "sha256:d7cde20f3f6895bd6e6b2ef5767ee60d7034babe62093340ac22df5c8622db74",</span>
+<span class="token comment">#                 "sha256:ae8fcba6091c17b6691f9a1c49621f193e2f475b3eee44d83b4f78b0d0fd31ae",</span>
+<span class="token comment">#                 "sha256:1a4de2199d77be12009ed995b8db1c5a85d9a9b5e19673a8af4824de03f4ce0a",</span>
+<span class="token comment">#                 "sha256:eeabd280c12ee308111950fd99ba8ffdd75130b6d948ba6a34fe6221b82f20dd",</span>
+<span class="token comment">#                 "sha256:cd0c4980990f734130353adfa00f88ba57bc946b868468d633eeb75abd465fa0",</span>
+<span class="token comment">#                 "sha256:027a41439ba438753333f44da1bc57b86e2211f708ace53343cc733151dc2380"</span>
+<span class="token comment">#             ]</span>
+<span class="token comment">#         },</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p>精简后的OS，rootfs可以很小，只包含最基本的命令，工具和程序库就可以了，因为底层直接用Host到Kernel，自己只需要提供rootfs就可以了。达到公用bootfs的目的。</p>
-<p><img src="/2021/12/25/devops/docker-notes/0006.png" alt="0006"></p>
-<p><img src="/2021/12/25/devops/docker-notes/0007.png" alt="0007"></p>
+<p><img src="/.io//0006.png" alt="0006"></p>
+<p><img src="/.io//0007.png" alt="0007"></p>
 <blockquote>
 <p>进一步说明</p>
 </blockquote>
 <p>所有的Docker镜像都起始于一个既相互镜像层，当进行修改或者增加新的内容时，就会在当前镜像层之上，创建一个新的镜像层。</p>
-<p><img src="/2021/12/25/devops/docker-notes/0008.png" alt="0008"></p>
+<p><img src="/.io//0008.png" alt="0008"></p>
 <p>在添加额外的镜像层的同时，镜像始终保持是当前所有镜像的组合。及每个镜像层包含了3个文件，而镜像包含了来及两个镜像层的六个文件</p>
-<p><img src="/2021/12/25/devops/docker-notes/0009.png" alt="0009"></p>
+<p><img src="/.io//0009.png" alt="0009"></p>
 <p>一个稍微复杂的三层镜像，在外部看来整个镜像只有6个文件，因为最上层中的app2.0是app1.0的一个更新版本。</p>
-<p><img src="/2021/12/25/devops/docker-notes/0010.png" alt="0010"></p>
+<p><img src="/.io//0010.png" alt="0010"></p>
 <p>这种情况下，上层镜像层中的文件覆盖了底层镜像层中的文件，使得文件的更新版本作为一个新镜像层添加到镜像中。</p>
 <p>Docker通过存储引擎（新版本采用快照机制）的方式来实现镜像层堆栈，并保证多镜像层对外展示为统一 文件系统。</p>
 <p>Linux上可用的存储引擎由AUFS、Overlay2、Device Mapper、Btrfs以及ZFS。顾名思义，每种存储引擎都基于Linux中对应的文件系统或者块设备技术，并且每种存储引擎都有其独特的性能特点</p>
@@ -1472,170 +1472,186 @@ cp -r webapps.dist/* webapps
 <p>特点</p>
 </blockquote>
 <p>Docker镜像都是只读的，当容器启动是，一个新的可写层被加载到镜像的顶部，这一层就是容器层，容器之下的都是叫镜像层。（无限套娃？？？）</p>
-<h3 id="commit镜像"><a href="#commit镜像" class="headerlink" title="commit镜像"></a>commit镜像</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 提交容器成为一个新的副本容器
-[root@qing /]$ docker commit
-[root@qing /]$ docker commit -m="description" -a="author" 容器id 目标镜像:[TAG]
+<h3 id="commit镜像"><a href="#commit镜像" class="headerlink" title="commit镜像"></a>commit镜像</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 提交容器成为一个新的副本容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker commit
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker commit -m<span class="token operator">=</span><span class="token string">"description"</span> -a<span class="token operator">=</span><span class="token string">"author"</span> 容器id 目标镜像:<span class="token punctuation">[</span>TAG<span class="token punctuation">]</span>
 
-# test
+<span class="token comment"># test</span>
 
-[root@qing /]$ docker run -it -p 8080:8080 tomcat
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it -p <span class="token number">8080</span>:8080 tomcat
 
-# new terminal
-[root@qing /]$ docker ps
-[root@qing /]$ docker exec -it ${id} /bin/bash
-root@sdfj0adf98 /$ cd /usr/local/tomcat
-root@sdfj0adf98 /$ cp -r webapps.dist/* webapps 
+<span class="token comment"># new terminal</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">ps</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it <span class="token variable">${id}</span> /bin/bash
+root@sdfj0adf98 /$ <span class="token builtin class-name">cd</span> /usr/local/tomcat
+root@sdfj0adf98 /$ <span class="token function">cp</span> -r webapps.dist/* webapps 
 
 
-[root@qing /]$ docker commit -m="description" -a="author" 容器id 目标镜像:[TAG]
-[root@qing /]$ docker images<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker commit -m<span class="token operator">=</span><span class="token string">"description"</span> -a<span class="token operator">=</span><span class="token string">"author"</span> 容器id 目标镜像:<span class="token punctuation">[</span>TAG<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker images
 
-<p><img src="/2021/12/25/devops/docker-notes/0011.png" alt="0011"></p>
+<span class="token comment"># 将镜像保存为压缩包</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker save -o qing.tar qing:v1.0
+
+<span class="token comment"># 在别的机器上加载该镜像</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker load -i qing.tar
+
+<span class="token comment"># 将旧镜像名称修改为新版名称</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker tag qing:v1.0 sunq/qing:v1.0
+<span class="token comment"># 登录到docker hub</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker login
+<span class="token comment"># 推送至仓库</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker push sunq/qing:v1.0
+<span class="token comment"># 完成推送后，退出登录</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">logout</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/.io//0011.png" alt="0011"></p>
 <h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><p>Q：数据可用放在容器里面么？</p>
 <p>A：不能，因为容器如果被删除，会导致数据永久的丢失，所以需要<strong>数据持久化</strong></p>
 <p>所以就有了容器的卷技术，容器之间可用有一个数据共享，将Docker容器中产生的数据同步到本地中 —— 目录挂载，将我们容器内的目录，挂载到Linux上面。将宿主机的内存共享给容器，双向绑定。</p>
 <p><strong>容器持久化和同步操作，容器间也可以数据共享。</strong></p>
-<h3 id="挂载链接"><a href="#挂载链接" class="headerlink" title="挂载链接"></a>挂载链接</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 直接使用命令来挂载 -v
-[root@qing /]$ docker run -it 主机目录:容器目录 （镜像）
+<h3 id="挂载链接"><a href="#挂载链接" class="headerlink" title="挂载链接"></a>挂载链接</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 直接使用命令来挂载 -v</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it 主机目录:容器目录 （镜像）
 
-[root@qing /]$ docker run -it -v /home/ceshi:/home centos /bin/bash
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it -v /home/ceshi:/home centos /bin/bash
 
-[root@qing /]$ docker inspect 容器Id
-# “Mounts”
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker inspect 容器Id
+<span class="token comment"># “Mounts”</span>
 
-[root@qing /]$ cd /home/ceshi
-[root@qing /]$ ls
-# 在容器内创建文件
-[root@sdfuo098sadf /]$ ls /home
-[root@sdfuo098sadf /]$ touch test.java
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> /home/ceshi
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">ls</span>
+<span class="token comment"># 在容器内创建文件</span>
+<span class="token punctuation">[</span>root@sdfuo098sadf /<span class="token punctuation">]</span>$ <span class="token function">ls</span> /home
+<span class="token punctuation">[</span>root@sdfuo098sadf /<span class="token punctuation">]</span>$ <span class="token function">touch</span> test.java
 
-# 在宿主机中查看是否文件被同步创建
-[root@qing /]$ ls /home/ceshi
+<span class="token comment"># 在宿主机中查看是否文件被同步创建</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">ls</span> /home/ceshi
 
-# [root@qing /]$ docker exec -it 容器id /bin/bash  # 进入后台运行的容器，/bin/bash 位置		开启一个新的终端，可以进行一些操作(常用)
+<span class="token comment"># [root@qing /]$ docker exec -it 容器id /bin/bash  # 进入后台运行的容器，/bin/bash 位置		开启一个新的终端，可以进行一些操作(常用)</span>
 
-[root@qing /]$ docker attach 容器id		#  进入正在执行的容器	进入正在运行的中断，不会启动新的进程
-[root@sdfuo098sadf /]$ exit
-# 退出容器后，在宿主机上修改文件
-[root@qing /]$ vim /home/ceshi/test.java
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker attach 容器id		<span class="token comment">#  进入正在执行的容器	进入正在运行的中断，不会启动新的进程</span>
+<span class="token punctuation">[</span>root@sdfuo098sadf /<span class="token punctuation">]</span>$ <span class="token builtin class-name">exit</span>
+<span class="token comment"># 退出容器后，在宿主机上修改文件</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">vim</span> /home/ceshi/test.java
 
-# 重新启动容器，查看容器中的该文件是被同步修改<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 重新启动容器，查看容器中的该文件是被同步修改</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 拉取镜像
-[root@qing /]$ docker pull mysql:5.7
+<h4 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 拉取镜像</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker pull mysql:5.7
 
-# 官方的启动命令
-# 启动容器时挂载目录, 配置密码
-# -e 环境配置
-# $ docker run -it --network some-network --rm mysql mysql -hsome-mysql -uexample-user -p
-[root@qing /]$ docker run -d -p 2233:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+<span class="token comment"># 官方的启动命令</span>
+<span class="token comment"># 启动容器时挂载目录, 配置密码</span>
+<span class="token comment"># -e 环境配置</span>
+<span class="token comment"># $ docker run -it --network some-network --rm mysql mysql -hsome-mysql -uexample-user -p</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -p <span class="token number">2233</span>:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e <span class="token assign-left variable">MYSQL_ROOT_PASSWORD</span><span class="token operator">=</span><span class="token number">123456</span> --name mysql01 mysql:5.7
 		
-# 可用连接创建数据库查看是否持久化成功。
+<span class="token comment"># 可用连接创建数据库查看是否持久化成功。</span>
 
 
-[root@qing /]$ docker rm -f mysql01<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">rm</span> -f mysql01<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h3 id="具名挂载和匿名挂载"><a href="#具名挂载和匿名挂载" class="headerlink" title="具名挂载和匿名挂载"></a>具名挂载和匿名挂载</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
-# 不指定主机目录，会自动挂载
-[root@qing /]$  docker run -d -P --name nginx01 -v /etc/nginx nginx
-# 注意 -v 后不添加/ 表明不是目录
-[root@qing /]$  docker run -d -P --name nginx02 -v juming_nginx:/etc/nginx nginx
-# 查看所有的卷情况
-[root@qing /]$ docker volume ls
+<span class="token comment"># 不指定主机目录，会自动挂载</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$  docker run -d -P --name nginx01 -v /etc/nginx nginx
+<span class="token comment"># 注意 -v 后不添加/ 表明不是目录</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$  docker run -d -P --name nginx02 -v juming_nginx:/etc/nginx nginx
+<span class="token comment"># 查看所有的卷情况</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker volume <span class="token function">ls</span>
 DRIVER    VOLUME NAME
-local     0a99e217ac4ba4842c205b7fe1aae0146425e56b96df7628d78e10198f1337ce
-local     juming_nginx
-# 可用看出，第一个就是匿名挂载，在 -v 之后只写了容器内的路径，没有写宿主机的路径
-# 第二个就是具名挂载 -v 卷名:容器内路径 
+<span class="token builtin class-name">local</span>     0a99e217ac4ba4842c205b7fe1aae0146425e56b96df7628d78e10198f1337ce
+<span class="token builtin class-name">local</span>     juming_nginx
+<span class="token comment"># 可用看出，第一个就是匿名挂载，在 -v 之后只写了容器内的路径，没有写宿主机的路径</span>
+<span class="token comment"># 第二个就是具名挂载 -v 卷名:容器内路径 </span>
 
-# 查看卷的所在目录
+<span class="token comment"># 查看卷的所在目录</span>
 
-[root@qing /]$ docker volume inspect juming_nginx
-[
-    {
-        "CreatedAt": "2021-12-29T23:28:25+08:00",
-        "Driver": "local",
-        "Labels": null,
-        "Mountpoint": "/var/lib/docker/volumes/juming_nginx/_data",
-        "Name": "juming_nginx",
-        "Options": null,
-        "Scope": "local"
-    }
-]
-# Mountpoint 就是挂载的目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker volume inspect juming_nginx
+<span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token string">"CreatedAt"</span><span class="token builtin class-name">:</span> <span class="token string">"2021-12-29T23:28:25+08:00"</span>,
+        <span class="token string">"Driver"</span><span class="token builtin class-name">:</span> <span class="token string">"local"</span>,
+        <span class="token string">"Labels"</span><span class="token builtin class-name">:</span> null,
+        <span class="token string">"Mountpoint"</span><span class="token builtin class-name">:</span> <span class="token string">"/var/lib/docker/volumes/juming_nginx/_data"</span>,
+        <span class="token string">"Name"</span><span class="token builtin class-name">:</span> <span class="token string">"juming_nginx"</span>,
+        <span class="token string">"Options"</span><span class="token builtin class-name">:</span> null,
+        <span class="token string">"Scope"</span><span class="token builtin class-name">:</span> <span class="token string">"local"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+<span class="token comment"># Mountpoint 就是挂载的目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>所有的docker容器内的卷，没有指定目录的情况下都是在 <code>/var/lib/docker/volumes/xxxxxx/_data</code></p>
 <p>通过具名挂载可用很方便的找到一个卷，通常情况下都是使用具名挂载</p>
-<h4 id="挂载小总结"><a href="#挂载小总结" class="headerlink" title="挂载小总结"></a>挂载小总结</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 具名挂载、匿名挂载、指定路径挂载
--v 容器内路径	# 匿名挂载
--v 卷名:容器内路径		# 具名挂载
--v /宿主机路径:容器内路径		# 指定路径挂载
+<h4 id="挂载小总结"><a href="#挂载小总结" class="headerlink" title="挂载小总结"></a>挂载小总结</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 具名挂载、匿名挂载、指定路径挂载</span>
+-v 容器内路径	<span class="token comment"># 匿名挂载</span>
+-v 卷名:容器内路径		<span class="token comment"># 具名挂载</span>
+-v /宿主机路径:容器内路径		<span class="token comment"># 指定路径挂载</span>
 
 
-# 通过 -v 容器内路径:ro rw 改变读写权限
-# 一旦设置了容器权限，容器对我们挂载出来的容器就有了限定 
-# ro 这个路径就只能通过宿主机来操作，容器内部是无法操作的
-[root@qing /]$ docker run -d -P --name nginx03: -v juming_nginx:/etc/nginx:ro nginx
-[root@qing /]$ docker run -d -P --name nginx04 -v juming_nginx:/etc/nginx:rw nginx
+<span class="token comment"># 通过 -v 容器内路径:ro rw 改变读写权限</span>
+<span class="token comment"># 一旦设置了容器权限，容器对我们挂载出来的容器就有了限定 </span>
+<span class="token comment"># ro 这个路径就只能通过宿主机来操作，容器内部是无法操作的</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name nginx03: -v juming_nginx:/etc/nginx:ro nginx
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name nginx04 -v juming_nginx:/etc/nginx:rw nginx
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="dockerFile实现挂载"><a href="#dockerFile实现挂载" class="headerlink" title="dockerFile实现挂载"></a>dockerFile实现挂载</h3><p>命令脚本，可用通过这个脚本来生成镜像，镜像是一层一层的卷，脚本就是一个一个的命令，每个命令就是一层！</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ mkdir /home/docker-test-volume
-# 创建dockerFile文件
-[root@qing /]$ vim dockerFile1
-#############################dockerFile1##############
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">mkdir</span> /home/docker-test-volume
+<span class="token comment"># 创建dockerFile文件</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">vim</span> dockerFile1
+<span class="token comment">#############################dockerFile1##############</span>
 FROM centos
 
-VOLUME ["volume01","volume02"]
+VOLUME <span class="token punctuation">[</span><span class="token string">"volume01"</span>,<span class="token string">"volume02"</span><span class="token punctuation">]</span>
 
-CMD echo "------end------"
+CMD <span class="token builtin class-name">echo</span> <span class="token string">"------end------"</span>
 CMD /bin/bash
-############################dockerFile1##############
+<span class="token comment">############################dockerFile1##############</span>
 
-# 根据dockerFile 生成镜像
-[root@qing /]$ docker build -f ./dockerFile1 -t qing/centos:1.0 .
-Sending build context to Docker daemon  240.7MB
-Step 1/4 : FROM centos
- ---&gt; 5d0da3dc9764
-Step 2/4 : VOLUME ["volume01","volume02"]
- ---&gt; Running in eb142d0e83ad
+<span class="token comment"># 根据dockerFile 生成镜像</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker build -f ./dockerFile1 -t qing/centos:1.0 <span class="token builtin class-name">.</span>
+Sending build context to Docker daemon  <span class="token number">240</span>.7MB
+Step <span class="token number">1</span>/4 <span class="token builtin class-name">:</span> FROM centos
+ ---<span class="token operator">&gt;</span> 5d0da3dc9764
+Step <span class="token number">2</span>/4 <span class="token builtin class-name">:</span> VOLUME <span class="token punctuation">[</span><span class="token string">"volume01"</span>,<span class="token string">"volume02"</span><span class="token punctuation">]</span>
+ ---<span class="token operator">&gt;</span> Running <span class="token keyword">in</span> eb142d0e83ad
 Removing intermediate container eb142d0e83ad
- ---&gt; ba3e07adb20b
-Step 3/4 : CMD echo "------end------"
- ---&gt; Running in 372a86750520
+ ---<span class="token operator">&gt;</span> ba3e07adb20b
+Step <span class="token number">3</span>/4 <span class="token builtin class-name">:</span> CMD <span class="token builtin class-name">echo</span> <span class="token string">"------end------"</span>
+ ---<span class="token operator">&gt;</span> Running <span class="token keyword">in</span> 372a86750520
 Removing intermediate container 372a86750520
- ---&gt; 8feb17962dff
-Step 4/4 : CMD /bin/bash
- ---&gt; Running in b198098a4925
+ ---<span class="token operator">&gt;</span> 8feb17962dff
+Step <span class="token number">4</span>/4 <span class="token builtin class-name">:</span> CMD /bin/bash
+ ---<span class="token operator">&gt;</span> Running <span class="token keyword">in</span> b198098a4925
 Removing intermediate container b198098a4925
- ---&gt; 0a15ea858d6b
+ ---<span class="token operator">&gt;</span> 0a15ea858d6b
 Successfully built 0a15ea858d6b
 Successfully tagged qing/centos:1.0
 
-# 查看镜像
-[root@qing /]$ docker images
+<span class="token comment"># 查看镜像</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker images
 REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
-qing/centos   1.0       0a15ea858d6b   6 seconds ago   231MB
+qing/centos   <span class="token number">1.0</span>       0a15ea858d6b   <span class="token number">6</span> seconds ago   231MB
 
-[root@qing /]$ docker run -it qing/centos:1.0 bash
-[root@ef4ca52a471a /]# ls
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it qing/centos:1.0 <span class="token function">bash</span>
+<span class="token punctuation">[</span>root@ef4ca52a471a /<span class="token punctuation">]</span><span class="token comment"># ls</span>
 bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var  volume01	volume02
 
-[root@qing /]$ docker inspect ef4ca52a471a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker inspect ef4ca52a471a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h3 id="容器间共享数据"><a href="#容器间共享数据" class="headerlink" title="容器间共享数据"></a>容器间共享数据</h3><p>通过数据卷容器来达到容器间的共享</p>
-<p><img src="/2021/12/25/devops/docker-notes/0015.png" alt="0015"></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 启动父容器
-[root@qing /]$ docker run -it --name docker01 qing/centos:1.0 bash
+<p><img src="/.io//0015.png" alt="0015"></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 启动父容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it --name docker01 qing/centos:1.0 <span class="token function">bash</span>
 
-# 启动第二个
-[root@qing /]$ docker run -it --name docker02 --volumes-from docker01 qing/centos:1.0 bash
+<span class="token comment"># 启动第二个</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -it --name docker02 --volumes-from docker01 qing/centos:1.0 <span class="token function">bash</span>
 
-# 在父容器中创建文件 会被同步到子容器中<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 在父容器中创建文件 会被同步到子容器中</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>注意：这里其实是容器都挂载到宿主机的同一个目录下了，并不是多个目录之间在同步，如果删除宿主机下的这个目录的文件，容器内的数据就会消失</p>
 <h2 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h2><p>dockerFile 是用来构建docker镜像的构建脚本。</p>
@@ -1644,7 +1660,7 @@ bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  s
 <li>编写一个dockerFile文件</li>
 <li>docker build 构建一个镜像</li>
 <li>docker  run 运行镜像</li>
-<li>docker push 发布镜像 </li>
+<li>docker push 发布镜像</li>
 </ol>
 <blockquote>
 <p>每个保留关键字（指令）都是大写</p>
@@ -1652,7 +1668,7 @@ bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  s
 <p>/# 表示注释</p>
 <p>每个指令都会创建提交一个新的镜像层，并提交。</p>
 </blockquote>
-<p><img src="/2021/12/25/devops/docker-notes/0016.png" alt="0016"></p>
+<p><img src="/.io//0016.png" alt="0016"></p>
 <h3 id="指令简述"><a href="#指令简述" class="headerlink" title="指令简述"></a>指令简述</h3><table>
 <thead>
 <tr>
@@ -1745,74 +1761,74 @@ bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  s
 <blockquote>
 <p>FROM scratch</p>
 </blockquote>
-<h4 id="制作一个简单的centos扩展镜像"><a href="#制作一个简单的centos扩展镜像" class="headerlink" title="制作一个简单的centos扩展镜像"></a>制作一个简单的centos扩展镜像</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ vim docker_file_centos
-############################docker_file_centos##############
+<h4 id="制作一个简单的centos扩展镜像"><a href="#制作一个简单的centos扩展镜像" class="headerlink" title="制作一个简单的centos扩展镜像"></a>制作一个简单的centos扩展镜像</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">vim</span> docker_file_centos
+<span class="token comment">############################docker_file_centos##############</span>
 FROM centos
-MAINTAINER qing&lt;111@qq.com&gt;
+MAINTAINER qing<span class="token operator">&lt;</span><span class="token number">111</span>@qq.com<span class="token operator">&gt;</span>
 
 ENV MYPATH /usr/local
-WORKDIR $MYPATH
+WORKDIR <span class="token variable">$MYPATH</span>
 
-RUN yum -y install vim
+RUN yum -y <span class="token function">install</span> <span class="token function">vim</span>
 RUN yum -y insatll net-tools
 
-EXPOSE 80
+EXPOSE <span class="token number">80</span>
 
-CMD echo "------end-----"
+CMD <span class="token builtin class-name">echo</span> <span class="token string">"------end-----"</span>
 
 CMD /bin/bash
-############################docker_file_centos##############
+<span class="token comment">############################docker_file_centos##############</span>
 
-# 在官方的centos基础上添加了vim 和 net-tools
-[root@qing /]$ docker build -f home/doker_files/docker_file_centos -t qing/centos:1.1 .
-# 可用启动测试下 ipconfig vim 命令
-
-
-# 查看下镜像构建的历史
-[root@qing /]$ docker history 镜像id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 在官方的centos基础上添加了vim 和 net-tools</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker build -f home/doker_files/docker_file_centos -t qing/centos:1.1 <span class="token builtin class-name">.</span>
+<span class="token comment"># 可用启动测试下 ipconfig vim 命令</span>
 
 
+<span class="token comment"># 查看下镜像构建的历史</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token function">history</span> 镜像id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="使用tar制作tomcat镜像"><a href="#使用tar制作tomcat镜像" class="headerlink" title="使用tar制作tomcat镜像"></a>使用tar制作tomcat镜像</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ ls
+
+
+<h4 id="使用tar制作tomcat镜像"><a href="#使用tar制作tomcat镜像" class="headerlink" title="使用tar制作tomcat镜像"></a>使用tar制作tomcat镜像</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">ls</span>
 apache-tomcat-9.0.56.tar.gz jdk1.8.0_181
-[root@qing /]$ touch readme.md
-[root@qing /]$ vim Dockerfile # 该命令 build是会自动讯在，不用-f指定 
-############################Dockerfile##############
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">touch</span> readme.md
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">vim</span> Dockerfile <span class="token comment"># 该命令 build是会自动讯在，不用-f指定 </span>
+<span class="token comment">############################Dockerfile##############</span>
 FROM centos
-MAINTAINER qing&lt;111@qq.com&gt;
+MAINTAINER qing<span class="token operator">&lt;</span><span class="token number">111</span>@qq.com<span class="token operator">&gt;</span>
 
 COPY readme.md /usr/local/readme.txt
-# 直接复制
+<span class="token comment"># 直接复制</span>
 COPY jdk1.8.0_181/ /usr/local/jdk1.8.0_181/
-# 会自动解压
+<span class="token comment"># 会自动解压</span>
 ADD apache-tomcat-9.0.56.tar /usr/local/
 
-RUN yum -y install vim 
+RUN yum -y <span class="token function">install</span> <span class="token function">vim</span> 
 
 ENV MYPATH /usr/local
-WORKDIR $MYPATH
+WORKDIR <span class="token variable">$MYPATH</span>
 
 ENV JAVA_HOME /usr/local/jdk1.8.0_181
-ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ENV CLASSPATH <span class="token variable">$JAVA_HOME</span>/lib/dt.jar:<span class="token variable">$JAVA_HOME</span>/lib/tools.jar
 
 ENV CATALINA_HOME /usr/local/apache-tomcat-9.0.56
 ENV CATALINA_BASH /usr/local/apache-tomcat-9.0.56
-ENV PATH $PATH:$JAVA_HOEM/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin
+ENV <span class="token environment constant">PATH</span> <span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$JAVA_HOEM</span>/bin:<span class="token variable">$CATALINA_HOME</span>/lib:<span class="token variable">$CATALINA_HOME</span>/bin
 
-EXPOSE 8080
+EXPOSE <span class="token number">8080</span>
 
-CMD /usr/local/apache-tomcat-9.0.56/bin/startup.sh &amp;&amp; tail -F /url/localapache-tomcat-9.0.56/bin/logs/catalina.out
+CMD /usr/local/apache-tomcat-9.0.56/bin/startup.sh <span class="token operator">&amp;&amp;</span> <span class="token function">tail</span> -F /url/localapache-tomcat-9.0.56/bin/logs/catalina.out
 
-############################Dockerfile##############
+<span class="token comment">############################Dockerfile##############</span>
 
 
-# 构建启动
-[root@qing /]$ docker build -t qing/tomcat:1.0 .
-[root@qing /]$ docker images
-[root@qing /]$ docker run -d -p 2233:8080 --name qingtomcat -v /home/qing/tomcat/test:/usr/local/apache-tomcat-9.0.56/webapps/test -v /home/qing/tomcat/logs:/usr/local/apache-tomcat-9.0.56/logs qing/tomcat:1.0
+<span class="token comment"># 构建启动</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker build -t qing/tomcat:1.0 <span class="token builtin class-name">.</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker images
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -p <span class="token number">2233</span>:8080 --name qingtomcat -v /home/qing/tomcat/test:/usr/local/apache-tomcat-9.0.56/webapps/test -v /home/qing/tomcat/logs:/usr/local/apache-tomcat-9.0.56/logs qing/tomcat:1.0
 
-# 测试
-[root@qing /]$ curl localhost:2233<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 测试</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">curl</span> localhost:2233<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root@qing /]$ mkdir /home/qing/tomcat/test/EB-INF
 [root@qing /]$ cd /home/qing/tomcat/test/EB-INF
@@ -1853,49 +1869,49 @@ System.out.println("Your IP address is " + request.getRemoteAddr());
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ vim docker_file_cmd
-############################docker_file_cmd##############
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">vim</span> docker_file_cmd
+<span class="token comment">############################docker_file_cmd##############</span>
 FROM centos
-CMD ["ls","-a"]
-############################docker_file_cmd##############
+CMD <span class="token punctuation">[</span><span class="token string">"ls"</span>,<span class="token string">"-a"</span><span class="token punctuation">]</span>
+<span class="token comment">############################docker_file_cmd##############</span>
 
-# 在官方的centos基础上添加了vim 和 net-tools
-[root@qing /]$ docker build -f home/doker_files/docker_file_cmd -t qing/centos:1.2 .
-# 直接运行会发现 ls -a 执行了
-[root@qing /]$dovker run centos:1.2
+<span class="token comment"># 在官方的centos基础上添加了vim 和 net-tools</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker build -f home/doker_files/docker_file_cmd -t qing/centos:1.2 <span class="token builtin class-name">.</span>
+<span class="token comment"># 直接运行会发现 ls -a 执行了</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span><span class="token variable">$dovker</span> run centos:1.2
 
-# 追加命令执行
-[root@qing /]$dovker run centos:1.2 -l
+<span class="token comment"># 追加命令执行</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span><span class="token variable">$dovker</span> run centos:1.2 -l
 error<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ vim docker_file_entrypoint
-############################docker_file_entrypoint##############
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">vim</span> docker_file_entrypoint
+<span class="token comment">############################docker_file_entrypoint##############</span>
 FROM centos
-ENTRYPOINT ["ls","-a"]
-############################docker_file_entrypoint##############
+ENTRYPOINT <span class="token punctuation">[</span><span class="token string">"ls"</span>,<span class="token string">"-a"</span><span class="token punctuation">]</span>
+<span class="token comment">############################docker_file_entrypoint##############</span>
 
-# 在官方的centos基础上添加了vim 和 net-tools
-[root@qing /]$ docker build -f home/doker_files/docker_file_entrypoint -t qing/centos:1.3 .
-# 直接运行会发现 ls -a 执行了
-[root@qing /]$ dovker run centos:1.2
+<span class="token comment"># 在官方的centos基础上添加了vim 和 net-tools</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker build -f home/doker_files/docker_file_entrypoint -t qing/centos:1.3 <span class="token builtin class-name">.</span>
+<span class="token comment"># 直接运行会发现 ls -a 执行了</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ dovker run centos:1.2
 
-# 追加命令执行，会发现 执行了 ls -a -l
-[root@qing /]$ dovker run centos:1.2 -l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 追加命令执行，会发现 执行了 ls -a -l</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ dovker run centos:1.2 -l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="发布镜像"><a href="#发布镜像" class="headerlink" title="发布镜像"></a>发布镜像</h3><h4 id="DockerHub"><a href="#DockerHub" class="headerlink" title="DockerHub"></a>DockerHub</h4><ol>
 <li><p>地址<a target="_blank" rel="noopener" href="http://hub.docker.com/">http://hub.docker.com/</a> 注册自己的账号</p>
 </li>
 <li><p>在服务器上提交自己的镜像</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 登录自己账户号
-[root@qing /]$ docker login -u qing
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 登录自己账户号</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker login -u qing
 Password:
 
 Login Succeeded
 
-# 提交镜像 尽量带上自己的版本号
-[root@qing /]$ docker push  qing/tomcat:1.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<span class="token comment"># 提交镜像 尽量带上自己的版本号</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker push  qing/tomcat:1.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 <h4 id="阿里云容器镜像服务"><a href="#阿里云容器镜像服务" class="headerlink" title="阿里云容器镜像服务"></a>阿里云容器镜像服务</h4><ol>
 <li>登录阿里云，找到容器镜像服务</li>
@@ -1903,31 +1919,31 @@ Login Succeeded
 <li>创建容器镜像</li>
 <li>根据阿里云上的操作指南进行提交</li>
 </ol>
-<h2 id="流程小结"><a href="#流程小结" class="headerlink" title="流程小结"></a>流程小结</h2><p><img src="/2021/12/25/devops/docker-notes/0017.png" alt="0017"></p>
-<h2 id="Docker-网络"><a href="#Docker-网络" class="headerlink" title="Docker 网络"></a>Docker 网络</h2><h3 id="实验查看"><a href="#实验查看" class="headerlink" title="实验查看"></a>实验查看</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 查看IP地址
-[root@qing /]$ ip addr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="流程小结"><a href="#流程小结" class="headerlink" title="流程小结"></a>流程小结</h2><p><img src="/.io//0017.png" alt="0017"></p>
+<h2 id="Docker-网络"><a href="#Docker-网络" class="headerlink" title="Docker 网络"></a>Docker 网络</h2><h3 id="实验查看"><a href="#实验查看" class="headerlink" title="实验查看"></a>实验查看</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 查看IP地址</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">ip</span> addr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/0018.png" alt="0018"></p>
+<p><img src="/.io//0018.png" alt="0018"></p>
 <p>Q：docker如何处理容器网络访问的？</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker run -d -P --name tomcat01 tomcat
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name tomcat01 tomcat
 
-# 查看容器的内部Ip地址
-[root@qing /]$ docker exec -it tomcat01 ip addr
-## 如果 报错 OCI runtime exec failed: 
-## 因为该tomcat镜像为了最小化，可能没有安装ip addr命令，故需要安装 iproute2
-# [root@qing /]$ docker exec -it tomcat01 bash
-# root@bd19d226252e $ apt update &amp;&amp; apt install -y iproute2
+<span class="token comment"># 查看容器的内部Ip地址</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat01 <span class="token function">ip</span> addr
+<span class="token comment">## 如果 报错 OCI runtime exec failed: </span>
+<span class="token comment">## 因为该tomcat镜像为了最小化，可能没有安装ip addr命令，故需要安装 iproute2</span>
+<span class="token comment"># [root@qing /]$ docker exec -it tomcat01 bash</span>
+<span class="token comment"># root@bd19d226252e $ apt update &amp;&amp; apt install -y iproute2</span>
 
-# 再次输入
-[root@qing /]$ docker exec -it tomcat01 ip addr
-# 查看一下容器的内部网络地址，发现容器启动的时候会得到一个eth0@if61的ip地址，该地址是由docker分配的 详细见 图0019
+<span class="token comment"># 再次输入</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat01 <span class="token function">ip</span> addr
+<span class="token comment"># 查看一下容器的内部网络地址，发现容器启动的时候会得到一个eth0@if61的ip地址，该地址是由docker分配的 详细见 图0019</span>
        
-# 可用通过宿主机ping 改ip
-[root@qing /]$ ping 172.18.0.2
+<span class="token comment"># 可用通过宿主机ping 改ip</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token function">ping</span> <span class="token number">172.18</span>.0.2
 
-# 与图片0018中的 docker0 172.18.0.1/16 可用得知该网络与docker0属于同一个网段<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 与图片0018中的 docker0 172.18.0.1/16 可用得知该网络与docker0属于同一个网段</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/0019.png" alt="0019"></p>
+<p><img src="/.io//0019.png" alt="0019"></p>
 <h3 id="原理简述"><a href="#原理简述" class="headerlink" title="原理简述"></a>原理简述</h3><ol>
 <li><p>每启动一个docker容器，docker就会给docker容器分配一个ip，只要安装了docker，就会有一个网卡docker0。通过桥接模式，使用的技术veth-pair技术进行连接。</p>
 </li>
@@ -1937,12 +1953,12 @@ Login Succeeded
 <p>veth-pair 就是一对虚拟设备接口，都是成对出现，一段连着协议，一段彼此相连。基于此特性，veth-pair充当一个桥梁，连接各种虚拟网络设备的</p>
 <p>OpenStac、Docker容器之间的连接、OVS的连接，都是使用veth-pair 技术</p>
 </blockquote>
-<p><img src="/2021/12/25/devops/docker-notes/0020.png" alt="0020"></p>
+<p><img src="/.io//0020.png" alt="0020"></p>
 </li>
 <li><p>所以在启动多个容器的时候，由于都是由docker0分配的网卡的ip都属于同一个网段，所以容器之间也是可以相互访问的。</p>
 </li>
 </ol>
-<p><img src="/2021/12/25/devops/docker-notes/0021.png" alt="0021"></p>
+<p><img src="/.io//0021.png" alt="0021"></p>
 <ol start="4">
 <li>所以，在启动容器时不指定网络的情况下，都是哟docker来分配一个默认的可用IP，且由docker0来进行路由</li>
 </ol>
@@ -1951,51 +1967,51 @@ Login Succeeded
 <p>Docker使用的是Linux的桥接，宿主机中的一个网卡docker0就是Docker的网桥 </p>
 <p>docker中的所有网络接口都是虚拟的，虚拟的转发效率高、</p>
 </blockquote>
-<p><img src="/2021/12/25/devops/docker-notes/0022.png" alt="0022"></p>
+<p><img src="/.io//0022.png" alt="0022"></p>
 <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><h4 id="–Link"><a href="#–Link" class="headerlink" title="–Link"></a>–Link</h4><blockquote>
 <p>但是并不推荐使用 –link 进行容器连接。因为部分的自定义网络不适于使用docker0 进行路由，例如：不支持使用容器名进行连接</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker run -d -P --name tomcat01 tomcat
-[root@qing /]$ docker run -d -P --name tomcat02 tomcat
-# 直接在容器间进行ping
-[root@qing /]$ docker exec -it tomcat02 ping tomcat01
-## 如果 报错 OCI runtime exec failed: 
-## 不支持ping命令时，则需要进入容器手动安装该命令
-# [root@qing /]$ docker exec -it tomcat02 bash
-# root@bd19d226252e $ apt update &amp;&amp; apt install iputils-ping
-ping: tomcat01: Name or service not known  # 可知无法与tomcat01进行通信
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name tomcat01 tomcat
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name tomcat02 tomcat
+<span class="token comment"># 直接在容器间进行ping</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat02 <span class="token function">ping</span> tomcat01
+<span class="token comment">## 如果 报错 OCI runtime exec failed: </span>
+<span class="token comment">## 不支持ping命令时，则需要进入容器手动安装该命令</span>
+<span class="token comment"># [root@qing /]$ docker exec -it tomcat02 bash</span>
+<span class="token comment"># root@bd19d226252e $ apt update &amp;&amp; apt install iputils-ping</span>
+ping: tomcat01: Name or <span class="token function">service</span> not known  <span class="token comment"># 可知无法与tomcat01进行通信</span>
 
-[root@qing /]$ docker run -d -P --name tomcat03 --link tomcat02 tomcat
-# 如果不存在ping命令，则需要同上面的方式安装 
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name tomcat03 --link tomcat02 tomcat
+<span class="token comment"># 如果不存在ping命令，则需要同上面的方式安装 </span>
 
-[root@qing /]$ docker exec -it tomcat03 ping tomcat02
-PING tomcat02 (172.18.0.3) 56(84) bytes of data.
-64 bytes from tomcat02 (172.18.0.3): icmp_seq=1 ttl=64 time=0.104 ms
-64 bytes from tomcat02 (172.18.0.3): icmp_seq=2 ttl=64 time=0.059 ms
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat03 <span class="token function">ping</span> tomcat02
+PING tomcat02 <span class="token punctuation">(</span><span class="token number">172.18</span>.0.3<span class="token punctuation">)</span> <span class="token number">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data.
+<span class="token number">64</span> bytes from tomcat02 <span class="token punctuation">(</span><span class="token number">172.18</span>.0.3<span class="token punctuation">)</span>: <span class="token assign-left variable">icmp_seq</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">64</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">0.104</span> ms
+<span class="token number">64</span> bytes from tomcat02 <span class="token punctuation">(</span><span class="token number">172.18</span>.0.3<span class="token punctuation">)</span>: <span class="token assign-left variable">icmp_seq</span><span class="token operator">=</span><span class="token number">2</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">64</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">0.059</span> ms
 
-# 可用发现 通过--link 便可以在容器之间 通过服务名联通(不用指定ip)
+<span class="token comment"># 可用发现 通过--link 便可以在容器之间 通过服务名联通(不用指定ip)</span>
 
-# 但是反向却无法ping通
-[root@qing /]$ docker exec -it tomcat02 ping tomcat03<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 但是反向却无法ping通</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat02 <span class="token function">ping</span> tomcat03<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>这里 –link 是将tomcat03对tomcat02的连接添加到了配置项中，所以可用tomcat03可用访问到tomcat02。使用inspect命令查看docker的元数据可以看到如下配置</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker inspect tomcat03<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker inspect tomcat03<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/0023.png" alt="0023"></p>
+<p><img src="/.io//0023.png" alt="0023"></p>
 <blockquote>
 <p>也可以通过查看hosts配置</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker exec -it tomcat03 cat /etc/hosts
-# 可以理解为在host文件中添加了域名映射<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat03 <span class="token function">cat</span> /etc/hosts
+<span class="token comment"># 可以理解为在host文件中添加了域名映射</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/0024.png" alt="0024"></p>
-<h3 id="自定义网络"><a href="#自定义网络" class="headerlink" title="自定义网络"></a>自定义网络</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing /]$ docker network ls # 查看所有网络<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/.io//0024.png" alt="0024"></p>
+<h3 id="自定义网络"><a href="#自定义网络" class="headerlink" title="自定义网络"></a>自定义网络</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker network <span class="token function">ls</span> <span class="token comment"># 查看所有网络</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<p><img src="/2021/12/25/devops/docker-notes/0025.png" alt="0025"></p>
+<p><img src="/.io//0025.png" alt="0025"></p>
 <h4 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h4><ul>
 <li>bridge：桥接模式 （docker 默认）</li>
 <li>none：不配置网络</li>
@@ -2006,101 +2022,101 @@ PING tomcat02 (172.18.0.3) 56(84) bytes of data.
 <p>可以修复docker0中，在不适用–link是，不支持直接使用容器名进行连接</p>
 </blockquote>
 <p><strong>自定义网络选择使用bridge模式</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 直接启动的容器，有一个默认参数为： --net bridge，这里使用的就是docker0
-# docker run -d -P --name tomcat01 --net bridge tomcat
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 直接启动的容器，有一个默认参数为： --net bridge，这里使用的就是docker0</span>
+<span class="token comment"># docker run -d -P --name tomcat01 --net bridge tomcat</span>
 
 
-# 自定义一个网络
-[root@qing /]$ docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.0.1 mynet
-## --driver 连接模式
-## --subnet 子网掩码
-## --gateway 路由ip
+<span class="token comment"># 自定义一个网络</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker network create --driver bridge --subnet <span class="token number">192.168</span>.0.0/16 --gateway <span class="token number">192.168</span>.0.1 mynet
+<span class="token comment">## --driver 连接模式</span>
+<span class="token comment">## --subnet 子网掩码</span>
+<span class="token comment">## --gateway 路由ip</span>
 
-# 故可以在启动的时候指定使用该自定义的网络
-[root@qing /]$ docker run -d -P --name tomcat-net-01 --net mynet tomcat
-[root@qing /]$ docker run -d -P --name tomcat-net-02 --net mynet tomcat
-# 查看此时自定义网络的元数据
-[root@qing /]$ docker network inspect mynet # 图片0026中可以看到容器的网络
+<span class="token comment"># 故可以在启动的时候指定使用该自定义的网络</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name tomcat-net-01 --net mynet tomcat
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker run -d -P --name tomcat-net-02 --net mynet tomcat
+<span class="token comment"># 查看此时自定义网络的元数据</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker network inspect mynet <span class="token comment"># 图片0026中可以看到容器的网络</span>
 
-# 此时使用自定义的网络直接通过容器名进行ping
-[root@qing /]$ docker exec -it tomcat-net-01 ping tomcat-net-02
+<span class="token comment"># 此时使用自定义的网络直接通过容器名进行ping</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it tomcat-net-01 <span class="token function">ping</span> tomcat-net-02
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/25/devops/docker-notes/0026.png" alt="0026"></p>
-<h4 id="将不同网络连接"><a href="#将不同网络连接" class="headerlink" title="将不同网络连接"></a>将不同网络连接</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 将网络docker0下的tomcat01连接到 mynet网络下（达成一个容器两个ip）
-[root@qing /]$ docker network connect mynet tomcat01<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="/.io//0026.png" alt="0026"></p>
+<h4 id="将不同网络连接"><a href="#将不同网络连接" class="headerlink" title="将不同网络连接"></a>将不同网络连接</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 将网络docker0下的tomcat01连接到 mynet网络下（达成一个容器两个ip）</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker network connect mynet tomcat01<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
-<p><img src="/2021/12/25/devops/docker-notes/0027.png" alt="0027"></p>
+<p><img src="/.io//0027.png" alt="0027"></p>
 <h4 id="demo-redis集群"><a href="#demo-redis集群" class="headerlink" title="demo-redis集群"></a>demo-redis集群</h4><blockquote>
 <p>分片 集群 高可用</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 创建网卡
-[root@qing /]$ docker network create redis --subnet 172.38.0.0/16
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 创建网卡</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker network create redis --subnet <span class="token number">172.38</span>.0.0/16
 
-# 通过脚本创建六个redis配置
-[root@qing /]$ for port in $(seq 1 6); \
-do \
-mkdir -p /data/qing/redis/node-${port}/conf
-touch /data/qing/redis/node-${port}/conf/redis.conf
-cat &lt;&lt; EOF &gt;/data/qing/redis/node-${port}/conf/redis.conf
+<span class="token comment"># 通过脚本创建六个redis配置</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token keyword">for</span> <span class="token for-or-select variable">port</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">seq</span> <span class="token number">1</span> <span class="token number">6</span><span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">do</span> <span class="token punctuation">\</span>
+<span class="token function">mkdir</span> -p /data/qing/redis/node-<span class="token variable">${port}</span>/conf
+<span class="token function">touch</span> /data/qing/redis/node-<span class="token variable">${port}</span>/conf/redis.conf
+<span class="token function">cat</span> <span class="token operator">&lt;&lt;</span> <span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">&gt;</span>/data/qing/redis/node-<span class="token variable">${port}</span>/conf/redis.conf</span>
 port 6379
 bind 0.0.0.0
 cluster-enabled yes
 cluster-config-file nodes.conf
 cluster-node-timeout 5000
-cluster-announce-ip 172.38.0.1${port}
+cluster-announce-ip 172.38.0.1<span class="token variable">${port}</span>
 cluster-announce-port 6379
 cluster-announce-bus-port 16379
 appendonly yes
-EOF
-done
+EOF</span>
+<span class="token keyword">done</span>
 
-# 启动六个容器
-[root@qing /]$ for port in $(seq 1 6); \
-do \
-docker run -p 637${port}:6379 -p 1637${port}:16379 --name redis-${port} \
--v /data/qing/redis/node-${port}/data:/data \
--v /data/qing/redis/node-${port}/conf/redis.conf:/etc/redis/redis.conf \
--d --net redis --ip 172.38.0.1${port} redis:5.0.9-alpine3.11 redis-server /etc/redis/redis.conf; \
-done
+<span class="token comment"># 启动六个容器</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ <span class="token keyword">for</span> <span class="token for-or-select variable">port</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">seq</span> <span class="token number">1</span> <span class="token number">6</span><span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">do</span> <span class="token punctuation">\</span>
+docker run -p <span class="token number">637</span><span class="token variable">${port}</span>:6379 -p <span class="token number">1637</span><span class="token variable">${port}</span>:16379 --name redis-<span class="token variable">${port}</span> <span class="token punctuation">\</span>
+-v /data/qing/redis/node-<span class="token variable">${port}</span>/data:/data <span class="token punctuation">\</span>
+-v /data/qing/redis/node-<span class="token variable">${port}</span>/conf/redis.conf:/etc/redis/redis.conf <span class="token punctuation">\</span>
+-d --net redis --ip <span class="token number">172.38</span>.0.1<span class="token variable">${port}</span> redis:5.0.9-alpine3.11 redis-server /etc/redis/redis.conf<span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">done</span>
 
-# 进入容器创建集群
-[root@qing /]$ docker exec -it redis-1 /bin/sh
-# 创建集群
-/data $ redis-cli --cluster create 172.38.0.11:6379 172.38.0.12:6379 172.38.0.13:6379 172.38.0.14:6379 172.38.0.15:6379 172.38.0.16:6379 --cluste
-r-replicas 1
-#### 以下为输出 部分省略####
-&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...
-Master[0] -&gt; Slots 0 - 5460
-Master[1] -&gt; Slots 5461 - 10922
-Master[2] -&gt; Slots 10923 - 16383
-Adding replica 172.38.0.15:6379 to 172.38.0.11:6379
-......
-......
-......
-[OK] All nodes agree about slots configuration.
-&gt;&gt;&gt; Check for open slots...
-&gt;&gt;&gt; Check slots coverage...
-[OK] All 16384 slots covered.
-#### 以上为输出 ####
+<span class="token comment"># 进入容器创建集群</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker <span class="token builtin class-name">exec</span> -it redis-1 /bin/sh
+<span class="token comment"># 创建集群</span>
+/data $ redis-cli --cluster create <span class="token number">172.38</span>.0.11:6379 <span class="token number">172.38</span>.0.12:6379 <span class="token number">172.38</span>.0.13:6379 <span class="token number">172.38</span>.0.14:6379 <span class="token number">172.38</span>.0.15:6379 <span class="token number">172.38</span>.0.16:6379 --cluste
+r-replicas <span class="token number">1</span>
+<span class="token comment">#### 以下为输出 部分省略####</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> Performing <span class="token builtin class-name">hash</span> slots allocation on <span class="token number">6</span> nodes<span class="token punctuation">..</span>.
+Master<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> -<span class="token operator">&gt;</span> Slots <span class="token number">0</span> - <span class="token number">5460</span>
+Master<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> -<span class="token operator">&gt;</span> Slots <span class="token number">5461</span> - <span class="token number">10922</span>
+Master<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> -<span class="token operator">&gt;</span> Slots <span class="token number">10923</span> - <span class="token number">16383</span>
+Adding replica <span class="token number">172.38</span>.0.15:6379 to <span class="token number">172.38</span>.0.11:6379
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token punctuation">[</span>OK<span class="token punctuation">]</span> All nodes agree about slots configuration.
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> Check <span class="token keyword">for</span> <span class="token function">open</span> slots<span class="token punctuation">..</span>.
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> Check slots coverage<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>OK<span class="token punctuation">]</span> All <span class="token number">16384</span> slots covered.
+<span class="token comment">#### 以上为输出 ####</span>
 
-# 测试
+<span class="token comment"># 测试</span>
 /data $ redis-cli -c
-127.0.0.1:6379&gt; cluster info
-127.0.0.1:6379&gt; cluster nodes
-127.0.0.1:6379&gt; set a b
--&gt; Redirected to slot [15495] located at 172.38.0.13:6379
-OK # 可以看出保存到了3号节点
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> cluster info
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> cluster nodes
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> <span class="token builtin class-name">set</span> a b
+-<span class="token operator">&gt;</span> Redirected to slot <span class="token punctuation">[</span><span class="token number">15495</span><span class="token punctuation">]</span> located at <span class="token number">172.38</span>.0.13:6379
+OK <span class="token comment"># 可以看出保存到了3号节点</span>
 
-# 关闭一个容器 测试 172.38.0.13:6379 这里是 13 所以停掉3号
-[root@qing /]$ docker stop redis-3
+<span class="token comment"># 关闭一个容器 测试 172.38.0.13:6379 这里是 13 所以停掉3号</span>
+<span class="token punctuation">[</span>root@qing /<span class="token punctuation">]</span>$ docker stop redis-3
 
-# 在容器内获取刚刚存入的值
-127.0.0.1:6379&gt; get a
--&gt; Redirected to slot [15495] located at 172.38.0.14:6379
-"b" # 可以看到这里从4号机器中获取
+<span class="token comment"># 在容器内获取刚刚存入的值</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> get a
+-<span class="token operator">&gt;</span> Redirected to slot <span class="token punctuation">[</span><span class="token number">15495</span><span class="token punctuation">]</span> located at <span class="token number">172.38</span>.0.14:6379
+<span class="token string">"b"</span> <span class="token comment"># 可以看到这里从4号机器中获取</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="IDEA整合Docker"><a href="#IDEA整合Docker" class="headerlink" title="IDEA整合Docker"></a>IDEA整合Docker</h2><ol>
@@ -2108,8 +2124,8 @@ OK # 可以看出保存到了3号节点
 <blockquote>
 <p>为了文件高亮，以及可以直接连接仓库</p>
 </blockquote>
-<p><img src="/2021/12/25/devops/docker-notes/0028.png" alt="0028"></p>
-<p><img src="/2021/12/25/devops/docker-notes/0029.png" alt="0029"></p>
+<p><img src="/.io//0028.png" alt="0028"></p>
+<p><img src="/.io//0029.png" alt="0029"></p>
 </li>
 <li><p>通过package进行打包</p>
 <blockquote>
@@ -2120,7 +2136,7 @@ OK # 可以看出保存到了3号节点
 <blockquote>
 <p>其他功能暂未研究</p>
 </blockquote>
-<p><img src="/2021/12/25/devops/docker-notes/0030.png" alt="0030"></p>
+<p><img src="/.io//0030.png" alt="0030"></p>
 </li>
 <li><p>通过Dockerfile构建镜像与发布</p>
 </li>
@@ -2555,7 +2571,7 @@ OK # 可以看出保存到了3号节点
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">15.3k</span>
+                        class="white-color">15.7k</span>
             
             
             
