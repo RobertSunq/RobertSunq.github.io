@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="HelloWorld">
-    <meta name="description" content="Hexo自动生成，展示留存">
+    <meta name="keywords" content="markdown, note">
+    <meta name="description" content="markdown主要语法说明与示例。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | Qing</title>
+    <title>markdown语法与示例 | Qing</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">markdown语法与示例</h1>
                 </div>
             </div>
         </div>
@@ -445,8 +445,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/HelloWorld/">
-                                <span class="chip bg-color">HelloWorld</span>
+                            <a href="/tags/note/">
+                                <span class="chip bg-color">note</span>
+                            </a>
+                        
+                            <a href="/tags/markdown/">
+                                <span class="chip bg-color">markdown</span>
                             </a>
                         
                     </div>
@@ -457,8 +461,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/HelloWorld/" class="post-category">
-                                HelloWorld
+                            <a href="/categories/note/" class="post-category">
+                                note
                             </a>
                         
                     </div>
@@ -470,28 +474,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-12
+                    2022-05-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-18
+                    2022-05-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -514,19 +518,326 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h1 id="markdown语法与示例"><a href="#markdown语法与示例" class="headerlink" title="markdown语法与示例"></a>markdown语法与示例</h1><blockquote>
+<p>注：所有例子，上面是效果，下面是源码。</p>
+<p>部分效果展示由于hexo渲染网页的原因无法完全展示。</p>
+</blockquote>
+<h2 id="简单概述"><a href="#简单概述" class="headerlink" title="简单概述"></a>简单概述</h2><h4 id="宗旨"><a href="#宗旨" class="headerlink" title="宗旨"></a>宗旨</h4><p>Markdown 的目标是实现「易读易写」。</p>
+<p>可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 <a target="_blank" rel="noopener" href="http://docutils.sourceforge.net/mirror/setext.html">Setext</a>、<a target="_blank" rel="noopener" href="http://www.aaronsw.com/2002/atx/">atx</a>、<a target="_blank" rel="noopener" href="http://textism.com/tools/textile/">Textile</a>、<a target="_blank" rel="noopener" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>、<a target="_blank" rel="noopener" href="http://www.triptico.com/software/grutatxt.html">Grutatext</a> 和 <a target="_blank" rel="noopener" href="http://ettext.taint.org/doc/">EtText</a>，而最大灵感来源其实是纯文本电子邮件的格式。</p>
+<hr>
+<h4 id="兼容HTML"><a href="#兼容HTML" class="headerlink" title="兼容HTML"></a>兼容HTML</h4><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。但是需要注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。</p>
+<p>eg. 这里的双星不在做强调处理。</p>
+<p>这是一个普通段落。</p>
+<table>
+    <tbody><tr>
+        <td>*Foo*</td>
+    </tr>
+</tbody></table>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这是另一个普通段落。</p>
+<hr>
+<h4 id="特殊字符自动转换"><a href="#特殊字符自动转换" class="headerlink" title="特殊字符自动转换"></a>特殊字符自动转换</h4><p>特殊字符的转义字符，可以自动直接的转换进行展现</p>
+<p>eg.</p>
+<p>&amp;copy;</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token entity named-entity" title="©">&amp;copy;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>A&amp;T</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">AT<span class="token entity named-entity" title="&amp;">&amp;amp;</span>T<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>&lt;</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>&gt;</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token entity named-entity" title=">">&amp;gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>"</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token entity named-entity" title="&quot;">&amp;quot;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>&amp;nbsp;</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token entity named-entity" title="&nbsp;">&amp;nbsp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<hr>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p>支持两种标题的语法，类 <a target="_blank" rel="noopener" href="http://docutils.sourceforge.net/mirror/setext.html">Setext</a> 和类 <a target="_blank" rel="noopener" href="http://www.aaronsw.com/2002/atx/">atx</a> 形式</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">类 Setext 形式是用底线的形式，利用 = （最高阶标题）和 - （第二阶标题）
+
+<span class="token title important">This is an H1
+<span class="token punctuation">=============</span></span>
+
+<span class="token title important">This is an H2
+<span class="token punctuation">-------------</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">类 Atx 形式则是在行首插入 1 到 6 个 # ，对应到标题 1 到 6 阶
+<span class="token title important"><span class="token punctuation">#</span> 这是 H1</span>
+
+<span class="token title important"><span class="token punctuation">##</span> 这是 H2</span>
+
+<span class="token title important"><span class="token punctuation">###</span> 这是 H3</span>
+
+<span class="token title important"><span class="token punctuation">####</span> 这是 H4</span>
+
+<span class="token title important"><span class="token punctuation">#####</span> 这是 H5</span>
+
+<span class="token title important"><span class="token punctuation">######</span> 这是 H6</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="区块引用-Blockquotes"><a href="#区块引用-Blockquotes" class="headerlink" title="区块引用 Blockquotes"></a>区块引用 Blockquotes</h4><blockquote>
+<p>这是一个区块引用</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>也可以使用多个 </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<h6 id="这是一个标题。"><a href="#这是一个标题。" class="headerlink" title="这是一个标题。"></a>这是一个标题。</h6></blockquote>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token blockquote punctuation">&gt;</span> 这是一个区块引用
+<span class="token blockquote punctuation">&gt; &gt;</span> 也可以使用多个 
+<span class="token blockquote punctuation">&gt;</span> <span class="token title important"><span class="token punctuation">######</span> 这是一个标题。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><h5 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h5><ul>
+<li><p>1</p>
+</li>
+<li><p>2</p>
+<ul>
+<li><p>a</p>
+<ul>
+<li>bb</li>
+</ul>
+<ul>
+<li>aa</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">在无序列表中 使用 { + ， - ， * }三个符号来标识无序列表，三者功能相同，相同层级下的列表表示建议使用相同的标识符，配合四个空白字符缩进，三者的组合则可以搭配出层级效果
+
++ 1
++ 2
+	* a
+		* bb
+		- aa
+		&gt; bb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h5 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h5><ol>
+<li>第一</li>
+<li>第二<ul>
+<li>a<br>3. 反斜杠避免被识别为有序列表</li>
+</ul>
+</li>
+<li>第三</li>
+</ol>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">使用数字接着一个英文句点，则是有序列表。可以配合使用缩进配合与无序列表，区块引用等配合使用
+
+<span class="token list punctuation">1.</span> 第一
+<span class="token list punctuation">2.</span> 第二
+	<span class="token list punctuation">+</span> a
+3\. 反斜杠避免被识别为有序列表
+<span class="token list punctuation">3.</span> 第三<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h4><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">这是一个代码区块<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这是<code>一个</code>小段 <code>的</code> 代码 <code>显示</code></p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">代码区块可以进行缩进区分，或者使用六个个反引号来进行包围，前三个反引号之后可以跟着指定的代码格式。（这里使用\,是为了展示源码）
+
+\	```markdown
+\	这是一个代码区块
+\	```
+
+小段代码
+这是``` 一个 ```小段 <span class="token code-snippet code keyword">``的``</span> 代码 <span class="token code-snippet code keyword">`显示`</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h4><hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。也可以在星号或是减号中间插入空格
+<span class="token hr punctuation">* * *</span>
+
+<span class="token hr punctuation">***</span>
+
+<span class="token hr punctuation">*****</span>
+
+<span class="token hr punctuation">- - -</span>
+
+<span class="token hr punctuation">---------------------------------------</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>两种形式的链接语法： 行内式和参考式两种形式</p>
+<hr>
+<h6 id="行内式"><a href="#行内式" class="headerlink" title="行内式"></a>行内式</h6><p><a target="_blank" rel="noopener" href="http://www.baidu.com/" title="百度">示例1</a> 链接中的title文字可以使用双引号包裹起来显示。<br><a target="_blank" rel="noopener" href="http://www.baidu.com/">示例2</a> 这是一个链接。</p>
+<p><a href="/about/">示例3</a> 相对路径链接.</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">下面为行内式
+
+<span class="token url">[<span class="token content">示例1</span>](<span class="token url">http://www.baidu.com/</span> <span class="token string">"百度"</span>)</span> 链接中的title文字可以使用双引号包裹起来显示。
+<span class="token url">[<span class="token content">示例2</span>](<span class="token url">http://www.baidu.com/</span>)</span> 这是一个链接。
+
+要链接到同样主机的资源，可以使用相对路径
+<span class="token url">[<span class="token content">示例3</span>](<span class="token url">/about/</span>)</span> 相对路径链接.
+
+参考式的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h6 id="参考式"><a href="#参考式" class="headerlink" title="参考式"></a>参考式</h6><p><a target="_blank" rel="noopener" href="http://www.baidu.com/" title="百度">参考式</a> 此处引用的链接是参考，id标签中定义的.</p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com/" title="百度">id</a> 此处第二个标签中不指明使用的参考，默认会寻找与名称相同的标记链接</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">参考式的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记
+<span class="token url">[<span class="token content">参考式</span>][<span class="token variable">id</span>]</span> 此处引用的链接是参考，id标签中定义的.
+[id][] 此处第二个标签中不指明使用的参考，默认会寻找与名称相同的标记链接
+
+接着，在文件的任意处，你可以把这个标记的链接内容定义出来
+此处的注释 使用 "" , '' , () 三种标识效果相同，且注意需要 [] 后紧跟 ：
+<span class="token url-reference url"><span class="token punctuation">[</span><span class="token variable">id</span><span class="token punctuation">]</span><span class="token punctuation">:</span> http://www.baidu.com/  <span class="token string">"百度"</span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h4><p><em>斜体-星号</em></p>
+<p><em>斜体-下划线</em></p>
+<p><strong>加粗-星号</strong></p>
+<p><strong>加粗-下划线</strong></p>
+<p><del>删除线</del></p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token italic"><span class="token punctuation">*</span><span class="token content">斜体-星号</span><span class="token punctuation">*</span></span>
+
+<span class="token italic"><span class="token punctuation">_</span><span class="token content">斜体-下划线</span><span class="token punctuation">_</span></span>
+
+<span class="token bold"><span class="token punctuation">**</span><span class="token content">加粗-星号</span><span class="token punctuation">**</span></span>
+
+<span class="token bold"><span class="token punctuation">__</span><span class="token content">加粗-下划线</span><span class="token punctuation">__</span></span>
+
+<span class="token strike"><span class="token punctuation">~~</span><span class="token content">删除线</span><span class="token punctuation">~~</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>同样也允许两种样式： <em>行内式</em>和<em>参考式</em></p>
+<hr>
+<h6 id="行内式-1"><a href="#行内式-1" class="headerlink" title="行内式"></a>行内式</h6><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">与超链接相似，只是在·[]·前添加 !
+<span class="token url"><span class="token operator">!</span>[<span class="token content">图片</span>](<span class="token url">/path/to/img.jpg</span>)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<hr>
+<h6 id="参考式-1"><a href="#参考式-1" class="headerlink" title="参考式"></a>参考式</h6><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">同样与超链接的参考式相同 只是在<span class="token code-snippet code keyword">`[]`</span>前添加 <span class="token code-snippet code keyword">`!`</span>
+!图片][id]
+
+<span class="token url-reference url"><span class="token punctuation">[</span><span class="token variable">id</span><span class="token punctuation">]</span><span class="token punctuation">:</span> url/to/image  <span class="token string">"图片注释"</span></span>
+
+注意这里的参考链接 <span class="token code-snippet code keyword">`[]`</span> 前不需要添加 <span class="token code-snippet code keyword">`!`</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h4><p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来， Markdown 就会自动把它转成链接</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com/</a></p>
+<p><a href="mailto:address@example.com">address@example.com</a></p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">&lt;http://www.baidu.com/&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address@example.com</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠"></a>反斜杠</h4><p>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，即转义字符，使得其后的字符不被markdown识别处理，方便与插入普通字符。</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">\   反斜线
+`   反引号
+<span class="token list punctuation">*</span>   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+<span class="token title important"><span class="token punctuation">#</span>   井字号</span>
+<span class="token list punctuation">+</span>   加号
+<span class="token list punctuation">-</span>   减号
+.   英文句点
+!   惊叹号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>基于markdown可以适配html语言，所以我们也可以使用html语言中简单的标签来达到更多的扩展效果</p>
+<hr>
+<h4 id="颜色设置"><a href="#颜色设置" class="headerlink" title="颜色设置"></a>颜色设置</h4><p><font size="3" color="red">红色</font></p>
+<p><font size="2" color="blue">蓝色</font></p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>红色<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>blue<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>红色<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="注脚"><a href="#注脚" class="headerlink" title="注脚"></a>注脚</h4><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">与行内式的超链接相似,只是在<span class="token code-snippet code keyword">`[]`</span>中添加 <span class="token code-snippet code keyword">`^`</span>
+<span class="token url-reference url"><span class="token punctuation">[</span><span class="token variable">^注脚</span><span class="token punctuation">]</span><span class="token punctuation">:</span> https://www.appinn.com/markdown/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="链接文件"><a href="#链接文件" class="headerlink" title="链接文件"></a>链接文件</h4><p><a href="E:/Study/studyNote/Study/other-notes/git-nodes.md">绝对地址文件</a><br><a href="git-nodes.md">相对地址文件</a></p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">链接文件与超链接语法类似，
+<span class="token url">[<span class="token content">绝对地址文件</span>](<span class="token url">E:/Study/studyNote/Study/other-notes/git-nodes.md</span>)</span>
+<span class="token url">[<span class="token content">相对地址文件</span>](<span class="token url">git-nodes.md</span>)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> LR
+方<span class="token text string">[方形]</span> <span class="token arrow operator">--&gt;</span>圆<span class="token text string">(圆角)</span>
+    圆 <span class="token arrow operator">--&gt;</span> A<span class="token text string">{条件a}</span>
+    A <span class="token arrow operator">--&gt;</span><span class="token label property">|a=1|</span> B<span class="token text string">[结果B]</span>
+    A <span class="token arrow operator">--&gt;</span><span class="token label property">|a=2|</span> C<span class="token text string">[结果C]</span>
+    F<span class="token text string">[横向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> TD
+方<span class="token text string">[方形]</span> <span class="token arrow operator">--&gt;</span>圆<span class="token text string">(圆角)</span>
+    圆 <span class="token arrow operator">--&gt;</span> A<span class="token text string">{条件a}</span>
+    A <span class="token arrow operator">--&gt;</span><span class="token label property">|a=1|</span> B<span class="token text string">[结果B]</span>
+    A <span class="token arrow operator">--&gt;</span><span class="token label property">|a=2|</span> C<span class="token text string">[结果C]</span>
+    F<span class="token text string">[横向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">本质上是代码块，不过使用的语言是『mermaid』，详细操作可以查询『mermaid』
+
+\ ```mermaid
+graph LR
+方[方形] --&gt;圆(圆角)
+    圆 --&gt; A{条件a}
+    A --&gt;|a=1| B[结果B]
+    A --&gt;|a=2| C[结果C]
+    F[横向流程图]
+
+\ ```
+
+
+\ ```mermaid
+graph TD
+方[方形] --&gt;圆(圆角)
+    圆 --&gt; A{条件a}
+    A --&gt;|a=1| B[结果B]
+    A --&gt;|a=2| C[结果C]
+    F[横向流程图]
+
+\ ```<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="代办"><a href="#代办" class="headerlink" title="代办"></a>代办</h4><ul>
+<li><input disabled="" type="checkbox"> 这是一个代办</li>
+<li><input checked="" disabled="" type="checkbox"> 这是一个已办</li>
+</ul>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token list punctuation">-</span> [ ] 这是一个代办
+<span class="token list punctuation">-</span> [x] 这是一个已办
+
+ps：并不是所有情况下，代办的效果都可以实现<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">[TOC]  # 即插入一个文章目录<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+
+
+<hr>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.appinn.com/markdown/">https://www.appinn.com/markdown/</a></p>
+</blockquote>
 
                 
             </div>
@@ -543,8 +854,8 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">Hexo</a>
-                </span>
+                    <a href="https://robertsunq.github.io" rel="external nofollow noreferrer">Robert Sunq</a>
+                    </span>
             </div>
             <div class="reprint__type">
                 <span class="reprint-meta" style="font-weight: bold;">
@@ -553,7 +864,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://robertsunq.github.io/2021/12/12/helloworld/hello-world/">https://robertsunq.github.io/2021/12/12/helloworld/hello-world/</a>
+                    <a href="https://robertsunq.github.io/2022/05/15/note/markdown-notes/">https://robertsunq.github.io/2022/05/15/note/markdown-notes/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,9 +875,9 @@
                 </span>
                 <span class="reprint-info">
                     本博客所有文章除特別声明外，均采用
-                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY-SA 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">Hexo</a>
+                    <a href="https://robertsunq.github.io" target="_blank">Robert Sunq</a>
                     !
                 </span>
             </div>
@@ -591,8 +902,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/HelloWorld/">
-                                    <span class="chip bg-color">HelloWorld</span>
+                                <a href="/tags/note/">
+                                    <span class="chip bg-color">note</span>
+                                </a>
+                            
+                                <a href="/tags/markdown/">
+                                    <span class="chip bg-color">markdown</span>
                                 </a>
                             
                         </div>
@@ -638,96 +953,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/12/18/tool/git-note/">
+                <a href="/2022/05/15/note/markdown-notes/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="git命令详解">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="markdown语法与示例">
                         
-                        <span class="card-title">git命令详解</span>
+                        <span class="card-title">markdown语法与示例</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            git的基础操作汇总，相关平台的配置使用。
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-18
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/tool/" class="post-category">
-                                    tool
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/git/">
-                        <span class="chip bg-color">git</span>
-                    </a>
-                    
-                    <a href="/tags/tool/">
-                        <span class="chip bg-color">tool</span>
-                    </a>
-                    
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
-                    </a>
-                    
-                    <a href="/tags/configuration/">
-                        <span class="chip bg-color">configuration</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/12/12/helloworld/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Hexo自动生成，展示留存
+                            markdown主要语法说明与示例。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/HelloWorld/" class="post-category">
-                                    HelloWorld
+                            <a href="/categories/note/" class="post-category">
+                                    note
                                 </a>
                             
                             
@@ -738,8 +993,65 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/HelloWorld/">
-                        <span class="chip bg-color">HelloWorld</span>
+                    <a href="/tags/note/">
+                        <span class="chip bg-color">note</span>
+                    </a>
+                    
+                    <a href="/tags/markdown/">
+                        <span class="chip bg-color">markdown</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/08/faq/faq-docker/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="docker-FAQ">
+                        
+                        <span class="card-title">docker-FAQ</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            docker使用中遇到的一些问题与解答
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/FAQ/" class="post-category">
+                                    FAQ
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/FAQ/">
+                        <span class="chip bg-color">FAQ</span>
                     </a>
                     
                 </div>

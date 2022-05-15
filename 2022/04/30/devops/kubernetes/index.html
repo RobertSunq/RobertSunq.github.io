@@ -485,7 +485,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-11
+                    2022-05-12
                 </div>
                 
 
@@ -840,7 +840,7 @@ EOF</span>
 <span class="token comment"># 拉取dashboard镜像报CarshLoopBackoff 需要调整yaml文件两处 添加主机名 nodeName   eg. k8s_master</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
-<p>附本人github复制文件下载链接：<a target="_blank" rel="noopener" href="https://github.com/RobertSunq/data/blob/master/qing/blog/hexo/recommended_v2.5.1.yaml" title="v2.5.1 recommended.yaml 下载链接 ">recommended</a></p>
+<p>附本人github复制文件下载链接：<a target="_blank" rel="noopener" href="https://github.com/RobertSunq/data/blob/master/qing/blog/hexo/kubernetes/recommended_v2.5.1.yaml" title="v2.5.1 recommended.yaml 下载链接 ">recommended</a></p>
 </blockquote>
 <ol start="2">
 <li><strong>设置访问端口</strong></li>
@@ -1337,7 +1337,7 @@ qing-nginx-tomcat   <span class="token number">2</span>/2     Running   <span cl
 <span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ kubectl get pod,svc -n ingress-nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
-<p>附本人github复制文件下载链接：<a target="_blank" rel="noopener" href="https://github.com/RobertSunq/data/blob/master/qing/blog/hexo/ingress_v0.47.yaml" title="v0.47.0 ingress.yaml 下载链接 ">ingress</a></p>
+<p>附本人github复制文件下载链接：<a target="_blank" rel="noopener" href="https://github.com/RobertSunq/data/blob/master/qing/blog/hexo/kubernetes/ingress_v0.47.yaml" title="v0.47.0 ingress.yaml 下载链接 ">ingress</a></p>
 <p>出现两个端口，分别用于 <code>http</code> 和 <code>https</code></p>
 </blockquote>
 <img src="/2022/04/30/devops/kubernetes/0011.png" class="" title="安装会创建service">
@@ -2173,6 +2173,43 @@ metadata:
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Qing<br />'
+            + '文章作者: Robert Sunq<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '<原创文章> 著作权归Robert Sunq所有，<转载文章> 著作权归原作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
@@ -2363,7 +2400,7 @@ metadata:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">25.1k</span>
+                        class="white-color">27k</span>
             
             
             
