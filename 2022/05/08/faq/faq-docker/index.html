@@ -481,21 +481,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-11
+                    2022-05-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    274
+                    687
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -530,7 +530,7 @@
 <p>官网解释为：Override the key sequence for detaching a container</p>
 <p>用于容器的键盘映射键位，在容器被连接到前台时，若宿主机的键盘键位与容器键位冲突，可以使用该指令对容器的键位进行重新映射。</p>
 </blockquote>
-<h5 id="Q：Dockerfile中的COPY指令，拷贝文件夹时只会拷贝文件夹中的内容"><a href="#Q：Dockerfile中的COPY指令，拷贝文件夹时只会拷贝文件夹中的内容" class="headerlink" title="Q：Dockerfile中的COPY指令，拷贝文件夹时只会拷贝文件夹中的内容"></a>Q：Dockerfile中的COPY指令，拷贝文件夹时只会拷贝文件夹中的内容</h5><p><strong>A:</strong></p>
+<h5 id="Q：Dockerfile中的COPY指令，拷贝文件夹时只会拷贝文件夹中的内容"><a href="#Q：Dockerfile中的COPY指令，拷贝文件夹时只会拷贝文件夹中的内容" class="headerlink" title="Q：Dockerfile中的COPY指令，拷贝文件夹时只会拷贝文件夹中的内容"></a>Q：<code>Dockerfile中</code>的<code>COPY</code>指令，拷贝文件夹时只会拷贝文件夹中的内容</h5><p><strong>A:</strong></p>
 <blockquote>
 <pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">COPY data/ /home/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -548,6 +548,35 @@
 <p>｜		｜——dir2</p>
 <p>｜		｜		｜b.txt</p>
 <p>｜		｜c.txt</p>
+</blockquote>
+<h5 id="Q：Dockerfile-build过程中出现错误，如何去调试"><a href="#Q：Dockerfile-build过程中出现错误，如何去调试" class="headerlink" title="Q：Dockerfile build过程中出现错误，如何去调试"></a>Q：<code>Dockerfile</code> <code>build</code>过程中出现错误，如何去调试</h5><p><strong>A：</strong></p>
+<blockquote>
+<p>执行 <code>docker build</code> 命令使用<code>Dockerfile</code>构建一个新的镜像的时候，dokcer内部的执行的构建步骤大致为如下几步：</p>
+<ol>
+<li>使用<code>Dockerfile</code> 中定义的基础镜像<code>FROM centos</code>运行一个容器</li>
+<li>依次执行<code>Dockerfile</code> 中后续的指令，来对启动的容器进行修改；<ol>
+<li>每执行完一条指令后，执行一个类似于<code>commit</code>的操作，来生成一个新的镜像层。(<code>build</code> <code>Dockerfile</code>的时候若不关闭使用缓存构建，用的镜像层的缓存就是以此方式构建的)</li>
+<li>基于上一步提交的镜像来运行一个新的容器</li>
+<li>重复1，2步骤来完成对<code>Dockerfile</code>中所有指令的执行</li>
+</ol>
+</li>
+<li>完成镜像的构建</li>
+</ol>
+<p>所以基于上述的构建步骤，可以通过重新启动出错前一步的build出来的容器还原现场，之后再执行出错一行的命令来分析错误的原因。</p>
+<p>eg.</p>
+<p>执行 <code>docker build . -t test:1.0.0</code> 时某一行出现错误：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">Sending build context to Docker daemon  67.37MB
+Step 1/5 : FROM java:8
+ ---&gt; d23bdf5b1b1b
+Step 2/5 : COPY ./target/*.jar /app/app.jar
+COPY failed: no source files were specified<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到在执行<em><strong>Step 2/5</strong></em>出现错误，在其上一步<em><strong>Step 1/5</strong></em>会保留一个临时容器<code>d23bdf5b1b1b</code> ，所以就可以启动这个临时容器来达到还原出错前的现场</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ docker container run -it d23bdf5b1b1b /bin/bash
+# 之后在容器中执行错误命令来排查错误
+# 注意 这里是使用交互模式启动，使用exit退出后 容器就会关闭<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
 </blockquote>
 <hr>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2>
@@ -1006,7 +1035,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">27k</span>
+                        class="white-color">27.4k</span>
             
             
             
