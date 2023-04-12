@@ -605,11 +605,11 @@
 <li><p>在主目录(<code>jdk_path</code>)中建立一个目录 <code>javasrc</code> 。 </p>
 </li>
 <li><p>将 <code>jdk_path/lib/zip</code> 解压到 <code>javasrc</code> 目录中 </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ cd jdk_path
-[root@qing centos]$ mkdir javasrc
-[root@qing centos]$ cd javasrc
-[root@qing centos]$ jar xvf jdk_path/lib/zip
-[root@qing centos]$ cd ..<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> jdk_path
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ <span class="token function">mkdir</span> javasrc
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> javasrc
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ jar xvf jdk_path/lib/zip
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> <span class="token punctuation">..</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 <blockquote>
 <p>src.zip 文件中包含了所有公共类库的源代码。获取更多的源代码（编译器、虚拟机、原生方法、私有辅助类）, 访问 <a target="_blank" rel="noopener" href="https://openjdk.org/">https://openjdk.org/</a></p>
@@ -620,9 +620,9 @@
 <li>解压压缩包并重命名</li>
 <li>在浏览器中导航到 jdk_path/javadoc/index.html</li>
 </ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ cd jdk_path
-[root@qing centos]$ jar xvf jdk-11.0.15.1_doc-all.zip
-[root@qing centos]$ mv docs javadoc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> jdk_path
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ jar xvf jdk-11.0.15.1_doc-all.zip
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ <span class="token function">mv</span> docs javadoc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="运行一个程序"><a href="#运行一个程序" class="headerlink" title="运行一个程序"></a>运行一个程序</h3><ol>
 <li>编写如下 Welcome.java 文件</li>
@@ -660,44 +660,44 @@
 </li>
 </ol>
 <h3 id="JShell"><a href="#JShell" class="headerlink" title="JShell"></a>JShell</h3><p>Java 9引入了另一种使用Java的方法。<strong>JShell</strong>程序提供一个“读取-计算-打印循环”（Read-Evaluate-Print Loop, REPL）。键入一个Java表达式；JShell会自动评估输入，打印结果，等待下一个输入。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 键入在配置后java的全局环境后，键入 jshell 进入，之后会显示问候符
-[root@qing centos]$ jshell
-|  欢迎使用 JShell -- 版本 11.0.15.1
-|  要大致了解该版本, 请键入: /help intro
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 键入在配置后java的全局环境后，键入 jshell 进入，之后会显示问候符</span>
+<span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ jshell
+<span class="token operator">|</span>  欢迎使用 JShell -- 版本 <span class="token number">11.0</span>.15.1
+<span class="token operator">|</span>  要大致了解该版本, 请键入: /help intro
 
-# 键入表达式，将还会输入结果，即使没有键入 System.out.println
-jshell&gt; "core java".length()
-$1 ==&gt; 9
+<span class="token comment"># 键入表达式，将还会输入结果，即使没有键入 System.out.println</span>
+jshell<span class="token operator">&gt;</span> <span class="token string">"core java"</span>.length<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token variable">$1</span> <span class="token operator">==</span><span class="token operator">&gt;</span> <span class="token number">9</span>
 
-# 之后可使用输出的变量名 $1 来使用于之后的计算
-jshell&gt; 5 * $1 - 3
-$2 ==&gt; 42
+<span class="token comment"># 之后可使用输出的变量名 $1 来使用于之后的计算</span>
+jshell<span class="token operator">&gt;</span> <span class="token number">5</span> * <span class="token variable">$1</span> - <span class="token number">3</span>
+<span class="token variable">$2</span> <span class="token operator">==</span><span class="token operator">&gt;</span> <span class="token number">42</span>
 
-# 当然也可以自定义变量
-jshell&gt; int a = 4
-a ==&gt; 4
+<span class="token comment"># 当然也可以自定义变量</span>
+jshell<span class="token operator">&gt;</span> int a <span class="token operator">=</span> <span class="token number">4</span>
+a <span class="token operator">==</span><span class="token operator">&gt;</span> <span class="token number">4</span>
 
-jshell&gt; a
-a ==&gt; 4
+jshell<span class="token operator">&gt;</span> a
+a <span class="token operator">==</span><span class="token operator">&gt;</span> <span class="token number">4</span>
 
-# 键入部分名称后，可与使用  `tab` 来进行补全
-jshell&gt; Math
+<span class="token comment"># 键入部分名称后，可与使用  `tab` 来进行补全</span>
+jshell<span class="token operator">&gt;</span> Math
 Math          MathContext
 
 签名:
 java.lang.Math
 
-&lt;再次按 Tab 可查看文档&gt;
-jshell&gt; Math.
-E                 IEEEremainder(    PI                abs(              acos(             addExact(         asin(             atan(             atan2(            cbrt(             ceil(             class
-copySign(         cos(              cosh(             decrementExact(   exp(              expm1(            floor(            floorDiv(         floorMod(         fma(              getExponent(      hypot(
-incrementExact(   log(              log10(            log1p(            max(              min(              multiplyExact(    multiplyFull(     multiplyHigh(     negateExact(      nextAfter(        nextDown(
-nextUp(           pow(              random()          rint(             round(            scalb(            signum(           sin(              sinh(             sqrt(             subtractExact(    tan(
-tanh(             toDegrees(        toIntExact(       toRadians(        ulp(
-jshell&gt; Math.l
-log(     log10(   log1p(
+<span class="token operator">&lt;</span>再次按 Tab 可查看文档<span class="token operator">&gt;</span>
+jshell<span class="token operator">&gt;</span> Math.
+E                 IEEEremainder<span class="token punctuation">(</span>    PI                abs<span class="token punctuation">(</span>              acos<span class="token punctuation">(</span>             addExact<span class="token punctuation">(</span>         asin<span class="token punctuation">(</span>             atan<span class="token punctuation">(</span>             atan2<span class="token punctuation">(</span>            cbrt<span class="token punctuation">(</span>             ceil<span class="token punctuation">(</span>             class
+copySign<span class="token punctuation">(</span>         cos<span class="token punctuation">(</span>              cosh<span class="token punctuation">(</span>             decrementExact<span class="token punctuation">(</span>   exp<span class="token punctuation">(</span>              expm1<span class="token punctuation">(</span>            floor<span class="token punctuation">(</span>            floorDiv<span class="token punctuation">(</span>         floorMod<span class="token punctuation">(</span>         fma<span class="token punctuation">(</span>              getExponent<span class="token punctuation">(</span>      hypot<span class="token punctuation">(</span>
+incrementExact<span class="token punctuation">(</span>   log<span class="token punctuation">(</span>              log10<span class="token punctuation">(</span>            log1p<span class="token punctuation">(</span>            max<span class="token punctuation">(</span>              min<span class="token punctuation">(</span>              multiplyExact<span class="token punctuation">(</span>    multiplyFull<span class="token punctuation">(</span>     multiplyHigh<span class="token punctuation">(</span>     negateExact<span class="token punctuation">(</span>      nextAfter<span class="token punctuation">(</span>        nextDown<span class="token punctuation">(</span>
+nextUp<span class="token punctuation">(</span>           pow<span class="token punctuation">(</span>              random<span class="token punctuation">(</span><span class="token punctuation">)</span>          rint<span class="token punctuation">(</span>             round<span class="token punctuation">(</span>            scalb<span class="token punctuation">(</span>            signum<span class="token punctuation">(</span>           sin<span class="token punctuation">(</span>              sinh<span class="token punctuation">(</span>             sqrt<span class="token punctuation">(</span>             subtractExact<span class="token punctuation">(</span>    tan<span class="token punctuation">(</span>
+tanh<span class="token punctuation">(</span>             toDegrees<span class="token punctuation">(</span>        toIntExact<span class="token punctuation">(</span>       toRadians<span class="token punctuation">(</span>        ulp<span class="token punctuation">(</span>
+jshell<span class="token operator">&gt;</span> Math.l
+log<span class="token punctuation">(</span>     log10<span class="token punctuation">(</span>   log1p<span class="token punctuation">(</span>
 
-# 当然和常用的 shell 窗口一样 可与使用方向键来调整光标和查看历史命令
+<span class="token comment"># 当然和常用的 shell 窗口一样 可与使用方向键来调整光标和查看历史命令</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="Java的基本程序设计结构"><a href="#Java的基本程序设计结构" class="headerlink" title="Java的基本程序设计结构"></a>Java的基本程序设计结构</h2><h3 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h3><ul>
@@ -4640,7 +4640,7 @@ env<span class="token punctuation">.</span><span class="token function">remove</
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/22/dui-zi-ji-shuo/happy-day/">
+                <a href="/2022/05/22/helloworld/happy-day/">
                     <div class="card-image">
                         
                         
@@ -4663,8 +4663,8 @@ env<span class="token punctuation">.</span><span class="token function">remove</
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AF%B9%E8%87%AA%E5%B7%B1%E8%AF%B4/" class="post-category">
-                                    对自己说
+                            <a href="/categories/HelloWorld/" class="post-category">
+                                    HelloWorld
                                 </a>
                             
                             
@@ -4920,7 +4920,7 @@ env<span class="token punctuation">.</span><span class="token function">remove</
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">68.2k</span>
+                        class="white-color">74.1k</span>
             
             
             
