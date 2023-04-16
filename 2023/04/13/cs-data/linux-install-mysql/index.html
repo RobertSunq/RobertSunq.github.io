@@ -1,0 +1,1827 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="database, mysql, linux, install, command">
+    <meta name="description" content="基于 Rocky Linux 系统安装 Mysql">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>基于Linux系统安装Mysql | Qing</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Qing</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Qing</div>
+        <div class="logo-desc">
+            
+            这个人没啥子特点 喜欢一切随缘咯 ( •̀ ω •́ )✧
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/RobertSunq/RobertSunq.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/RobertSunq/RobertSunq.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('哟！你知道密码不？')).toString(CryptoJS.enc.Hex)) {
+                alert('好可惜你不知道哎，那只能回到主页咯！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">基于Linux系统安装Mysql</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
+                            <a href="/tags/database/">
+                                <span class="chip bg-color">database</span>
+                            </a>
+                        
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/cs-data/" class="post-category">
+                                cs-data
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-13
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-04-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    22 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="基于Linux系统安装Mysql"><a href="#基于Linux系统安装Mysql" class="headerlink" title="基于Linux系统安装Mysql"></a>基于Linux系统安装Mysql</h1><blockquote>
+<p>说明：基于 Rocky Linux 系统安装 Mysql。Mysql 是一个关系型数据库管理系统。</p>
+<p>这里基于 Rocky Linux 9.1 系统，安装 Mysql 版本 8.0.32。</p>
+</blockquote>
+<h2 id="安装简介"><a href="#安装简介" class="headerlink" title="安装简介"></a>安装简介</h2><p>在 Linux 下可以使用如下 3 种方式来安装：</p>
+<ul>
+<li>RPM（RedHat Package Manage）<ul>
+<li>安装简单，适合初学者学习使用，一台服务器只能安装一个。</li>
+</ul>
+</li>
+<li>二进制（Binary Package）<ul>
+<li>安装简单，可以按照到任何路径下，灵活性好，一台服务器可以安装多个。</li>
+</ul>
+</li>
+<li>源码（Source Package）<ul>
+<li>在实际安装的操作系统进行可根据需要做定制编译，灵活性最高，性能最好，一台服务器可以安装多个。</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用-RPM-包安装"><a href="#使用-RPM-包安装" class="headerlink" title="使用 RPM 包安装"></a>使用 RPM 包安装</h2><h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><p>这里有两种方式下载：</p>
+<ul>
+<li>通过网页下载rpm安装包然后上传到需要安装数据库的服务器。</li>
+<li>直接在服务器上下载安装包，使用 <code>wget</code> 来下载。</li>
+</ul>
+<h4 id="直接下载"><a href="#直接下载" class="headerlink" title="直接下载"></a>直接下载</h4><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">官网下载地址</a>：<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a></p>
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_00.png" class="" title="image_00">
+
+<h4 id="使用-wget-下载"><a href="#使用-wget-下载" class="headerlink" title="使用 wget 下载"></a>使用 wget 下载</h4><h5 id="安装-wgrt"><a href="#安装-wgrt" class="headerlink" title="安装 wgrt"></a>安装 wgrt</h5><p>使用如下的命令快速安装，如果，服务器上已经安装过该工具后，可跳过这一步。</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ yum -y install wget<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="下载mysql安装包"><a href="#下载mysql安装包" class="headerlink" title="下载mysql安装包"></a>下载mysql安装包</h5><p>在点击图片 images_00 中对应版本的 Download 按钮后，在跳转的页面上使用鼠标右键点击下方的 “No thanks， just start my download” 来拷贝下载链接。</p>
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_01.png" class="" title="image_01">
+
+<p>然后使用以下命令在服务器上下载文件</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ wget -c https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.32-1.el9.x86_64.rpm-bundle.tar -P /data/downloads
+
+# -P 指定下载目录
+# -c --continue 如果首次下载中断，可用使用该参数进行续点下载
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>等待片刻即可完成下载</p>
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_02.png" class="" title="image_02">
+
+<h3 id="yum安装依赖包"><a href="#yum安装依赖包" class="headerlink" title="yum安装依赖包"></a>yum安装依赖包</h3><p>使用以下命令，安装相关的依赖</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ yum -y install lrzsz wget perl-Digest-MD5
+
+$ yum -y install numactl
+
+$ yum -y install ncurses ncurses-devel openssl-devel bison gcc gcc-c++ make<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="添加用户及组"><a href="#添加用户及组" class="headerlink" title="添加用户及组"></a>添加用户及组</h3><p>为了方便管理和维护mysql的应用，这里建议创建一个单独的用户组和用户用来管理mysql进程。</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ groupadd mysql
+# 创建用户组
+# groupdel mysql 删除用户组的命令
+
+[root]$ useradd -g mysql -d /home/mysql mysql
+# -g 指定用户组
+# -d 指定该用户的家目录
+# userdel mysql_user 删除用户的命令
+
+[root]$ passwd mysql
+New password:
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+# 设置用户的密码
+
+
+[root@rhel76 ~]$ cat /etc/group | grep mysql
+mysql:x:1000:
+# 查看是否存在名为 mysql 的组
+
+[root@rhel76 ~]$ cat /etc/passwd | grep '^mysql:'
+mysql:x:1000:1000::/home/mysql:/bin/bash
+# 查看用户信息,这个命令会查找用户名以 mysql: 开头的行
+
+# 给 mysql 添加 sudo 权限
+[root@rhel76 ~]$ su
+# 切换为 root 账户
+
+[root@rhel76 ~]$ visudo
+# 编辑 sudoers 文件, 找到 root 账户的地方添加文本 mysql   ALL=(ALL)       ALL
+# 然后保存退出<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_12.png" class="" title="image_12">
+
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ md5sum mysmd5sum mysql-8.0.32-1.el9.x86_64.rpm-bundle.tar
+ea9a1d7491ba797951f2b542ac76f2e7  mysql-8.0.32-1.el9.x86_64.rpm-bundle.tar
+# 使用 md5sum 计算下载的安装包的MD5值，与官网上的值做对比来验证下载的安装包的完整性
+
+[root]$ tar -xvf mysql-8.0.32-1.el9.x86_64.rpm-bundle.tar -C /home/mysql
+# -x 表示解压缩 tar 归档文件
+# -v 表示在解压缩过程中显示详细的进度信息。
+# -f 表示指定要解压缩的 tar 归档文件。
+# -C 表示指定要解压缩到的目录
+# 解压安装包，这里主要时注意必须安装以下四个文件
+# mysql-community-common-8.0.32-1.el9.x86_64.rpm
+# mysql-community-libs-8.0.32-1.el9.x86_64.rpm
+# mysql-community-client-8.0.32-1.el9.x86_64.rpm # 是客户端的安装包
+# mysql-community-server-8.0.32-1.el9.x86_64.rpm # 是服务端的安装包
+
+[root]$ ls -l /home/
+drwx------ 2 mysql mysql 4096 Apr 16 01:27 mysql
+# 查看解压后文件的权限
+
+[root] chown -R mysql:mysql /home/mysql/
+# -R 是应用 /home/mysql/ 所有子目录和文件
+# mysql:mysql 为 owner/group 格式，分别是该目录的新的所有者(mysql)，和新的组(mysql)
+# 由于使用了root来解压文件，所以输出文件权限不属于上一步创建的用户和组 mysql mysql 所以需要更改它们的权限
+
+[root]$ cd /home/mysql
+# 开始准备安装
+# 包之间相互依赖，所以必须注意安装顺序
+# 先装 common 
+# 再装 libs
+# 如果之前安装了 mariadb，请确保 mariadb 已卸载，centos7 默认支持 mariadb，不支持 mysql，不卸载会出现冲突
+# 再装 client
+# 最后装 server
+# 命令如下
+[root]$ rpm -ivh mysql-community-common-8.0.32-1.el9.x86_64.rpm
+# -i 表示安装 RPM 安装包
+# -v 表示在安装的过程中显示详细的进度信息
+# -h 表示在安装过程中显示 # 字符来标识进度
+
+[root]$ su mysql
+# 切换为 mysql 用户去安装
+[mysql]$ rpm -ivh --force --nodeps mysql-community-libs-8.0.32-1.el9.x86_64.rpm
+# --force 表示强制安装软件包，即使存在依赖关系或冲突
+# --nodeps 表示忽略依赖关系检查，即使缺少其他软件包的依赖，也会强制安装
+# 需要注意，使用 "--force" 和 "--nodeps" 选项可能会导致系统不稳定或产生意外的行为，因为它们可能会引入软件包之间的不一致性或安全漏洞，所以在安装其他不确定应用时请谨慎使用
+
+[mysql]$ rpm -ivh --force --nodeps mysql-community-client-8.0.32-1.el9.x86_64.rpm
+
+[mysql]$ rpm -ivh --force --nodeps mysql-community-server-8.0.32-1.el9.x86_64.rpm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[mysql]$ chown -R mysql:mysql /var/lib/mysql
+# 将 mysql 要使用的函数库和数据文件放置地址，的属主和组修改为之前创建的用户和组
+
+[mysql]$ mysqld --initialize
+# 初始化 mysql 数据库服务器的数据目录、创建系统表和其他必要的文件，只需要在安装的时候执行一次
+# 如果出现问题请看 其他问题中的描述
+[mysql]$ systemctl start mysqld
+# 启动mysql服务
+# 如果出现问题请看 其他问题中的描述
+
+[mysql]$ systemctl status mysqld
+
+[mysql]$ sudo systemctl enable mysqld
+# 于设置 mysqld 服务在系统启动时自动启动
+# 执行这个命令后，系统会将 mysqld.service 文件链接到 `/etc/systemd/system/multi-user.target.wants/` 目录下，以确保 MySQL 服务在系统启动时自动启动
+
+[mysql]$ sudo systemctl is-enabled mysqld
+# 验证 MySQL 服务是否已经设置为开机自启：使用以下命令可以验证 MySQL 服务是否已经设置为开机自启
+
+[root]$ cat /var/log/mysqld.log | grep password
+# 获得mysql临时密码
+# MySQL 安装成功后会有一个临时密码，我们可以使用`grep`命令查看临时密码先登录进去MySQL，然后修改MySQL密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="创建用户与修改临时密码"><a href="#创建用户与修改临时密码" class="headerlink" title="创建用户与修改临时密码"></a>创建用户与修改临时密码</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ cat /var/log/mysqld.log | grep password
+# 获得mysql临时密码
+# MySQL 安装成功后会有一个临时密码，我们可以使用`grep`命令查看临时密码先登录进去MySQL，然后修改MySQL密码
+
+[root]$ mysql -uroot -p{password}
+# 使用临时密码登录
+
+mysql&gt; set global validate_password.policy=LOW;
+# 把mysql密码校验强度改为低风险 这条视自己实际情况配置
+# mysql5.7 中为 validate_password_policy
+
+mysql&gt; set global validate_password.length=6;
+# 修改mysql的密码长度 这条视自己实际情况配置
+# mysql5.7 中为 validate_password_length
+
+mysql&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+# 修改mysql密码 这条视自己实际情况配置
+
+mysql&gt; show plugins;
+# 查看相关设置，密码验证规则在最下面
+
+mysql&gt; SHOW VARIABLES LIKE 'vali%';
+# 直接查看密码验证规则<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="远程登录配置"><a href="#远程登录配置" class="headerlink" title="远程登录配置"></a>远程登录配置</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; create user root@'%' identified with mysql_native_password by 'root';
+-- 创建一个用户名为 root，主机为任意主机（即 %），密码为 root 的用户，并使用 mysql_native_password 插件进行身份验证
+
+mysql&gt; grant all on *.* to root@'%' with grant option;
+-- 授予 root 用户在 MySQL 服务器上拥有所有数据库和所有表的所有权限，并且允许该用户授予其他用户相同的权限
+
+mysql&gt; flush privileges;
+-- 刷新权限
+
+mysql&gt; select Host, User from mysql.user;
+
+mysql&gt; status<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_09.png" class="" title="image_09">
+
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ firewall-cmd --zone=public --add-port=3306/tcp --permanent
+# 防火墙放行3306端口
+# --zone 作用域
+# --add-port=80/tcp  添加端口，格式为：端口/通讯协议
+# --permanent  永久生效，没有此参数重启后失效
+
+[root]$ firewall-cmd --reload
+# systemctl restart firewalld.service
+# 重启防火墙
+
+[root]$ firewall-cmd --zone=public --query-port=8080/tcp
+# 查看端口是否暴露
+
+[root]$ systemctl start firewalld.service
+# 启动防火墙
+
+[root]$ systemctl enable firewalld.service
+# 设置开机自启
+
+[root]$ firewall-cmd --state
+# 检查防火墙状态是否打开
+
+[root]$ systemctl disable firewalld
+# 关闭防火墙
+
+[root]$ systemctl is-enabled firewalld.service;echo $?
+# 检查防火墙开机启动是否生效
+
+[root]$ firewall-cmd --list-all
+# 查看防火墙信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="账号密码相关设置附录"><a href="#账号密码相关设置附录" class="headerlink" title="账号密码相关设置附录"></a>账号密码相关设置附录</h3><p>在数据库的配置文件中添加<code>skip-grant-tables</code>可以跳过密码验证</p>
+<p>查看密码策略：</p>
+<p>​		<code>show variables like 'password%';</code></p>
+<p>​		<code>SHOW VARIABLES LIKE 'validate_password%';</code></p>
+<p>刷新权限设置：</p>
+<p>​		<code>flush privileges;</code></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- mysql5
+
+mysql&gt; create database springcloud_dev DEFAULT CHARACTER SET utf8;
+-- 创建数据库
+
+
+mysql&gt; create user 'springcloud' identified by '123456';
+-- 创建新用户：
+
+mysql&gt; grant all on springcloud_dev.* to 'springcloud';flush privileges;
+-- 赋予该用户对该数据库的所有权限，并刷新
+
+-- 新建数据库并直接赋予权限：
+-- grant all on springcloud_dev.* TO 'springcloud'@'%' IDENTIFIED BY '123456'; flush privileges;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">## mysql8
+
+create user 'root'@'%' identified by  'password';
+-- 创建账户(% 代表所有IP)
+
+grant all privileges on *.* to 'root'@'%' with grant option;
+-- 赋予权限，with grant option这个选项表示该用户可以将自己拥有的权限授权给别人
+
+flush privileges;
+-- 改密码&amp;授权超用户，flush privileges 命令本质上的作用是将当前user和privilige表中的用户信息/权限设置从mysql库(MySQL数据库的内置库)中提取到内存里
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_password';
+-- 修改指定用户的密码
+-- mysql_native_password 插件是 MySQL 8.0 默认的密码插件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><h4 id="shared-libraries缺失问题"><a href="#shared-libraries缺失问题" class="headerlink" title="shared libraries缺失问题"></a>shared libraries缺失问题</h4><p>如果在启动服务的时候出现如下错误：</p>
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_03.png" class="" title="image_03">
+
+<p>或者</p>
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_07.png" class="" title="image_07">
+
+<p>执行提示中的命令：</p>
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_04.png" class="" title="image_04">
+
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_06.png" class="" title="image_06">
+
+<p>提示动态链接库(<code>shared libraries</code>) 缺失，参考以下步骤执行</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ ls -l /lib*/libaio.so.1
+# 验证 libaio.so.1 动态链接库是否存在
+
+# 如果不存在使用
+[root]$ yum install libaio
+# 安装 libaio 通过安装完成后自动配置环境，所以可用使用 mysqld --initialize 验证环境
+
+# 如果已经存在，使用如下命令将 libaio 所在目录添加到系统的动态链接库搜索路径中
+[root]$ echo "/usr/lib64" | sudo tee -a /etc/ld.so.conf.d/mysql.conf
+# 添加到系统的动态链接库搜索路径中
+[root]$ ldconfig
+# 更新系统的动态链接库缓存，以使新的目录生效<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>确认 OpenSSL 是否安装</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ openssl version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可参考本站文章 <a href="">基于Linux系统安装OpenSSL</a> 来安装该库。</p>
+<h4 id="其他错误排查方式"><a href="#其他错误排查方式" class="headerlink" title="其他错误排查方式"></a>其他错误排查方式</h4><ol>
+<li><p>检查 mysql 的配置文件是否正确，如果有错误则进行修复，并重启 mysql 服务。</p>
+<ol>
+<li>配置文件 <code>/etc/my.cnf</code>或 <code>/etc/mysql/my.cnf</code></li>
+</ol>
+</li>
+<li><p>确保 mysql 数据目录和日志文件所在的目录对 mysql 用户有充足的读写权限，可以使用以下命令来更改文件权限：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ chown -R mysql:mysql /var/lib/mysql/
+[root]$ chmod -R 755 /var/lib/mysql/
+[root]$ chown mysql:mysql /var/log/mysqld.log
+[root]$ chmod 644 /var/log/mysqld.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>检查系统中是否缺失 mysql 的依赖库，如果缺失则进行安装</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ ldd /usr/sbin/mysqld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>检查系统的内存和磁盘空间是否充足，如果不足则进行清理或者扩容</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ df -h --total
+[root]$ free -h<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>在执行任何操作之前，你可以查看 MySQL 的错误日志文件，通常在 <code>/var/log/mysqld.log</code> 中，以查看 MySQL 启动过程中遇到的具体错误信息</p>
+</li>
+</ol>
+<h2 id="二进制包安装"><a href="#二进制包安装" class="headerlink" title="二进制包安装"></a>二进制包安装</h2><h3 id="下载安装包-1"><a href="#下载安装包-1" class="headerlink" title="下载安装包"></a>下载安装包</h3><p>这里有两种方式下载：</p>
+<ul>
+<li>通过网页下载rpm安装包然后上传到需要安装数据库的服务器。</li>
+<li>直接在服务器上下载安装包，使用 <code>wget</code> 来下载。</li>
+</ul>
+<p>具体说明参考  [使用 RPM 包安装](###使用 RPM 包安装)</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ wget -c https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz -P /tmp
+# -P 指定下载目录4# -c --continue 如果首次下载中断，可用使用该参数进行续点下载5​<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_10.png" class="" title="image_10">
+
+<h3 id="yum安装依赖包-1"><a href="#yum安装依赖包-1" class="headerlink" title="yum安装依赖包"></a>yum安装依赖包</h3><p>使用以下命令，安装相关的依赖</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ yum -y install lrzsz wget perl-Digest-MD5
+
+$ yum -y install numactl
+
+$ yum -y install ncurses ncurses-devel openssl-devel bison gcc gcc-c++ make<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="添加用户及组-1"><a href="#添加用户及组-1" class="headerlink" title="添加用户及组"></a>添加用户及组</h3><p>参考上文<a href="###%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%8F%8A%E7%BB%84">添加用户及组</a></p>
+<h3 id="安装mysql-1"><a href="#安装mysql-1" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>安装前如果已经按照过 MariaDB，请先卸载</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ rpm -qa |grep mariadb
+mariadb-libs-5.5.60-1.el7_5.x86_64
+[root]$ rpm -e --nodeps mariadb-libs-5.5.60-1.el7_5.x86_64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>正式安装</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[root]$ su mysql
+# 切换永固
+
+## 用户及目录创建
+注：可以部署多个实例，通过端口区分root 用户操作：
+mkdir -p /opt/qing/mysql/mysql3306/data/
+mkdir -p /opt/qing/mysql/mysql3306/data/data
+mkdir -p /opt/qing/mysql/mysql3306/app/
+mkdir -p /opt/qing/mysql/mysql3306/conf/
+mkdir -p /opt/qing/mysql/mysql3306/data/pid/
+mkdir -p /opt/qing/mysql/mysql3306/data/socket/
+mkdir -p /opt/qing/mysql/mysql3306/data/log/
+mkdir -p /opt/qing/mysql/mysql3306/data/binlog/
+mkdir -p /opt/qing/mysql/mysql3306/data/errlog
+mkdir -p /opt/qing/mysql/mysql3306/data/relaylog/
+mkdir -p /opt/qing/mysql/mysql3306/data/slowlog/
+mkdir -p /opt/qing/mysql/mysql3306/data/tmp/
+
+
+[mysql]$ cp /tmp/mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz /opt/qing/mysql/mysql3306/app/
+# 拷贝安装包
+
+[mysql]$ ls -l
+-rw-r--r--. 1 mysql mysql 610315332  4月 16 23:07 mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz
+
+[mysql]$ md5sum mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz
+# 验证，如果可确保包没问题，可用跳过这步
+
+[mysql]$ tar xvf mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz
+# 解压
+
+[mysql]$ mv mysql-8.0.32-linux-glibc2.12-x86_64 mysql_8.0.32
+# 重命名
+
+[mysql]$sudo cat &gt;&gt; /home/mysql/.bash_profile &lt;&lt; "EOF"
+MYSQL_HOME=/opt/qing/mysql/mysql3306/app/mysql_8.0.32
+PATH=$PATH:$HOME/.local/bin:$HOME/bin:$MYSQL_HOME/bin
+EOF
+# 修改环境变量，注意这里配置的目录和你自己mysql的地址一致
+
+[mysql]$ source ~/.bash_profile
+# 重新加载当前用户的 Bash 配置文件 ~/.bash_profile
+
+[mysql]$ which mysql
+/opt/qing/mysql/mysql3306/app/mysql_8.0.32/bin/mysql
+# 查找系统中是否安装了 MySQL 命令行客户端，并返回 MySQL 命令在系统中的安装路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="创建参数文件"><a href="#创建参数文件" class="headerlink" title="创建参数文件"></a>创建参数文件</h3><p>由于是二进制文件安装，所以数据库参数文件需要自己配置</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[mysql]$ cat &gt;&gt; /opt/qing/mysql/mysql3306/conf/my3306.cnf &lt;&lt; "EOF"
+[mysqld]
+server_id = 80273306
+default-storage-engine= InnoDB
+basedir=/opt/qing/mysql/mysql3306/app/mysql_8.0.32
+datadir=/opt/qing/mysql/mysql3306/data/data
+socket=/opt/qing/mysql/mysql3306/data/socket/mysql.sock
+log-error=//opt/qing/mysql/mysql3306/data/log/mysqld.log
+pid-file=/opt/qing/mysql/mysql3306/data/pid/mysqld.pid
+port=3306
+default-time_zone='+8:00'
+default_authentication_plugin=mysql_native_password # 加此参数可远程登陆
+transaction_isolation=READ-COMMITTED
+max_connections=1500
+back_log=500
+wait_timeout=1800
+max_user_connections=800
+innodb_buffer_pool_size=1024M
+innodb_log_file_size=512M
+innodb_log_buffer_size=40M
+slow_query_log=ON
+long_query_time=5
+# log settings #
+slow_query_log = ON
+slow_query_log_file = /opt/qing/mysql/mysql3306/data/slowlog/slow3306.log
+log_error = /opt/qing/mysql/mysql3306/data/errlog/err3306.log
+log_error_verbosity = 3
+log_bin = /opt/qing/mysql/mysql3306/data/binlog/mysql_bin
+log_bin_index = /opt/qing/mysql/mysql3306/data/binlog/mysql_binlog.index
+general_log_file = /opt/qing/mysql/mysql3306/data/generallog/general.log
+log_queries_not_using_indexes = 1
+log_slow_admin_statements = 1
+expire_logs_days = 90
+binlog_expire_logs_seconds = 2592000      #30d
+long_query_time = 2
+min_examined_row_limit = 100
+log_throttle_queries_not_using_indexes = 1000
+innodb_flush_log_at_trx_commit=1
+EOF
+
+# 注意要写入的文件地址<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="数据库初始化"><a href="#数据库初始化" class="headerlink" title="数据库初始化"></a>数据库初始化</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[mysql]$ cd ~
+# 到自己的主目录
+
+[mysql]$ mysqld --defaults-file=/opt/qing/mysql/mysql3306/conf/my3306.cnf --initialize --user=mysql --basedir=/opt/qing/mysql/mysql3306/app/mysql_8.0.32 --datadir=/opt/qing/mysql/mysql3306/data/data/
+# mysqld mysql 服务器的主程序
+# --defaults-file 配置文件路径，my3306.cnf 是一个自定义的 mysql 配置文件
+# --initialize 表示需要执行 mysql 的初始化操作，主要是创建系统数据表、设置 root 用户密码等
+# --basedir 指定了 mysql 的安装目录
+# --datadir 指定了 mysql 数据库文件的存储目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="启动数据库"><a href="#启动数据库" class="headerlink" title="启动数据库"></a>启动数据库</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[mysql]$ mysqld_safe --defaults-file=/opt/qing/mysql/mysql3306/conf/my3306.cnf --user=mysql &amp;
+# mysqld_safe mysql 服务器启动脚本，它会以安全模式启动 mysql 服务器，同时还提供了一些额外的安全检查和日志记录功能
+# --defaults-file 配置文件路径，my3306.cnf 是一个自定义的 mysql 配置文件
+# --user mysql 服务器进程运行的用户账户
+# &amp; 表示将命令放在后台运行，即使关闭终端或者退出登录，MySQL 服务器仍然会继续运行
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_11.png" class="" title="image_11">
+
+<h3 id="创建用户与修改临时密码-1"><a href="#创建用户与修改临时密码-1" class="headerlink" title="创建用户与修改临时密码"></a>创建用户与修改临时密码</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[mysql]$ cat /opt/qing/mysql/mysql3306/data/errlog/err3306.log | grep password
+# 获得mysql临时密码
+# MySQL 安装成功后会有一个临时密码，我们可以使用`grep`命令查看临时密码先登录进去MySQL，然后修改MySQL密码
+# 注意这里查看的日志地址，和默认安装不一样<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其他参考上一个章节的<a href="###%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E4%B8%8E%E4%BF%AE%E6%94%B9%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81">创建用户与修改临时密码</a></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 当然也可以通过 sock 登录
+[mysql]$ mysql -uroot -p  -P 3306 -S /opt/qing/mysql/mysql3306/data/socket/mysql.sock<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>如果出现如下错误</p>
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_13.png" class="" title="image_13">
+
+<p>就需要安装这个缺失的依赖库</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[mysql]$ sudo dnf install ncurses.x86_64
+# 安装该依赖库会 安装 libtinfo
+
+# 如果还是不行检查下是否 libtinfo 有其他版本
+[mysql]$ ls /usr/lib64/ | grep libtinfo
+lrwxrwxrwx.  1 root root       15  5月 26  2022 libtinfo.so.6 -&gt; libtinfo.so.6.2
+-rwxr-xr-x.  1 root root   191616  5月 26  2022 libtinfo.so.6.2
+# 如上所示，已经有6.2的版本存在
+# 所以来通过创建软链接其到 libtinfo.so.5
+[mysql]$ sudo ln -s  /usr/lib64/libtinfo.so.6.2 /usr/lib64/libtinfo.so.5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="远程登录配置-1"><a href="#远程登录配置-1" class="headerlink" title="远程登录配置"></a>远程登录配置</h3><p>参考上一个章节的<a href="###%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E9%85%8D%E7%BD%AE">远程登录配置</a></p>
+<h2 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h2><h3 id="下载安装包-2"><a href="#下载安装包-2" class="headerlink" title="下载安装包"></a>下载安装包</h3><p>这里有两种方式下载：</p>
+<ul>
+<li>通过网页下载rpm安装包然后上传到需要安装数据库的服务器。</li>
+<li>直接在服务器上下载安装包，使用 <code>wget</code> 来下载。</li>
+</ul>
+<p>具体说明参考  [使用 RPM 包安装](###使用 RPM 包安装)</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ wget -c https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-boost-8.0.32.tar.gz -P /tmp
+# -P 指定下载目录4# -c --continue 如果首次下载中断，可用使用该参数进行续点下载5​<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<img src="/2023/04/13/cs-data/linux-install-mysql/image_14.png" class="" title="image_14">
+
+<h3 id="yum安装依赖包-2"><a href="#yum安装依赖包-2" class="headerlink" title="yum安装依赖包"></a>yum安装依赖包</h3><p>使用以下命令，安装相关的依赖</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ yum -y install lrzsz wget perl-Digest-MD5
+
+$ yum -y install numactl
+
+$ yum -y install cmake gcc gcc-c++
+
+$ yum -y install ncurses-devel libaio-devel
+
+$ yum install –y openssl openssl-devel ncurses ncurses-devel
+
+$ yum -y install ncurses ncurses-devel openssl-devel bison gcc gcc-c++ make<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="添加用户及组-2"><a href="#添加用户及组-2" class="headerlink" title="添加用户及组"></a>添加用户及组</h3><p>参考上文<a href="###%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%8F%8A%E7%BB%84">添加用户及组</a></p>
+<h3 id="安装及配置"><a href="#安装及配置" class="headerlink" title="安装及配置"></a>安装及配置</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[mysql]$ mkdir -p /opt/qing/mysql/mysql3306/app/
+[mysql]$ mkdir -p /opt/qing/mysql/mysql3306/source/
+# 创建目录
+
+[mysql]$ cp /tmp/mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz /opt/qing/mysql/mysql3306/source/
+[mysql]$ cd /opt/qing/mysql/mysql3306/source/
+# 移动源码包
+
+[mysql]$ tar -Jxf mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz
+# 解压
+
+[mysql]$ ll
+drwxrwxr-x. 9 mysql mysql       129  4月 17 01:13 mysql-8.0.32-linux-glibc2.12-x86_64
+-rw-r--r--. 1 mysql mysql 610315332  4月 17 01:09 mysql-8.0.32-linux-glibc2.12-x86_64.tar.xz
+[mysql]$ mv mysql-8.0.32-linux-glibc2.12-x86_64 mysql_8.0.32
+
+[mysql]$ cd mysql_8.0.32
+# 进入源码文件中
+
+[mysql]$ cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
+-DMYSQL_DATADIR=/usr/local/mysql/data \
+-DSYSCONFDIR=/etc \
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DWITH_PARTITION_STORAGE_ENGINE=1 \
+-DWITH_FEDERATED_STORAGE_ENGINE=1 \
+-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \
+-DWITH_MYISAM_STORAGE_ENGINE=1 \
+-DENABLED_LOCAL_INFILE=1 \
+-DENABLE_DTRACE=0 \
+-DDEFAULT_CHARSET=utf8mb4 \
+-DDEFAULT_COLLATION=utf8mb4_general_ci \
+-DWITH_EMBEDDED_SERVER=1 \
+-DDOWNLOAD_BOOST=1 \
+-DWITH_BOOST=/opt/qing/mysql/mysql3306/source/mysql_8.0.32/boost/boost_1_73_0 \
+-DFORCE_INSOURCE_BUILD=1
+# 使用 CMake 生成 mysql 的安装文件时指定了安装路径
+# -DCMAKE_INSTALL_PREFIX 参数指定了安装路径为 /usr/local/mysql
+# -DMYSQL_DATADIR 参数指定了 MySQL 的数据目录为 /usr/local/mysql/data
+# -DWITH_BOOST 参数指定了 Boost 库的路径为 /opt/qing/mysql/mysql3306/source/mysql_8.0.32/boost/boost_1_73_0
+
+[mysql]$ make -j4  
+# 此处编译需要1个小时，一定要耐心等待
+
+[mysql]$ make install
+# 安装
+
+[mysql]$ chown -R mysql:mysql /usr/local/mysql
+# 修改权限给mysql用户和组
+
+[mysql]$ cat &gt; /etc/my.cnf &lt;&lt;"EOF"
+[mysqld]
+basedir=/usr/local/mysql
+datadir=/usr/local/mysql/data
+port=3306
+server_id=80273306
+log-bin
+skip-name-resolve
+character_set_server=utf8mb4
+default-time-zone = '+8:00'
+log_timestamps = SYSTEM
+EOF
+# 修改环境变量，注意这里配置的目录和你自己mysql的相关地址一致
+
+
+## 初始化
+[mysql]$ /usr/local/mysql/bin/mysqld --initialize-insecure --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --user=mysql
+# --initialize-insecure 指定以不安全的方式初始化 mysql 数据库，这意味着 root 用户没有密码。如果需要设置 root 密码，请使用 --initialize 参数。
+# --basedir 指定 mysql 安装目录的路径。
+# --datadir 指定 mysql 数据目录的路径。
+# --user 指定 mysql 服务器进程的运行用户。
+
+[mysql]$ echo "export PATH=$PATH:/usr/local/mysql/bin" &gt;&gt; /root/.bashrc
+# 将 mysql 的可执行文件路径添加到 root 用户的 Bash Shell 环境变量中
+
+[mysql]$ source /root/.bashrc
+# 重新加载 root 的配置文件
+
+[mysql]$ mysqld_safe &amp;
+# 启动 mysql 服务器的一种方式。这个命令会启动一个后台进程，该进程会自动重启 MySQL 服务器进程，如果服务器进程异常退出
+
+[mysql]$ mysql -uroot -p
+# 登录 mysql， 默认密码是空
+
+[mysql]$ mysqladmin -uroot -p shutdown
+# 关闭 mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41645135/article/details/121882971">参考连接</a>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41645135/article/details/121882971">https://blog.csdn.net/weixin_41645135/article/details/121882971</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://robertsunq.github.io" rel="external nofollow noreferrer">Robert Sunq</a>
+                    </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://robertsunq.github.io/2023/04/13/cs-data/linux-install-mysql/">https://robertsunq.github.io/2023/04/13/cs-data/linux-install-mysql/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY-SA 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://robertsunq.github.io" target="_blank">Robert Sunq</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
+                                </a>
+                            
+                                <a href="/tags/database/">
+                                    <span class="chip bg-color">database</span>
+                                </a>
+                            
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,wechat" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/04/13/hello-world/blog-categorization-rules/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="本博客文章分类规则">
+                        
+                        <span class="card-title">本博客文章分类规则</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            主要说明本博客中的文章分类规则，方便与快速检索
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/hello-world/" class="post-category">
+                                    hello-world
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/hello-world/">
+                        <span class="chip bg-color">hello-world</span>
+                    </a>
+                    
+                    <a href="/tags/rules/">
+                        <span class="chip bg-color">rules</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/03/26/cs-dev-ops/vmware-install-rocky-linux/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="基于VMware安装Rocky linux">
+                        
+                        <span class="card-title">基于VMware安装Rocky linux</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            基于VMware安装Rocky linux
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/cs-dev-ops/" class="post-category">
+                                    cs-dev-ops
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                    <a href="/tags/rocky-linux/">
+                        <span class="chip bg-color">rocky linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Qing<br />'
+            + '文章作者: Robert Sunq<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '<原创文章> 著作权归Robert Sunq所有，<转载文章> 著作权归原作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">Robert Sunq</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">85.1k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/RobertSunq" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:loading@xx.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=loading..." class="tooltipped" target="_blank" data-tooltip="QQ联系我: loading..." data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":350},"mobile":{"show":true},"log":false});</script></body>
+
+</html>
