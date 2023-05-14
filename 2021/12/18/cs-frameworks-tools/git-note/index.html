@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>git命令详解 | Qing</title>
+    <title>Git命令详解 | Qing</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">git命令详解</h1>
+                    <h1 class="description center-align post-title">Git命令详解</h1>
                 </div>
             </div>
         </div>
@@ -497,21 +497,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-23
+                    2023-05-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    771
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    17 分
                 </div>
                 
 
@@ -534,14 +534,316 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="命令脑图"><a href="#命令脑图" class="headerlink" title="命令脑图"></a>命令脑图</h2><blockquote>
+                <h1 id="Git命令详解"><a href="#Git命令详解" class="headerlink" title="Git命令详解"></a>Git命令详解</h1><h2 id="命令思维导图"><a href="#命令思维导图" class="headerlink" title="命令思维导图"></a>命令思维导图</h2><blockquote>
 <p>鹅厂程序猿常用的 Git 命令思维导图</p>
 </blockquote>
 <img src="/2021/12/18/cs-frameworks-tools/git-note/git-notes-0000.svg" class="" title="脑图">
 
+<h2 id="使用笔记"><a href="#使用笔记" class="headerlink" title="使用笔记"></a>使用笔记</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h4 id="版本控制的方式"><a href="#版本控制的方式" class="headerlink" title="版本控制的方式"></a>版本控制的方式</h4><ul>
+<li>集中式版本控制工具<ul>
+<li>集中式版本控制工具，版本库是集中存放在中央服务器的，<code>team</code>里每个人<code>work</code>时从中央服务器下载代 码，是必须联网才能工作，局域网或互联网。个人修改后然后提交到中央版本库。</li>
+<li><code>e.g.</code> <code>SVN</code>和<code>CVS</code></li>
+</ul>
+</li>
+<li>分布式版本控制工具<ul>
+<li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，这样工作的时候，无 需要联网了，因为版本库就在你自己的电脑上。多人协作只需要各自的修改推送给对方，就能互相看到对方的 修改了。</li>
+<li><code>e.g.</code> <code>Git</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p><code>Git</code> 是分布式的，不需要有中心服务器，每台电脑拥有的东西都是一样的。我们使用<code>Git</code>并且有个 中心服务器，仅仅是为了方便交换不同开发人员之间的修改，但是这个服务器的地位和我们每个人的<code>PC</code>是一样的。可以把它当做一个开发者的<code>PC</code>，但是为了大家代码容易交流，并不会关闭。没有它大家一样可以工作，只不 过“<strong>交换</strong>”修改不方便。</p>
+<p><code>Git</code> 是一种版本控制系统，用于跟踪软件代码的变化，并协调多个开发人员的工作。由<code>Linus Torvalds</code>于2005年创建，用于开发<code>Linux</code>内核，但现在已经被广泛采用在其他软件项目中使用。</p>
+<p><code>Git</code>允许开发人员创建代码分支，对这些分支进行更改，并将更改合并回来。这使得多个开发人员可以在同一个代码库上工作而不会干扰彼此的工作。<code>Git</code>还使开发人员能够跟踪代码库的更改历史，并在必要时还原到以前的版本。</p>
+<p><code>Git</code>是一种分布式版本控制系统，这意味着每个开发人员在本地机器上都有代码库的完整副本。这使得开发人员可以离线工作并仍然对代码库进行更改。<code>Git</code>还支持远程存储库，可以托管在像<code>GitHub</code>、<code>GitLab</code>或<code>Bitbucket</code>这样的服务上，并允许多个开发人员从不同地点协同工作在同一个代码库上。</p>
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-003.png" class="" title="image-003">
+
+<h4 id="Git工作流程图"><a href="#Git工作流程图" class="headerlink" title="Git工作流程图"></a>Git工作流程图</h4><img src="/2021/12/18/cs-frameworks-tools/git-note/image-004.png" class="" title="image-004">
+
+<ol>
+<li><code>clone</code><ul>
+<li>克隆</li>
+<li>从远程仓库中克隆代码到本地仓库</li>
+</ul>
+</li>
+<li><code>checkout</code><ul>
+<li>检出</li>
+<li>从本地仓库中提交一个仓库分支然后进行修订</li>
+</ul>
+</li>
+<li><code>add</code><ul>
+<li>添加</li>
+<li>再提交前先将代码提交到暂存区</li>
+</ul>
+</li>
+<li><code>commit</code><ul>
+<li>提交</li>
+<li>提交到本地仓库，本地仓库中保存修改的各个历史版本</li>
+</ul>
+</li>
+<li><code>fetch</code><ul>
+<li>抓取</li>
+<li>从远程仓库，抓取到本地仓库，不进行任何的合并动作，一般操作比较少</li>
+</ul>
+</li>
+<li><code>pull</code><ul>
+<li>拉取</li>
+<li>从远程仓库拉到本地仓库，自动进行合并（<code>merge</code>），然后放到工作区，相当于 <code>fetch</code> + <code>merge</code></li>
+</ul>
+</li>
+<li><code>push</code><ul>
+<li>推送</li>
+<li>修改完成后，需要和团队成员共享代码时，将代码推送到远程仓库</li>
+</ul>
+</li>
+</ol>
+<h3 id="Git安装与常用命令"><a href="#Git安装与常用命令" class="headerlink" title="Git安装与常用命令"></a>Git安装与常用命令</h3><h4 id="Git环境配置"><a href="#Git环境配置" class="headerlink" title="Git环境配置"></a>Git环境配置</h4><h5 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h5><p><a target="_blank" rel="noopener" href="https://git-scm.com/download" title="点击跳转">Git 下载地址</a> <a target="_blank" rel="noopener" href="https://git-scm.com/download">https://git-scm.com/download</a></p>
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-005.png" class="" title="image-005">
+
+<p>根据需要，点击到合适的系统版本，以Linux为例，点击进去后有详细的安装命令与教程，这里不做过多介绍</p>
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-006.png" class="" title="image-006">
+
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-007.png" class="" title="image-007">
+
+<h5 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h5><p>进入系统终端（<code>windows</code>可以使用<code>CMD</code>，或者安装<code>Git</code>后自带的 <code>Git Bash</code>）</p>
+<p>这里设置的是全局配置，可以配置，当然也可以不做配置（通常可以在项目中使用仓库级别的配置）。</p>
+<p>Git中不同配置级别的区别，见下文的 <a href="##Git%E9%85%8D%E7%BD%AE%E7%BA%A7%E5%88%AB%E8%AF%B4%E6%98%8E">Git配置级别说明</a></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 设置全局级别的用户名
+[git]$ git config --global user.name "git"
 
 
-<h2 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h2><h3 id="配置级别"><a href="#配置级别" class="headerlink" title="配置级别"></a>配置级别</h3><p><code>git</code>的配置级别主要分为三类</p>
+# 设计全局级别的用户邮箱 
+[git]$ git config --global user.email "git@email.cn"
+
+
+# 查看刚刚的配置信息
+[git]$ git config --global user.name
+[git]$ git config --global user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="解决GitBash乱码问题"><a href="#解决GitBash乱码问题" class="headerlink" title="解决GitBash乱码问题"></a>解决GitBash乱码问题</h5><ol>
+<li><p>打开 Git Bash 执行下面的命令</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[git]$ git config --global core.quotepath false<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>${GIT_HOME/etc/bash.bashrc 文件最后加入下面两行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span><span class="token string">"zh_CN.UTF-8"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LC_ALL</span></span><span class="token operator">=</span><span class="token string">"zh_CN.UTF-8"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ol>
+<h5 id="获取本地仓库"><a href="#获取本地仓库" class="headerlink" title="获取本地仓库"></a>获取本地仓库</h5><p>要使用Git对我们的文件进行版本控制，首先需要获取一个本地仓库。</p>
+<ol>
+<li><p>在所需要的位置创建一个空目录</p>
+</li>
+<li><p>打开一个中断，进入该目录</p>
+</li>
+<li><p>执行命令 <code>git init</code>，初始化一个仓库</p>
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-008.png" class="" title="image-008">
+
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-009.png" class="" title="image-20230514202933082">
+</li>
+<li><p>创建成功后，可以在该文件夹下看到一个名为 <code>.git</code> 的隐藏目录。</p>
+</li>
+</ol>
+<h4 id="基础操作指令"><a href="#基础操作指令" class="headerlink" title="基础操作指令"></a>基础操作指令</h4><p>Git 工作目录下对于文件的增加、删除、更新会存在几个状态，这些修改的状态会随着执行Git的命令而变化，具体状态转换如下图所示</p>
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-010.png" class="" title="image-010">
+
+<p>下面主要是说明用命令控制这些状态之间的转换</p>
+<ul>
+<li><code>git add</code><ul>
+<li>工作区 -&gt; 暂存区</li>
+</ul>
+</li>
+<li><code>git commit</code> <ul>
+<li>暂存区 -&gt; 本地仓库</li>
+</ul>
+</li>
+</ul>
+<h5 id="查看修改的状态"><a href="#查看修改的状态" class="headerlink" title="查看修改的状态"></a>查看修改的状态</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 查看修改的状态（暂存区、工作区）
+[git]$ git status<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="添加工作区到暂存区"><a href="#添加工作区到暂存区" class="headerlink" title="添加工作区到暂存区"></a>添加工作区到暂存区</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 添加工作区一个或多个文件的修改到暂存区, git add 单个文件|通配符
+[git]$ git add a.txt
+[git]$ git add a.*
+
+
+
+[git]$ git add . 
+# 添加所有修改到暂存区<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="提交暂存区到本地仓库"><a href="#提交暂存区到本地仓库" class="headerlink" title="提交暂存区到本地仓库"></a>提交暂存区到本地仓库</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[git]$ git commit -m ’注释信息‘<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h5 id="查看提交日志"><a href="#查看提交日志" class="headerlink" title="查看提交日志"></a>查看提交日志</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 查看提交记录
+[git]$ git log [option]
+# --all 显示所有分支
+# --pretty=oneline 将提交信息显示为一行
+# --abbrev-commit 使食醋胡的commit id 更简短
+# --graph 以图的形式显示<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 切换版本
+[git]$ git reset --hard &lt;commitId&gt;
+# commitId 可以使用 git log 或 git log --pretty=oneline --all --graph --abbrev-commit 查看
+
+[git]$ git reflog
+# 看到已经删除的提交记录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="添加文件至忽略列表"><a href="#添加文件至忽略列表" class="headerlink" title="添加文件至忽略列表"></a>添加文件至忽略列表</h5><p>通常，会有一些文件不需要纳入<code>Git</code>管理，也不希望总出现在未跟踪文件列表。比如日志文件，临时测试脚本等。这种情况下，可以在工作目录中创建一个名为<code>.gitignore</code>的文件(必须是这个名字)，列出要忽略的文件模式，示例如下</p>
+<pre class="line-numbers language-.gitignore" data-language=".gitignore"><code class="language-.gitignore"># 忽略以 .log 为结尾的文件
+*.log
+
+# 强制跟踪文件 a.log 即使在上面被忽略了
+!a.log
+
+# 只忽略当前目录中的 TODO 文件，而不是 TODO 目录。
+/TODO
+
+# 忽略 build 目录中的所有文件
+build/
+
+# 忽略 doc/ 目录下 所有以 .txt 为结尾的文件，但是不包含其子目录中以 .txt 为结尾的文件
+doc/*.txt
+
+# 忽略 doc/ 目录下 所有以 .pdf 为结尾的文件，包括其子目录中以 .pdf 为几位的文件
+doc/**/*.pdf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><p><code>Git</code> 使用分支来管理不同的开发流程和功能。分支是指向某个提交的指针，通常称为“分支头”。每个分支都拥有自己的提交历史记录，它们可以同时存在于同一个 <code>Git</code> 存储库中，而不会相互干扰。</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 查看本地分支
+[git]$ git branch
+# 列出所有本地分支。在分支名后添加 
+# -r 参数可以查看远程分支
+# -a 参数可以查看所有分支（即本地和远程）
+# -m &lt;old-branch-name&gt; &lt;new-branch-name&gt;  重命名指定的分支
+
+
+# 创建本地分支
+[git]$ git branch &lt;分支名&gt;
+
+
+# 切换分支
+[git]$ git checkout &lt;分支名&gt;
+
+
+# 还可以直接切换到一个不存在的分支
+[git]$ git checkout -b 分支名
+
+
+# 合并分支
+[git]$ git merge &lt;分支名称&gt;
+# 一个分支上的提交可以合并到另一个分支
+
+
+# 删除分支
+[git]$ git branch -d &lt;b1&gt; # 删除分支时，需要做各种检查
+[git]$ git branch -D &lt;b1&gt; # 不做任何检查，强制删除
+# 不能删除当前分支，只能删除其他分支
+
+
+# 当前分支的提交移到指定分支之后
+[git]$ git rebase &lt;分支名称&gt;
+# 这通常用于将当前分支的提交插入到指定分支的提交历史记录中
+
+
+# 将指定的提交应用到当前分支
+[git]$ git cherry-pick &lt;commitId&gt;
+# 这通常用于将其他分支上的更改应用到当前分支中
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h5><p>当两个分支上对文件的修改可能会存在冲突，例如同时修改了同一个文件的同一行，这时就需要手动解决冲突，解决冲突步骤如下：</p>
+<ol>
+<li>处理文件中冲突的地方</li>
+<li>将解决完冲突的文件加入暂存区（<code>add</code>）</li>
+<li>提交到仓库（<code>commit</code>）</li>
+</ol>
+<p>解决冲突的示例如下：</p>
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-011.png" class="" title="image-011">
+
+<p><code>commit</code>时需要修改的提交信息详情</p>
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-012.png" class="" title="image-012">
+
+<h5 id="开发中分支使用原则与流程推荐"><a href="#开发中分支使用原则与流程推荐" class="headerlink" title="开发中分支使用原则与流程推荐"></a>开发中分支使用原则与流程推荐</h5><p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支可以把你的工作从开发主线上分离开来，在其他分支进行重大的<code>Bug</code>修改、开发新的功能，以免影响开发主线。</p>
+<p>一般推荐如下，当然最重要的还是要根据自己的项目需求设计：</p>
+<ul>
+<li><code>master</code><ul>
+<li>主分支，及是生产分支。</li>
+</ul>
+</li>
+<li><code>dev</code><ul>
+<li>开发分支</li>
+</ul>
+</li>
+<li><code>feature</code><ul>
+<li>未来功能分支</li>
+</ul>
+</li>
+<li><code>test</code><ul>
+<li>测试分支</li>
+</ul>
+</li>
+<li>当然还有其他根据需求创建的分支</li>
+</ul>
+<h3 id="Git远程仓库"><a href="#Git远程仓库" class="headerlink" title="Git远程仓库"></a>Git远程仓库</h3><h4 id="常用的托管服务"><a href="#常用的托管服务" class="headerlink" title="常用的托管服务"></a>常用的托管服务</h4><p>Git中存在两种的仓库，即本地仓库和远程仓库。而远程仓库通常是使用网上的代码托管服务，比较常用的是 <code>GitHUb</code>、<code>Gitee</code>、码云、<code>GitLab</code>、<code>Gitee</code>等。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/" title="点击跳转">Github</a>是一个面向开源以及私有软件项目的托管平台，地址为：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://about.gitlab.com/" title="点击跳转">GitLab</a>是一个用于仓库管理的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的web服务，一般用于在企业、学校内部网络搭建<code>Git</code>私服。地址为：<a target="_blank" rel="noopener" href="https://about.gitlab.com/">https://about.gitlab.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitea.io/en-us/" title="点击跳转">Gitea</a>与<code>GitLab</code>类似，也是一个适用于搭建<code>Git</code>私服，不过更加的小型，地址为：<a target="_blank" rel="noopener" href="https://gitea.io/en-us/">https://gitea.io/en-us/</a></p>
+<h4 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h4><p>不同软件有不同的注册方式，但是基本大同小异，这里就不做介绍了</p>
+<h4 id="配置SSH密钥"><a href="#配置SSH密钥" class="headerlink" title="配置SSH密钥"></a>配置SSH密钥</h4><p>查看本完整后续的章节 <a href="##SSH%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE">SSH连接配置</a></p>
+<h4 id="操作远程仓库"><a href="#操作远程仓库" class="headerlink" title="操作远程仓库"></a>操作远程仓库</h4><h5 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h5><p>以先初始化本地仓库，然后与已创建的远程库进行对接</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[git]$ git remote add &lt;远端名称&gt; &lt;仓库路径&gt;
+# e.g. git remote add origin git@gitea.com:robert.sunq/test_git.git
+# 远端名称	默认是 origin 取决于远端服务器设置
+# 仓库路径	从远端服务器获取此URL<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="查看远程仓库"><a href="#查看远程仓库" class="headerlink" title="查看远程仓库"></a>查看远程仓库</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 查看远程仓库
+[git]$ git remote<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h5 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[git]$ git push [-f] [--set-upstream] [远端名称 [本地分支名][:远端分支名]]
+# 如果远程分支名和本地分支名相同，则可以只写本地分支名 git push origin master
+# -f 	表示强制覆盖
+# --set-upstream	推送到远端的同时并且撞见起和远端分支的关联关系
+## git push --set-upstream origin master
+# 如果当前分支已经和远端分支关联，则可以省略分支名和远端名
+## git push 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-013.png" class="" title="image-013">
+
+<h5 id="本地分支与远程分支的关联关系"><a href="#本地分支与远程分支的关联关系" class="headerlink" title="本地分支与远程分支的关联关系"></a>本地分支与远程分支的关联关系</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 列出所有本地分支及其对应的远程跟踪分支，并显示它们之间的关联关系。
+[git]$ git branch -vv
+#-v		选项表示“详细模式”.它会显示每个本地分支的最后一次提交信息和与其关联的远程跟踪分支。如果分支没有关联的远程跟踪分支，则该信息为空。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-014.png" class="" title="image-014">
+
+<h5 id="从远程仓库克隆"><a href="#从远程仓库克隆" class="headerlink" title="从远程仓库克隆"></a>从远程仓库克隆</h5><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 如果已经有一个远端仓库，可以直接clone到本地
+[git]$ git clone &lt;仓库路径&gt; [本地目录]
+# 本地目录 不添加的时候会在当前的目录下，自动生成一个项目名的目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2021/12/18/cs-frameworks-tools/git-note/image-015.png" class="" title="image-015">
+
+<h5 id="从远程仓库中抓取和拉取"><a href="#从远程仓库中抓取和拉取" class="headerlink" title="从远程仓库中抓取和拉取"></a>从远程仓库中抓取和拉取</h5><p>远程分支和本地的分支一样，可以进行merge操作，只是需要先把远端仓库里的更新都下载到本地，在进程操作</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 将仓库里的更新都抓取到本地，不会进行合并
+[root]$ git fetch [remote name] [branch name]
+# 如果不指定远端名称和分支名，则抓取所有分支
+
+
+# 将远端仓库的修改拉到本地并自动机械能合并，等同于 fetch + merge
+[git]$ git pull [remote name] [branch name]
+# 如果不指定远端名称和分支名，则抓取所有并更新当前分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="解决合并冲突"><a href="#解决合并冲突" class="headerlink" title="解决合并冲突"></a>解决合并冲突</h5><p>远程分支也是分支，所以合并时冲突的解决方式也和解决本地分支冲突相同。</p>
+<h3 id="几条铁令"><a href="#几条铁令" class="headerlink" title="几条铁令"></a>几条铁令</h3><ul>
+<li><strong>切换分支前先提交本地的修改</strong></li>
+<li>代码即使提交，提交过了就不会丢</li>
+</ul>
+<h2 id="Git配置级别说明"><a href="#Git配置级别说明" class="headerlink" title="Git配置级别说明"></a>Git配置级别说明</h2><p><code>git</code>的配置级别主要分为三类</p>
 <blockquote>
 <ol>
 <li>仓库级别 <code>local</code> [优先级最高]<ol>
@@ -581,22 +883,25 @@
 <li><code>git config --global user.name “XXX” </code>                # 用户级</li>
 </ul>
 </blockquote>
-<h2 id="功能性配置"><a href="#功能性配置" class="headerlink" title="功能性配置"></a>功能性配置</h2><h3 id="通用SSH配置"><a href="#通用SSH配置" class="headerlink" title="通用SSH配置"></a>通用SSH配置</h3><ol>
+<h2 id="SSH连接配置"><a href="#SSH连接配置" class="headerlink" title="SSH连接配置"></a>SSH连接配置</h2><ol>
 <li>首先确保用户名与账号的配置完成</li>
 <li>生成密钥对</li>
 </ol>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"> $ ssh-keygen -t rsa -C "xxx@xxx.com" 	# 生成秘钥
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ ssh-keygen -t rsa -C "xxx@xxx.com" 	
+# 生成秘钥, 如果不指定目录可以使用默认的路径，当然生成之后可以随意移动到其他目录，密钥不和目录有强关联关系
 # 之后会又两个输入选项：
 # 		1、第一个是指定生成的密钥文件名(将会放在用户文件目录下)，如果不指定，则使用默认的文件名称
 # 					id_rsa.pub  公钥	id_rsa  私钥
-# 		2、第二个是指定验证密码，不输入则默认为空。设置密码后，每次使用git时都需要输入在此设置的密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 		2、第二个是指定验证密码，不输入则默认为空。设置密码后，每次使用git时都需要输入在此设置的密码
+# 也可也添加 -f 参数直接指定路径和文件名，如下
+# ssh-keygen -t rsa -C xxx@xxx.com -f ~/.ssh/id_rsa_gitlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <img src="/2021/12/18/cs-frameworks-tools/git-note/git-notes-0001.png" class="" title="生成密钥">
 
 <ol start="3">
 <li><p>进入到用户宿主目录下，获取公钥 <code>cat ~/.ssh/id_rsa.pub</code>	(也可以直接访问id_rsa.pub文件查看)</p>
 </li>
-<li><p>进入github或者其他版本管理系统，添加此处获得的公钥</p>
+<li><p>进入<code>github</code>或者其他版本管理系统，添加此处获得的公钥</p>
 </li>
 <li><p>测试访问 <code>ssh -T git@github.com</code> </p>
 <p>​		返回如下提示则配置成功 <code>Hi xxxx! You've successfully authenticated, but GitHub does not provide shell access.</code></p>
@@ -617,33 +922,75 @@ $ git remote set-url origin git@github.com:XXX/XXXproject.git
 $ git remote -v	
 origin  git@github.com:XXX/XXXproject.git (fetch)  # git开头则表示是git协议
 origin  git@github.com:XXX/XXXproject.git (push)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+# 也可也直接打开配置文件编辑
+$ git config --local -e<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="多仓库源多密钥设置"><a href="#多仓库源多密钥设置" class="headerlink" title="多仓库源多密钥设置"></a>多仓库源多密钥设置</h3><p>通过在配置项中指定服务器与对应的密钥对，来达到在同一个机器上对不同的git仓库使用不同的密钥对进行匹配。</p>
-<blockquote>
-<p>注意，这里指定的证书文</p>
-</blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">% vim ~/.ssh/config
+<h2 id="多仓库源多密钥设置"><a href="#多仓库源多密钥设置" class="headerlink" title="多仓库源多密钥设置"></a>多仓库源多密钥设置</h2><p>通过在配置项中指定服务器与对应的密钥对，来达到在同一个机器上对不同的<code>git</code>仓库使用不同的密钥对进行匹配。</p>
+<h3 id="生成Github的密钥认证"><a href="#生成Github的密钥认证" class="headerlink" title="生成Github的密钥认证"></a>生成Github的密钥认证</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ ssh-keygen -t rsa -C 'one@email.com'  -f  ~/.ssh/id_rsa_github
+# 之后按照上面的教程添加与仓库的认证<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-# 在config文件中增加一下内容
+<h3 id="生成Gitlab的密钥认证"><a href="#生成Gitlab的密钥认证" class="headerlink" title="生成Gitlab的密钥认证"></a>生成Gitlab的密钥认证</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ ssh-keygen -t rsa -C 'two@email.com'  -f  ~/.ssh/id_rsa_gitlab
+# 之后按照上面的教程添加与仓库的认证<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+<h3 id="生成指定IP的仓库密钥认证"><a href="#生成指定IP的仓库密钥认证" class="headerlink" title="生成指定IP的仓库密钥认证"></a>生成指定IP的仓库密钥认证</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ ssh-keygen -t rsa -C 'three@email.com'
+# 之后按照上面的教程添加与仓库的认证<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 修改ssh的配置文件，</span>
+$ <span class="token function">vim</span> ~/.ssh/config
+
+<span class="token comment"># 在config文件中增加一下内容</span>
+
+<span class="token comment"># 别名，可以随便填无所谓</span>
 Host github.com
+    <span class="token comment"># 连接的服务地址</span>
 	HostName github.com
-	User 账号
-	IdentityFile &lt;自定义的目录&gt;/id_rsa
-	IdentitiesOnly yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	<span class="token comment"># 用户名. 可以是邮箱，也可也是账号名</span>
+	User one@email.com
+	<span class="token comment"># 密钥文件的地址，私钥, e.g. ~/.ssh/github/id_rsa</span>
+	IdentityFile <span class="token operator">&lt;</span>自定义的目录<span class="token operator">&gt;</span>/id_rsa_github
+	<span class="token comment"># 只使用用户配置的身份验证密钥，避免使用系统中的其他密钥</span>
+	IdentitiesOnly <span class="token function">yes</span>
+	<span class="token comment"># 指定了SSH连接时首选的身份验证方法为公钥验证</span>
+	PreferredAuthentications publickey
+	
+<span class="token comment"># 别名</span>
+Host gitlab.com
+    <span class="token comment"># 连接的服务地址</span>
+	HostName github.com
+	<span class="token comment"># 用户名. 可以是邮箱，也可也是账号名</span>
+	User two@email.com
+	<span class="token comment"># 密钥文件的地址，私钥, e.g. ~/.ssh/github/id_rsa</span>
+	IdentityFile <span class="token operator">&lt;</span>自定义的目录<span class="token operator">&gt;</span>/id_rsa_gitlab
+	<span class="token comment"># 只使用用户配置的身份验证密钥，避免使用系统中的其他密钥</span>
+	IdentitiesOnly <span class="token function">yes</span>
+	<span class="token comment"># 指定了SSH连接时首选的身份验证方法为公钥验证</span>
+	PreferredAuthentications publickey
+	
+<span class="token comment"># 别名</span>
+Host <span class="token number">192.10</span>.1.123
+    <span class="token comment"># 连接的服务地址</span>
+	HostName <span class="token number">192.10</span>.1.123
+	<span class="token comment"># 用户名. 可以是邮箱，也可也是账号名</span>
+	User three
+	<span class="token comment"># 密钥文件的地址，私钥, e.g. ~/.ssh/github/id_rsa</span>
+	IdentityFile <span class="token operator">&lt;</span>自定义的目录<span class="token operator">&gt;</span>/id_rsa
+	<span class="token comment"># 只使用用户配置的身份验证密钥，避免使用系统中的其他密钥</span>
+	IdentitiesOnly <span class="token function">yes</span>
+	<span class="token comment"># 指定了SSH连接时首选的身份验证方法为公钥验证</span>
+	PreferredAuthentications publickey<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-
-
-
-
-
+<blockquote>
+<p>当然，每个不同的仓库之间可以设置相同的名称和邮箱，或者不同的名称和邮箱，然后设置仓库基本的配置来搭配不同的仓库，只要保证按照等级推延能拿到对应仓库中的账号和用户名即可。</p>
+</blockquote>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ ssh -T git@github.com
+$ ssh -T git@gitlab.com
+$ ssh -T git@192.10.1.123<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map">脑图来源</a>：<a target="_blank" rel="noopener" href="https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map">https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MU4y1Y7h5/?p=5&amp;spm_id_from=pageDriver&amp;vd_source=524a1f1a08bc3654682c93e61bb0b959" title="点击跳转">使用笔记参考来源</a>：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MU4y1Y7h5/?p=5&amp;spm_id_from=pageDriver&amp;vd_source=524a1f1a08bc3654682c93e61bb0b959">https://www.bilibili.com/video/BV1MU4y1Y7h5/?p=5&amp;spm_id_from=pageDriver&amp;vd_source=524a1f1a08bc3654682c93e61bb0b959</a></p>
 
                 
             </div>
@@ -1116,7 +1463,7 @@ Host github.com
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">118.6k</span>
+                        class="white-color">125.6k</span>
             
             
             
