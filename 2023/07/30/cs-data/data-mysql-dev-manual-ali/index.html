@@ -1,0 +1,1645 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="sql, note, mysql">
+    <meta name="description" content="MySql开发规约阿里版解析">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>MySql开发规约阿里版解析 | Qing</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Qing</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/solution" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-flag" style="zoom: 0.6;"></i>
+      
+      <span>题解系列</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/solution/leetcode">
+          
+          <i class="fas fa-pen" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Leetcode</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Qing</div>
+        <div class="logo-desc">
+            
+            这个人没啥子特点 喜欢一切随缘咯 ( •̀ ω •́ )✧
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-flag"></i>
+			
+			题解系列
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/solution/leetcode " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-pen" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Leetcode</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/RobertSunq/RobertSunq.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/RobertSunq/RobertSunq.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('哟！你知道密码不？')).toString(CryptoJS.enc.Hex)) {
+                alert('好可惜你不知道哎，那只能回到主页咯！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">MySql开发规约阿里版解析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                <span class="chip bg-color">原创</span>
+                            </a>
+                        
+                            <a href="/tags/note/">
+                                <span class="chip bg-color">note</span>
+                            </a>
+                        
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
+                            </a>
+                        
+                            <a href="/tags/sql/">
+                                <span class="chip bg-color">sql</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/cs-data/" class="post-category">
+                                cs-data
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-07-30
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-07-30
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    22 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="MySql开发规约阿里版解析"><a href="#MySql开发规约阿里版解析" class="headerlink" title="MySql开发规约阿里版解析"></a>MySql开发规约阿里版解析</h1><blockquote>
+<p>以Java开发手册（阿里嵩山版）中的mysql数据库部分的规约为例子。其中解析部分为主要添加部分，因为属于个人理解上的解析，因此有不对的地方还望指正。</p>
+</blockquote>
+<h2 id="环境初始化"><a href="#环境初始化" class="headerlink" title="环境初始化"></a>环境初始化</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建数据库</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> qing_test<span class="token punctuation">;</span>
+
+<span class="token comment">-- 创建用户 只有本地可以登陆</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">USER</span> <span class="token string">'qing_test'</span><span class="token variable">@'localhost'</span> IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'123456'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 创建用户 允许所有IP登陆</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">USER</span> <span class="token string">'qing_test'</span><span class="token variable">@'%'</span> IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'123456'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 将数据库 qing_test 的所有权限赋予给用户 'qing_test'@'localhost'</span>
+<span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">PRIVILEGES</span> <span class="token keyword">ON</span> qing_test<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">TO</span> <span class="token string">'qing_test'</span><span class="token variable">@'localhost'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 刷新权限</span>
+FLUSH <span class="token keyword">PRIVILEGES</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 创建用户'springcloud'@'%' 并 赋予数据库qing_test的所有权限</span>
+<span class="token keyword">grant</span> <span class="token keyword">all</span> <span class="token keyword">on</span> qing_test<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">TO</span> <span class="token string">'springcloud'</span><span class="token variable">@'%'</span> IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'123456'</span><span class="token punctuation">;</span> 
+<span class="token comment">-- 刷新权限</span>
+flush <span class="token keyword">privileges</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="建表规约"><a href="#建表规约" class="headerlink" title="建表规约"></a>建表规约</h2><ol>
+<li><p><span style="color: red;">【强制】</span>表达是与否概念的字段，必须使用 <code>is_xxx</code> 的方式命名，数据类型是 <code>unsigned tinyint</code> （<code>1</code> 表示是，<code>0</code> 表示否）。 </p>
+<p><span style="color: darkkhaki;">说明</span>：任何字段如果为非负数，必须是 <code>unsigned</code>。 </p>
+<p><span style="color: #FF7F50;">注意</span>：<code>POJO</code> 类中的任何布尔类型的变量，都不要加 <code>is</code> 前缀，所以，需要在设置从 <code>is_xxx</code> 到 <code>Xxx</code> 的映射关系。数据库表示是与否的值，使用 <code>tinyint</code> 类型，坚持 <code>is_xxx</code> 的命名方式是为了明确其取值含 义与取值范围。</p>
+<p> <span style="color: #458B00;">正例</span>：表达逻辑删除的字段名 <code>is_deleted</code>，<code>1</code> 表示删除，<code>0</code> 表示未删除。 </p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">在<code>mysql</code>数据中，设置 <code>tinyint</code> 的值，可以使用 <code>ture</code> 和 <code>false</code>（等效与写入 <code>1</code> 和 <code>0</code>）. 但是部分数据库中这个是不能混用的，<code>ture</code>和<code>false</code>只能给<code>bool</code>类型字段设置值，而不能使用 <code>1</code> 和 <code>0</code> 代替。</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>表名、字段名必须使用小写字母或数字，禁止出现数字开头，禁止两个下划线中间只 出现数字。数据库字段名的修改代价很大，因为无法进行预发布，所以字段名称需要慎重考虑。 </p>
+<p><span style="color: darkkhaki;">说明</span>：<code>MySQL</code> 在 <code>Windows</code> 下不区分大小写，但在 <code>Linux</code> 下默认是区分大小写。因此，数据库名、表名、 字段名，都不允许出现任何大写字母，避免节外生枝。</p>
+<p><span style="color: #458B00;">正例</span>：<code>aliyun_admin</code>，<code>rdc_config</code>，<code>level3_name</code> </p>
+<p><span style="color: #FF4500;">反例</span>：<code>AliyunAdmin</code>，<code>rdcConfig</code>，<code>level_3_name</code></p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>表名不使用复数名词。 </p>
+<p><span style="color: darkkhaki;">说明</span>：表名应该仅仅表示表里面的实体内容，不应该表示实体数量，对应于 <code>DO</code> 类名也是单数形式，符合表达习惯。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>禁用保留字，如 <code>desc</code>、<code>range</code>、<code>match</code>、<code>delayed</code> 等，请参考 <code>MySQL</code> 官方保留字。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">方便对于SQL语句的管理，否则在使用中需要对这些字段添加转义符号标记；如果同时有兼容多个数据库的需求，相互之间转义符号不同，兼容上也会加大工作量。</span><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/keywords.html" title="点击跳转">MySQL8.0保留字文档</a>、<a target="_blank" rel="noopener" href="https://eco.dameng.com/document/dm/zh-cn/pm/sql-appendix.html" title="点击跳转">达梦8保留字文档</a></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>主键索引名为 <code>pk_</code>字段名；唯一索引名为 <code>uk_</code>字段名；普通索引名则为 <code>idx_</code>字段名。 </p>
+<p><span style="color: darkkhaki;">说明</span>：<code>pk_</code> 即 <code>primary key</code>；<code>uk_</code> 即 <code>unique key</code>；<code>idx_</code> 即 <code>index</code> 的简称。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>小数类型为 <code>decimal</code>，禁止使用 <code>float</code> 和 <code>double</code>。 </p>
+<p><span style="color: darkkhaki;">说明</span>：在存储的时候，<code>float</code> 和 <code>double</code> 都存在精度损失的问题，很可能在比较值的时候，得到不正确的结果。如果存储的数据范围超过 <code>decimal</code> 的范围，建议将数据拆成整数和小数并分开存储。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;"><code>decimal</code>可以很精确的表达浮点型的同时，也可以规定具体的精度和数值长度。建议在创建表时就定义好精度和长度，可以在数据库保存时同时校验数值是否合法。</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>如果存储的字符串长度几乎相等，使用 <code>char</code> 定长字符串类型。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;"><code>char(M)</code>，在存储时如果不够指定长度，会在右侧填充空格以达到指定的长度，相对<code>varchar</code>有一定的空间浪费，不过其查询速度很快，适合存储不大，但是具有频繁查询或者查询速度需求的场景。所以，当存储的长度字符串几乎相等，不会浪费太多空间的时候，十分适合。</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span><code>varchar</code> 是可变长字符串，不预先分配存储空间，长度不要超过 <code>5000</code>，如果存储长度大于此值，定义字段类型为 <code>text</code>，独立出来一张表，用主键来对应，避免影响其它字段索引效 率。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">存储长度和数据实际长度一致，节省存储空间（实际上会使用一个<code>byte</code>来存储数据长度，存储长度会多一个<code>byte</code>）。所以在真实数据为变长字符串的时候会有一个更高效的空间利用，但相对的由于会计算长度的原因会比<code>char</code>的查询上略慢</span></p>
+<p><span style="color: dodgerblue;">对于另外一张表定义text字段的原因</span>：<span style="color: #33CC00;">因为<code>mysql</code> 是行存储模式，所以会把整行读取出来。<code>text</code> 储存了大量的数据，读取时，占了大量的<code>io</code>，所以会十分的慢；同时由于每行的数据过大，会导致行溢出，<code>InnoDB</code>会将一些大对象数据存放在数据页之外的<code>BLOB</code>页中，在查询的时候根据指针去对应的<code>BlOB</code>页中查询，导致查询变慢。</span>详细说明如下图：</p>
+<img src="/2023/07/30/cs-data/data-mysql-dev-manual-ali/image-001.png" class="" title="image-001">
+</li>
+<li><p><span style="color: red;">【强制】</span>表必备三字段：<code>id</code>, <code>create_time</code>, <code>update_time</code>。 </p>
+<p><span style="color: darkkhaki;">说明</span>：其中 <code>id</code> 必为主键，类型为 <code>bigint unsigned</code>、单表时自增、步长为 1。<code>create_time</code>, <code>update_time</code> 的类型均为 <code>datetime</code> 类型，前者现在时表示主动式创建，后者过去分词表示被动式更新。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>表的命名最好是遵循“业务名称_表的作用”。</p>
+<p><span style="color: #458B00;">正例</span>：<code>alipay_task</code> / <code>force_project</code> / <code>trade_config</code></p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>库名与应用名称尽量一致。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>如果修改字段含义或对字段表示的状态追加时，需要及时更新字段注释。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>字段允许适当冗余，以提高查询性能，但必须考虑数据一致。冗余字段应遵循：</p>
+<ol>
+<li>不是频繁修改的字段。 </li>
+<li>不是唯一索引的字段。 </li>
+<li>不是 <code>varchar</code> 超长字段，更不能是 <code>text</code> 字段。</li>
+</ol>
+<p><span style="color: #458B00;">正例</span>：各业务线经常冗余存储商品名称，避免查询时需要调用 <code>IC</code> 服务获取。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">存储问题，浪费存储字段，且过多的冗余导致行过长，降低查询效率，详见第8条。</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>单表行数超过 <code>500</code> 万行或者单表容量超过 <code>2GB</code>，才推荐进行分库分表。</p>
+<p><span style="color: darkkhaki;">说明</span>：如果预计三年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">主要是考虑到查询效率，如果字段格式简单、查询需求简单、索引合理，查询到效率没有明显的下降可以不选择分库分表。毕竟分库分表会增加额外的应用程序的改造和维护的成本，慎重考虑。</span></p>
+</li>
+<li><p><span style="color:#3CB371;">【参考】</span>合适的字符存储长度，不但节约数据库表空间、节约索引存储，更重要的是提升检索速度。 </p>
+<p><span style="color: #458B00;">正例</span>：无符号值可以避免误存负数，且扩大了表示范围。</p>
+<p><span style="color: dodgerblue;">解析</span>：</p>
+<ul>
+<li><span style="color: #33CC00;">文本数据使用字符串存储。</span></li>
+<li><span style="color: #33CC00;">数值数据，尤其是需要进行算术运算的，使用数字类型。</span></li>
+<li><span style="color: #33CC00;">日期和时间信息最好使用原生的日期和时间类型。</span></li>
+<li><span style="color: #33CC00;">文档、图片、音频和视频等使用二进制类型，不过更对键在mysql上只存储条目信息，内容信息保存到文件服务器（<code>mogodb</code>、<code>hdfs</code>等）。</span></li>
+<li><span style="color: #33CC00;">满足数据和扩展的前提下，尽量使用更下的数据类型。这样既可以节省存储性能，同时查询的性能也更好。</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>年龄区间</th>
+<th>类型</th>
+<th>字节</th>
+<th>表示范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>人</td>
+<td>150 岁之内</td>
+<td><code>tinyint unsigned</code></td>
+<td>1</td>
+<td>无符号值：0 到 255</td>
+</tr>
+<tr>
+<td>龟</td>
+<td>数百岁</td>
+<td><code>smallint unsigned</code></td>
+<td>2</td>
+<td>无符号值：0 到 65535</td>
+</tr>
+<tr>
+<td>恐龙化石</td>
+<td>数千万年</td>
+<td><code>int unsigned</code></td>
+<td>4</td>
+<td>无符号值：0 到约 43 亿</td>
+</tr>
+<tr>
+<td>太阳</td>
+<td>约 50 亿年</td>
+<td><code>bigint unsigned</code></td>
+<td>8</td>
+<td>无符号值：0 到约 10 的 19 次方</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="索引规约"><a href="#索引规约" class="headerlink" title="索引规约"></a>索引规约</h2><ol>
+<li><p><span style="color: red;">【强制】</span>业务上具有唯一特性的字段，即使是组合字段，也必须建成唯一索引。</p>
+<p><span style="color: darkkhaki;">说明</span>：不要以为唯一索引影响了 <code>insert</code> 速度，这个速度损耗可以忽略，但提高查找速度是明显的；另外，即使在应用层做了非常完善的校验控制，只要没有唯一索引，根据墨菲定律，必然有脏数据产生。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">好处大于劣处，通过只应用层的校验来保证唯一性，在高并发下很大可能产生脏数据（锁的控制则会降低业务层的效率）</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>超过三个表禁止 <code>join</code>。需要 <code>join</code> 的字段，数据类型保持绝对一致；多表关联查询时， 保证被关联的字段需要有索引。</p>
+<p><span style="color: darkkhaki;">说明</span>：即使双表 <code>join</code> 也要注意表索引、<code>SQL</code> 性能。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>在 <code>varchar</code> 字段上建立索引时，必须指定索引长度，没必要对全字段建立索引，根据 实际文本区分度决定索引长度。</p>
+<p><span style="color: darkkhaki;">说明</span>：索引的长度与区分度是一对矛盾体，一般对字符串类型数据，长度为 <code>20</code> 的索引，区分度会高达 <code>90%</code> 以上，可以使用 <code>count(distinct left(列名, 索引长度))/count(*)</code>的区分度来确定。</p>
+<p><span style="color: dodgerblue;">解析</span>：</p>
+<ol>
+<li><span style="color: #33CC00;">是因为优化器比较弱，涉及到很多表的查询的时候，往往得不到很好的查询计划。</span> </li>
+<li><span style="color: #33CC00;">是因为执行器很弱只有<code>nested loop join</code>，<code>block nested loop join</code>和<code>index nested loop join</code>。</span><ol>
+<li><span style="color: #33CC00;"><code>nested loop join</code>就是分别从两个表读一行数据进行两两对比，复杂度是<code>n^2</code>。</span></li>
+<li><span style="color: #33CC00;"><code>block nested loop join</code>是分别从两个表读很多行数据，然后进行两两对比，复杂度也是<code>n^2</code>，只是少了些函数调用等<code>overhead</code>。</span></li>
+<li><span style="color: #33CC00;">index nested loop join是从第一个表读一行，然后在第二个表的索引中查找这个数据，索引是<code>B+</code>树索引，复杂度可以近似认为是<code>nlogn</code>，比上面两个好很多，这就是要保证关联字段有索引的原因。</span></li>
+<li><span style="color: #33CC00;">如果有<code>hash join</code>，就不用做这种限制了，用第一个表（小表）建<code>hash table</code>，第二个表在<code>hash table</code>中查找匹配的项，复杂度是<code>n</code>。 缺点是<code>hash table</code>占的内存可能会比较大，不过也有基于磁盘的<code>hash join</code>，实现起来比较复杂。</span></li>
+</ol>
+</li>
+</ol>
+<p>优化方向：</p>
+<ol>
+<li><span style="color: #33CC00;">创建合适的连接索引、选择小表作为外表（驱动表）。</span></li>
+<li><span style="color: #33CC00;">用小表去驱动大表（因为在没有过滤条件时，外表有多少行就会被加载多少次，更小的外表可以降低加载次数）</span></li>
+<li><span style="color: #33CC00;">合理的排序，使用外表字段进行排序</span>。<ol>
+<li><span style="color: #33CC00;">多表<code>join</code>执行时，优化器内部会先找出外表，之后会对外表进行排序；如果<code>order by</code>后面跟的是外表字段，则排序会在这时完成。但如果<code>order by</code>后面的字段是内表字段，则在所有结果集选出之后，再进行一次排序。</span></li>
+</ol>
+</li>
+<li><span style="color: #33CC00;">强行指定驱动表。</span><ol>
+<li><span style="color: #33CC00;">左右连接都可以指定驱动表，但是(<code>inner join</code>) 无法强行指定，通常来说都是通过系统自动去判定的，所以可以通过 <code>straight join</code> 来强制指定驱动表。</span></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><span style="color: red;">【强制】</span>页面搜索严禁左模糊或者全模糊，如果需要请走搜索引擎来解决。 </p>
+<p><span style="color: darkkhaki;">说明</span>：索引文件具有 <code>B-Tree</code> 的最左前缀匹配特性，如果左边的值未确定，那么无法使用此索引。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">主要原因在于<code>mysql</code>的索引默认是<code>B-Tree</code>，索引具有最左匹配特效，如果左边的只为能确定，就无法走索引导致整个索引废掉而选择走全局检索。</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>如果有 <code>order by</code> 的场景，请注意利用索引的有序性。<code>order by</code> 最后的字段是组合索 引的一部分，并且放在索引组合顺序的最后，避免出现 <code>file_sort</code> 的情况，影响查询性能。 </p>
+<p><span style="color: #458B00;">正例</span>：<code>where a=? and b=? order by c;</code> 索引：<code>a_b_c</code> </p>
+<p><span style="color: #FF4500;">反例</span>：索引如果存在范围查询，那么索引有序性无法利用，如：<code>WHERE a&gt;10 ORDER BY b;</code> 索引 <code>a_b</code> 无 法排序。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">同第4条，因为索引的最左匹配特效</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>利用覆盖索引来进行查询操作，避免回表。</p>
+<p> <span style="color: darkkhaki;">说明</span>：如果一本书需要知道第 11 章是什么标题，会翻开第 11 章对应的那一页吗？目录浏览一下就好，这 个目录就是起到覆盖索引的作用。 </p>
+<p><span style="color: #458B00;">正例</span>：能够建立索引的种类分为主键索引、唯一索引、普通索引三种，而覆盖索引只是一种查询的一种效 果，用 <code>explain</code> 的结果，<code>extra</code> 列会出现：<code>using index</code>。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">覆盖索引并不是索引，而是索引刚好包含（覆盖）了需要的结果。</span><a target="_blank" rel="noopener" href="https://blog.csdn.net/Asa_Prince/article/details/125762694" title="点击跳转">覆盖索引、回表查询详细解析</a></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>利用延迟关联或者子查询优化超多分页场景。 </p>
+<p><span style="color: darkkhaki;">说明</span>：<code>MySQL</code> 并不是跳过 <code>offset</code> 行，而是取 <code>offset+N</code> 行，然后返回放弃前 <code>offset</code> 行，返回 <code>N</code> 行，那当 <code>offset</code> 特别大的时候，效率就非常的低下，要么控制返回的总页数，要么对超过特定阈值的页数进行 <code>SQL</code> 改写。 </p>
+<p><span style="color: #458B00;">正例</span>：先快速定位需要获取的 <code>id</code> 段，然后再关联： <code>SELECT t1.* FROM 表 1 as t1, (select id from 表 1 where 条件 LIMIT 100000,20 ) as t2 where t1.id=t2.id</code> </p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">手动干扰优化器的选择</span></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- idx_create_time (create_time) </span>
+<span class="token keyword">select</span> s1<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">as</span> s1<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">select</span> id <span class="token keyword">from</span> students <span class="token keyword">where</span> create_time <span class="token operator">&gt;</span> <span class="token string">'2023-01-01 00:00:00'</span> <span class="token keyword">limit</span> <span class="token number">10000000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">as</span> s2 <span class="token keyword">where</span> s1<span class="token punctuation">.</span>id<span class="token operator">=</span>s2<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+ 
+
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> students <span class="token keyword">where</span> create_time <span class="token operator">&gt;</span> <span class="token string">'2023:01:20 00:00:00'</span> <span class="token keyword">limit</span> <span class="token number">10000000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span><code>SQL</code> 性能优化的目标：至少要达到 <code>range</code> 级别，要求是 <code>ref</code> 级别，如果可以是 <code>consts</code> 最好。 </p>
+<p><span style="color: darkkhaki;">说明</span>： </p>
+<ol>
+<li><code>consts</code> 单表中最多只有一个匹配行（主键或者唯一索引），在优化阶段即可读取到数据。</li>
+<li><code>ref</code> 指的是使用普通的索引（<code>normal index</code>）。</li>
+<li><code>range</code> 对索引进行范围检索。</li>
+</ol>
+<p><span style="color: #FF4500;">反例</span>：<code>explain</code> 表的结果，<code>type=index</code>，索引物理文件全扫描，速度非常慢，这个 <code>index</code> 级别比较 <code>range</code> 还低，与全表扫描是小巫见大巫。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">使用<code>expalin</code>分析<code>sql</code>，其中的<code>type</code>列表示关联类型和访问类型，即<code>Mysql</code>决定如何查找表中的行，查找数据行记录的大概范围</span></p>
+<ul>
+<li><span style="color: #33CC00;">最优到最差分别为：system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</span></li>
+<li><a href="/2023/07/30/cs-data/data-mysql-explain/" title="点击跳转">explain本站具体说明文章</a></li>
+</ul>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>建组合索引的时候，区分度最高的在最左边。 </p>
+<p><span style="color: #458B00;">正例</span>：如果 <code>where a=? and b=?</code>，a 列的几乎接近于唯一值，那么只需要单建 <code>idx_a</code> 索引即可。 </p>
+<p><span style="color: darkkhaki;">说明</span>： 存在非等号和等号混合判断条件时，在建索引时，请把等号条件的列前置。如：<code>where c&gt;? and d=?</code> 那么即使 <code>c</code> 的区分度更高，也必须把 <code>d</code> 放在索引的最前列，即建立组合索引 <code>idx_d_c</code>。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>防止因字段类型不同造成的隐式转换，导致索引失效。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">概念补充：索引的最左前缀原则</span></p>
+<ul>
+<li><span style="color: #33CC00;">联合索引</span><ul>
+<li><span style="color: #33CC00;">创建：首先以第一个字段排序（最左边的<code>key</code>），在第一个字段相等时再以第二个字段（次左边的<code>key</code>）进行排序，后续其他字段以此类推</span></li>
+<li><span style="color: #33CC00;">最左匹配原则</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>【参考】创建索引时避免有如下极端误解：</p>
+<ol>
+<li>索引宁滥勿缺。认为一个查询就需要建一个索引。</li>
+<li>吝啬索引的创建。认为索引会消耗空间、严重拖慢记录的更新以及行的新增速度。</li>
+<li>抵制惟一索引。认为惟一索引一律需要在应用层通过“先查后插”方式解决。</li>
+</ol>
+<p><span style="color: darkkhaki;">说明</span>：</p>
+<p><span style="color: dodgerblue;">解析</span>：</p>
+<ul>
+<li><span style="color: #33CC00;">需要深刻结合业务需求创建索引</span></li>
+<li><span style="color: #33CC00;">索引不仅可以优化<code>select</code>语句，在某些情况下也可以优化<code>update</code>或者<code>delete</code>语句，因为数据库可以通过索引快速找到需要更新或者删除的记录（虽然如果涉及到修改索引树也会花费一定时间）</span></li>
+<li><span style="color: #33CC00;">索引在提高查询速度的同时将会付出一定的代价</span><ul>
+<li><span style="color: #33CC00;">索引需要占据磁盘空间，索引独立于数据存在，过多的索引会占用大量的空间，甚至超过数据文件的大小</span></li>
+<li><span style="color: #33CC00;">对数据进行<code>DML</code>操作时，同时也需要对索引进行维护（<a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html">索引B+树的调整</a>），维护索引可能比修改数据占用的时间更长</span></li>
+</ul>
+</li>
+<li><span style="color: #33CC00;">索引时优化查询的一个有效手段，但是过度索引可能会带来负面效果，所以需要进行评估。</span></li>
+</ul>
+</li>
+</ol>
+<h2 id="SQL-语句"><a href="#SQL-语句" class="headerlink" title="SQL 语句"></a>SQL 语句</h2><ol>
+<li><p><span style="color: red;">【强制】</span>不要使用 <code>count(列名)</code>或 <code>count(常量)</code>来替代 <code>count(*)</code>，<code>count(*)</code>是 <code>SQL92</code> 定义的标 准统计行数的语法，跟数据库无关，跟 <code>NULL</code> 和非 <code>NULL</code> 无关。</p>
+<p><span style="color: darkkhaki;">说明</span>：<code>count(*)</code>会统计值为 <code>NULL</code> 的行，而 <code>count(列名)</code>不会统计此列为 <code>NULL</code> 值的行。</p>
+<p><span style="color: dodgerblue;">解析</span>：</p>
+<ul>
+<li><span style="color: #33CC00;"><code>count(1)</code>：统计所有的记录，包括<code>null</code></span></li>
+<li><span style="color: #33CC00;"><code>count(*)</code>：统计所有的记录，包括<code>null</code></span></li>
+<li><span style="color: #33CC00;"><code>count(字段)</code>：统计该字段不为<code>null</code>的记录</span></li>
+<li><span style="color: #33CC00;"><code>count(distinct 字段)</code>：统计该字段去重且不为<code>null</code>的记录</span></li>
+<li><span style="color: #33CC00;"><code>mysql</code>会对<code>count()</code>作优化</span><ul>
+<li><span style="color: #33CC00;">如果表中只有一列，则<code>count()</code>效率最优</span></li>
+<li><span style="color: #33CC00;">如果表中有多列，且存在主键, <code>count(主键列名)</code>效率最优，其次是：<code>count(1) &gt; count(*)</code></span></li>
+<li><span style="color: #33CC00;">如果表中有多列，且不存在主键，则<code>count(1)</code> 效率优于<code>count(*)</code></span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><span style="color: red;">【强制】</span><code>count(distinct col)</code> 计算该列除 <code>NULL</code> 之外的不重复行数，注意 <code>count(distinct col1, col2)</code> 如果其中一列全为 <code>NULL</code>，那么即使另一列有不同的值，也返回为 <code>0</code>。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>当某一列的值全是 <code>NULL</code> 时，<code>count(col)</code>的返回结果为 0，但 <code>sum(col)</code>的返回结果为 <code>NULL</code>，因此使用 <code>sum()</code> 时需注意 <code>NPE</code> 问题。</p>
+<p> <span style="color: #458B00;">正例</span>：可以使用如下方式来避免 <code>sum</code> 的 <code>NPE</code> 例如：<code>SELECT IFNULL(SUM(column), 0) FROM table;</code></p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">也可以写作 ifnull(sum(字段), 0)</span></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> students <span class="token keyword">add</span> code <span class="token keyword">int</span> <span class="token keyword">default</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+ 
+ 
+<span class="token comment">-- 返回null</span>
+<span class="token keyword">select</span> <span class="token function">sum</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span>
+ 
+ 
+<span class="token comment">-- 返回 0</span>
+<span class="token keyword">select</span> <span class="token keyword">if</span><span class="token punctuation">(</span>isnull<span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span>
+<span class="token keyword">select</span> ifnull<span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><span style="color: red;">【强制】</span>使用 <code>ISNULL()</code>来判断是否为 <code>NULL</code> 值。 </p>
+<p><span style="color: darkkhaki;">说明</span>：<code>NULL</code> 与任何值的直接比较都为 <code>NULL</code>。 </p>
+<ul>
+<li><code>NULL&lt;&gt;NULL</code> 的返回结果是 <code>NULL</code>，而不是 <code>false</code>。</li>
+<li><code>NULL=NULL</code> 的返回结果是 <code>NULL</code>，而不是 <code>true</code>。</li>
+<li><code>NULL&lt;&gt;1</code> 的返回结果是 <code>NULL</code>，而不是 <code>true</code>。</li>
+</ul>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">在 <code>SQL</code> 语句中，如果在 <code>null</code> 前换行，影响可读性。<code>select * from table where column1 is null and column3 is not null;</code> 而<code>ISNULL(column)</code>是一个整体，简洁易懂。从性能数据上分析，<code>ISNULL(column)</code> 执行效率更快一些。</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>代码中写分页查询逻辑时，若 <code>count</code> 为 <code>0</code> 应直接返回，避免执行后面的分页语句。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">提高执行效率</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>不得使用外键与级联，一切外键概念必须在应用层解决。 </p>
+<p><span style="color: darkkhaki;">说明</span>：（概念解释）学生表中的 <code>student_id</code> 是主键，那么成绩表中的 <code>student_id</code> 则为外键。如果更新学 生表中的 <code>student_id</code>，同时触发成绩表中的 <code>student_id</code> 更新，即为级联更新。外键与级联更新适用于单机 低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库 的插入速度。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">外键可以保证数据完整性的手段，放弃使用外键，就需要我们在应用层的操作保证不会导致数据库异常。</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>禁止使用存储过程，存储过程难以调试和扩展，更没有移植性。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>数据订正（特别是删除或修改记录操作）时，要先 <code>select</code>，避免出现误删除，确认无 误才能执行更新语句。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color: red;">【强制】</span>对于数据库中表记录的查询和变更，只要涉及多个表，都需要在列名前加表的别名（或 表名）进行限定。 </p>
+<p><span style="color: darkkhaki;">说明</span>：对多表进行查询记录、更新记录、删除记录时，如果对操作列没有限定表的别名（或表名），并且 操作列在多个表中存在时，就会抛异常。 </p>
+<p><span style="color: #458B00;">正例</span>：<code>select t1.name from table_first as t1 , table_second as t2 where t1.id=t2.id;</code> </p>
+<p><span style="color: #FF4500;">反例</span>：在某业务中，由于多表关联查询语句没有加表的别名（或表名）的限制，正常运行两年后，最近在 某个表中增加一个同名字段，在预发布环境做数据库变更后，线上查询语句出现出 1052 异常：<code>Column 'name' in field list is ambiguous。</code></p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span><code>SQL</code> 语句中表的别名前加 <code>as</code>，并且以 <code>t1、t2、t3、...</code>的顺序依次命名。 </p>
+<p><span style="color: darkkhaki;">说明</span>：</p>
+<ul>
+<li>别名可以是表的简称，或者是依照表在 <code>SQL</code> 语句中出现的顺序，以 <code>t1、t2、t3</code> 的方式命名。</li>
+<li>别名前加 <code>as</code> 使别名更容易识别。</li>
+</ul>
+<p><span style="color: #458B00;">正例</span>：<code>select t1.name from table_first as t1, table_second as t2 where t1.id=t2.id;</code> </p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span><code>in</code> 操作能避免则避免，若实在避免不了，需要仔细评估 <code>in</code> 后边的集合元素数量，控 制在 <code>1000</code> 个之内。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">用其查询时，<code>mysql</code>不一定使用索引，<code>mysql</code>内部优化器会根据检索比例、表大小等多个因素整体评估是否使用索引。少量数据的时候还会通过索引检索，数据过多是和全局检索就没啥区别了。</span></p>
+</li>
+<li><p>【参考】因国际化需要，所有的字符存储与表示，均采用 <code>utf8</code> 字符集，那么字符计数方法需 要注意。 </p>
+<p><span style="color: darkkhaki;">说明</span>： <code>SELECT LENGTH("轻松工作")；</code> 返回为 <code>12</code>， <code>SELECT CHARACTER_LENGTH("轻松工作")；</code> 返回为 <code>4</code> 如果需要存储表情，那么选择 <code>utf8mb4</code> 来进行存储，注意它与 <code>utf8</code> 编码的区别。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+<li><p>【参考】<code>TRUNCATE TABLE</code> 比 <code>DELETE</code> 速度快，且使用的系统和事务日志资源少，但 <code>TRUNCATE</code> 无事务且不触发 <code>trigger</code>，有可能造成事故，故不建议在开发代码中使用此语句。 </p>
+<p><span style="color: darkkhaki;">说明</span>：<code>TRUNCATE TABLE</code> 在功能上与不带 <code>WHERE</code> 子句的 <code>DELETE</code> 语句相同。</p>
+<p><span style="color: dodgerblue;">解析</span>：<span style="color: #33CC00;">无</span></p>
+</li>
+</ol>
+<h2 id="ORM-映射"><a href="#ORM-映射" class="headerlink" title="ORM 映射"></a>ORM 映射</h2><ol>
+<li><p><span style="color: red;">【强制】</span>在表查询中，一律不要使用 <code>*</code> 作为查询的字段列表，需要哪些字段必须明确写明。 </p>
+<p><span style="color: darkkhaki;">说明</span>：</p>
+<ul>
+<li>增加查询分析器解析成本。</li>
+<li>增减字段容易与 <code>resultMap</code> 配置不一致。</li>
+<li>无用字段增加网络 消耗，尤其是 <code>text</code> 类型的字段。</li>
+</ul>
+</li>
+<li><p><span style="color: red;">【强制】</span><code>POJO</code> 类的布尔属性不能加 <code>is</code>，而数据库字段必须加 <code>is_</code>，要求在 <code>resultMap</code> 中进行 字段与属性之间的映射。 </p>
+<p><span style="color: darkkhaki;">说明</span>：参见定义 <code>POJO</code> 类以及数据库字段定义规定，在 <code>sql.xml</code> 增加映射，是必须的。</p>
+</li>
+<li><p><span style="color: red;">【强制】</span>不要用 <code>resultClass</code> 当返回参数，即使所有类属性名与数据库字段一一对应，也需要 定义；反过来，每一个表也必然有一个与之对应。</p>
+<p> <span style="color: darkkhaki;">说明</span>：配置映射关系，使字段与 <code>DO</code> 类解耦，方便维护。</p>
+</li>
+<li><p><span style="color: red;">【强制】</span><code>sql.xml</code> 配置参数使用：<code>#{}</code>，<code>#param#</code> 不要使用<code>${}</code> 此种方式容易出现 <code>SQL</code> 注入。</p>
+</li>
+<li><p><span style="color: red;">【强制】</span><code>iBATIS</code> 自带的 <code>queryForList(String statementName,int start,int size)</code>不推荐使用。</p>
+<p> <span style="color: darkkhaki;">说明</span>：其实现方式是在数据库取到 <code>statementName</code> 对应的 <code>SQL</code> 语句的所有记录，再通过 <code>subList</code> 取 <code>start,size</code> 的子集合。 </p>
+<p><span style="color: #458B00;">正例</span>： </p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Map</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"start"</span><span class="token punctuation">,</span> start<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"size"</span><span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><span style="color: red;">【强制】</span>不允许直接拿 <code>HashMap</code> 与 <code>Hashtable</code> 作为查询结果集的输出。</p>
+<p><span style="color: #FF4500;">反例</span>：某同学为避免写一个<code>xxx</code>，直接使用 <code>HashTable</code> 来接收数据库返回结 果，结果出现日常是把 <code>bigint</code> 转成 <code>Long</code> 值，而线上由于数据库版本不一样，解析成 <code>BigInteger</code>，导致线 上问题。</p>
+</li>
+<li><p><span style="color: red;">【强制】</span>更新数据表记录时，必须同时更新记录对应的 <code>update_time</code> 字段值为当前时间。</p>
+</li>
+<li><p><span style="color:#458B00;">【推荐】</span>不要写一个大而全的数据更新接口。传入为 <code>POJO</code> 类，不管是不是自己的目标更新字 段，都进行 <code>update table set c1=value1,c2=value2,c3=value3;</code> 这是不对的。执行 <code>SQL</code> 时， 不要更新无改动的字段，一是易出错；二是效率低；三是增加 <code>binlog</code> 存储。</p>
+</li>
+<li><p>【参考】<code>@Transactional</code> 事务不要滥用。事务会影响数据库的 <code>QPS</code>，另外使用事务的地方需 要考虑各方面的回滚方案，包括缓存回滚、搜索引擎回滚、消息补偿、统计修正等。</p>
+</li>
+<li><p>【参考】中的 <code>compareValue</code> 是与属性值对比的常量，一般是数字，表示相等时 带上此条件；表示不为空且不为 <code>null</code> 时执行；表示不为 <code>null</code> 值 时执行。</p>
+</li>
+</ol>
+<hr>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://robertsunq.github.io" rel="external nofollow noreferrer">Robert Sunq</a>
+                    </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://robertsunq.github.io/2023/07/30/cs-data/data-mysql-dev-manual-ali/">https://robertsunq.github.io/2023/07/30/cs-data/data-mysql-dev-manual-ali/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY-SA 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://robertsunq.github.io" target="_blank">Robert Sunq</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                    <span class="chip bg-color">原创</span>
+                                </a>
+                            
+                                <a href="/tags/note/">
+                                    <span class="chip bg-color">note</span>
+                                </a>
+                            
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
+                                </a>
+                            
+                                <a href="/tags/sql/">
+                                    <span class="chip bg-color">sql</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,wechat" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/07/30/cs-data/data-mysql-explain/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="MySql Explain 命令详解">
+                        
+                        <span class="card-title">MySql Explain 命令详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            MySql Explain 命令详解
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/cs-data/" class="post-category">
+                                    cs-data
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/note/">
+                        <span class="chip bg-color">note</span>
+                    </a>
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/sql/">
+                        <span class="chip bg-color">sql</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%83%A8%E5%88%86%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">部分原创</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/07/30/cs/css-color/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="CSS颜色大全">
+                        
+                        <span class="card-title">CSS颜色大全</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            对常用的CSS颜色整合
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/cs/" class="post-category">
+                                    cs
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%83%A8%E5%88%86%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">部分原创</span>
+                    </a>
+                    
+                    <a href="/tags/css/">
+                        <span class="chip bg-color">css</span>
+                    </a>
+                    
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Qing<br />'
+            + '文章作者: Robert Sunq<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '<原创文章> 著作权归Robert Sunq所有，<转载文章> 著作权归原作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">Robert Sunq</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">139.9k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/RobertSunq" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:loading@xx.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=loading..." class="tooltipped" target="_blank" data-tooltip="QQ联系我: loading..." data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":350},"mobile":{"show":true},"log":false});</script></body>
+
+</html>
