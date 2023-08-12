@@ -525,14 +525,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-05-14
+                    2023-08-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.6k
+                    4.7k
                 </div>
                 
 
@@ -1017,6 +1017,28 @@ Host <span class="token number">192.10</span>.1.123
 $ ssh -T git@gitlab.com
 $ ssh -T git@192.10.1.123<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="修改默认配置的初始化分支名"><a href="#修改默认配置的初始化分支名" class="headerlink" title="修改默认配置的初始化分支名"></a>修改默认配置的初始化分支名</h2><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ git config --global init.defaultBranch master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="初始化本地仓库并与远端仓库连接"><a href="#初始化本地仓库并与远端仓库连接" class="headerlink" title="初始化本地仓库并与远端仓库连接"></a>初始化本地仓库并与远端仓库连接</h2><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># git 初始化
+$ git init
+
+# 添加和远程连接
+$ git remote add origin http://xx.xxx.xxx.xxx
+
+# 更新
+$ git pull
+
+# 提交本地所有文件
+$ git add .
+
+# 提交
+$ git commit -m "init"
+
+# 推送
+$ git push -u origin master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map">脑图来源</a>：<a target="_blank" rel="noopener" href="https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map">https://www.processon.com/view/link/5c6e2755e4b03334b523ffc3#map</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MU4y1Y7h5/?p=5&amp;spm_id_from=pageDriver&amp;vd_source=524a1f1a08bc3654682c93e61bb0b959" title="点击跳转">使用笔记参考来源</a>：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MU4y1Y7h5/?p=5&amp;spm_id_from=pageDriver&amp;vd_source=524a1f1a08bc3654682c93e61bb0b959">https://www.bilibili.com/video/BV1MU4y1Y7h5/?p=5&amp;spm_id_from=pageDriver&amp;vd_source=524a1f1a08bc3654682c93e61bb0b959</a></p>
 
@@ -1491,7 +1513,7 @@ $ ssh -T git@192.10.1.123<span aria-hidden="true" class="line-numbers-rows"><spa
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">139.9k</span>
+                        class="white-color">151.4k</span>
             
             
             

@@ -517,14 +517,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-05-09
+                    2023-08-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    22.5k
+                    22.6k
                 </div>
                 
 
@@ -3222,6 +3222,31 @@ IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'123
 <span class="token keyword">ON</span> sql_store<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token comment">-- 所需要取消的数据库和表范围</span>
 <span class="token keyword">FROM</span> qing<span class="token variable">@127.0.0.1</span><span class="token punctuation">;</span> <span class="token comment">-- 指定用户</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="经典语句备份"><a href="#经典语句备份" class="headerlink" title="经典语句备份"></a>经典语句备份</h2><h3 id="序号的使用"><a href="#序号的使用" class="headerlink" title="序号的使用"></a>序号的使用</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 列分组拼接与添加序号  @i的应用</span>
+<span class="token keyword">SELECT</span>
+	dm<span class="token punctuation">.</span>ID<span class="token punctuation">,</span>
+	dd<span class="token punctuation">.</span>PID<span class="token punctuation">,</span>
+	dm<span class="token punctuation">.</span>r1<span class="token punctuation">,</span>
+	dm<span class="token punctuation">.</span>r2<span class="token punctuation">,</span>
+	dm<span class="token punctuation">.</span>r3<span class="token punctuation">,</span>
+	group_concat<span class="token punctuation">(</span> 
+	 concat<span class="token punctuation">(</span>  <span class="token variable">@i</span> :<span class="token operator">=</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">@grp</span> <span class="token operator">=</span> dd<span class="token punctuation">.</span>PID<span class="token punctuation">,</span> <span class="token variable">@i</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">@grp</span> :<span class="token operator">=</span> dd<span class="token punctuation">.</span>PID<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'.'</span><span class="token punctuation">,</span>dd<span class="token punctuation">.</span>remark  <span class="token punctuation">)</span> separator <span class="token string">'\n'</span><span class="token punctuation">)</span> info
+<span class="token keyword">FROM</span>
+	data_main dm
+	<span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> data_detail dd <span class="token keyword">ON</span> dd<span class="token punctuation">.</span>PID <span class="token operator">=</span> dm<span class="token punctuation">.</span>ID <span class="token punctuation">,</span>
+	<span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token variable">@i</span> :<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token variable">@grp</span> :<span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span> init
+<span class="token keyword">WHERE</span>
+	<span class="token number">1</span> <span class="token operator">=</span> <span class="token number">1</span> 
+	<span class="token operator">AND</span> dm<span class="token punctuation">.</span>flag <span class="token operator">=</span> <span class="token number">1</span> 
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> dd<span class="token punctuation">.</span>PID
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> dm<span class="token punctuation">.</span>r1 <span class="token keyword">ASC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
 
 
 <hr>
@@ -3698,7 +3723,7 @@ IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'123
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">139.9k</span>
+                        class="white-color">151.4k</span>
             
             
             

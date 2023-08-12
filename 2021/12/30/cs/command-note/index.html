@@ -517,21 +517,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-23
+                    2023-08-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    9 分
                 </div>
                 
 
@@ -558,8 +558,7 @@
 <p>由书籍、博客、网络、同事传授等整理而来，部分会附带转载学习来源。</p>
 <p>由于是逐渐补充型文章，所以排版、标题分类上可能比较乱以及随时变更，敬请见谅。</p>
 </blockquote>
-<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><hr>
-<blockquote>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><blockquote>
 <p>该部分命令多数不针对发行版本区分，由于内核版本、linux版本不同而有所不同。</p>
 <p>${}  —&gt; 表示变量替换</p>
 </blockquote>
@@ -662,24 +661,167 @@ alias cp='cp -i'
 ### todo 待查证
 [root@qing centos]$ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="Rocky-Linux"><a href="#Rocky-Linux" class="headerlink" title="Rocky Linux"></a>Rocky Linux</h3><h4 id="修改静态IP配置"><a href="#修改静态IP配置" class="headerlink" title="修改静态IP配置"></a>修改静态IP配置</h4><p>修改<code>NetworkManager</code>配置文件()</p>
+<img src="/2021/12/30/cs/command-note/image-20230809010833861.png" class="" title="image-20230809010833861">
+
+<p>根据需要完成修改后，执行如下命令来使配置生效</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 重新加载配置文件</span>
+<span class="token punctuation">[</span>root@rocky-gpt-bak robert<span class="token punctuation">]</span><span class="token comment"># nmcli connection load /etc/NetworkManager/system-connections/ens160.nmconnection </span>
+
+
+<span class="token comment"># 激活配置文件</span>
+<span class="token punctuation">[</span>root@rocky-gpt-bak robert<span class="token punctuation">]</span><span class="token comment"># nmcli connection up /etc/NetworkManager/system-connections/ens160.nmconnection</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2021/12/30/cs/command-note/image-20230809011135040.png" class="" title="image-20230809011135040">
+
+<h4 id="修改主机名称"><a href="#修改主机名称" class="headerlink" title="修改主机名称"></a>修改主机名称</h4><p>安装工具包</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ sudo dnf check-update
+$ sudo dnf install dnf-utils<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>检查当前主机名</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ hostnamectl
+
+Static hostname: rocky-gpt-bak
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 4a611002a3fe4326b442390cfb74f545
+         Boot ID: ef32c679a58a434ca0915062119ca2b6
+  Virtualization: vmware
+Operating System: Rocky Linux 9.1 (Blue Onyx)          
+     CPE OS Name: cpe:/o:rocky:rocky:9::baseos
+          Kernel: Linux 5.14.0-162.6.1.el9_1.0.1.x86_64
+    Architecture: x86-64
+ Hardware Vendor: VMware, Inc.
+  Hardware Model: VMware Virtual Platform
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>更改系统主机名</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ hostnamectl set-hostname cluster01<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>重新检查主机名</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"> $ hostnamectl
+ 
+ Static hostname: cluster01
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 4a611002a3fe4326b442390cfb74f545
+         Boot ID: ef32c679a58a434ca0915062119ca2b6
+  Virtualization: vmware
+Operating System: Rocky Linux 9.1 (Blue Onyx)          
+     CPE OS Name: cpe:/o:rocky:rocky:9::baseos
+          Kernel: Linux 5.14.0-162.6.1.el9_1.0.1.x86_64
+    Architecture: x86-64
+ Hardware Vendor: VMware, Inc.
+  Hardware Model: VMware Virtual Platform
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="防火墙设置"><a href="#防火墙设置" class="headerlink" title="防火墙设置"></a>防火墙设置</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 永久开启暴露端口
+$ firewall-cmd --zone=public --add-port=2181/tcp --permanent
+# or
+$ firewall-cmd --zone=docker --add-port=13306/tcp --permanent
+# --zone 作用域
+# --add-port=80/tcp  添加端口，格式为：端口/通讯协议
+# --permanent  永久生效，没有此参数重启后失效
+
+
+# 重启防火墙
+$ firewall-cmd --reload
+# or
+$ systemctl restart firewalld.service
+
+
+# 查看端口是否暴露
+$ firewall-cmd --zone=public --query-port=8080/tcp
+
+
+# 启动防火墙
+$ systemctl start firewalld.service
+
+
+# 设置开机自启
+$ systemctl enable firewalld.service
+
+
+# 检查防火墙状态是否打开
+$ firewall-cmd --state
+
+
+# 关闭防火墙
+$ systemctl disable firewalld
+
+
+# 检查防火墙开机启动是否生效
+$ systemctl is-enabled firewalld.service;echo $?
+
+
+# 查看防火墙信息
+$ firewall-cmd --list-all
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 查看进程
+$ ps -ef|grep XXX
+
+
+# 查看所有启动的服务
+$ systemctl list-units --type=service
+
+
+# 查看运行的所有服务
+$ service --status-all
+
+
+# 查询nacos启动的端口数
+$ ps -ef|grep nacos|grep -v grep|wc -l
+
+
+
+# ===================== 已暴露的端口 =================
+
+# 10010		--------		gitlab
+# 启动：gitlab-ctl restart
+# 关闭：gitlab-ctl stop
+
+
+# 2181		--------		zookeeper
+# 启动：zkServer.sh start
+# 关闭：zkServer.sh stop
+
+
+# 3306		--------		mysql
+# 启动：systemctl start mysqld
+# 关闭：systemctl stop mysqld
+
+
+# 1008S0		--------		nginx
+# 启动：systemctl start nginx.service
+# 关闭：systemctl stop nginx.service　
+
+
+# 8848				nacos
+# 单机模式启动：sh startup.sh -m standalone
+# 指定启动端口号：./startup.sh -port 3333<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 
 
 
-<p>loading…</p>
-<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><hr>
-<h3 id="cmd"><a href="#cmd" class="headerlink" title="cmd"></a>cmd</h3><p>loading…</p>
+
+
+
+
+
+
+
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><h3 id="Cmd"><a href="#Cmd" class="headerlink" title="Cmd"></a>Cmd</h3><p>loading…</p>
 <h3 id="PowerShell"><a href="#PowerShell" class="headerlink" title="PowerShell"></a>PowerShell</h3><h4 id="转至管理员模式"><a href="#转至管理员模式" class="headerlink" title="转至管理员模式"></a>转至管理员模式</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 在powershell中输入，会打开一个新的管理员模式的窗口</span>
 <span class="token function">PS</span> G:\&gt; <span class="token function">Start-Process</span> powershell <span class="token operator">-</span>Verb runAs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h2 id="MacOs"><a href="#MacOs" class="headerlink" title="MacOs"></a>MacOs</h2><hr>
-<h3 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h3><p>loading…</p>
+<h2 id="MacOs"><a href="#MacOs" class="headerlink" title="MacOs"></a>MacOs</h2><h3 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h3><p>loading…</p>
 <hr>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><h4 id="not-module的小总结"><a href="#not-module的小总结" class="headerlink" title="not module的小总结"></a>not module的小总结</h4><ol>
+<h2 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h2><h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><h4 id="not-module的小总结"><a href="#not-module的小总结" class="headerlink" title="not module的小总结"></a>not module的小总结</h4><ol>
 <li><p>环境中存在多个python与其对应的pip，按照的时候指定错误安装到其他版本的lib里面去了。eg. 使用pip2按照依赖到python2，但是需要在python3中使用。</p>
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@qing centos]$ /opt/local/qing/python/lib/python -m pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+ <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@qing centos<span class="token punctuation">]</span>$ /opt/local/qing/python/lib/python -m pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>依赖所在的site地址，没有被加载到python的path。</p>
 </li>
@@ -704,14 +846,130 @@ alias cp='cp -i'
 <span class="token punctuation">[</span><span class="token string">'/usr/lib64/python2.7/site-packages'</span><span class="token punctuation">,</span> <span class="token string">'/usr/lib/python2.7/site-packages'</span><span class="token punctuation">,</span> <span class="token string">'/usr/lib/site-python'</span><span class="token punctuation">]</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-
-
-
-
-
-
+<h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h3><h4 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Alt+Enter</strong></td>
+<td>导入包，或者自动修正代码</td>
+</tr>
+<tr>
+<td><strong>Ctrl+Alt+L</strong></td>
+<td>格式化代码</td>
+</tr>
+<tr>
+<td><strong>Alt+/</strong></td>
+<td>打开提示行</td>
+</tr>
+<tr>
+<td>Ctrl+Y</td>
+<td>删除光标所在行</td>
+</tr>
+<tr>
+<td><strong>Ctrl+D</strong></td>
+<td>复制光标所在行，到其下一行</td>
+</tr>
+<tr>
+<td>Ctrl+/</td>
+<td>单行注释		//</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+/</td>
+<td>多行注释		/**/</td>
+</tr>
+<tr>
+<td>Alt+Ins</td>
+<td>自动生成代码，toString; get; set;</td>
+</tr>
+<tr>
+<td>Alt+shift+上下</td>
+<td>移动当前代码行</td>
+</tr>
+<tr>
+<td><strong>Alt+Insert</strong></td>
+<td>打开Code选项中的快速构造器</td>
+</tr>
+<tr>
+<td><strong>Ctrl+N</strong></td>
+<td>查找类</td>
+</tr>
+<tr>
+<td><strong>Ctrl+Shift+N</strong></td>
+<td>查找文件</td>
+</tr>
+<tr>
+<td><strong>Ctrl+R</strong></td>
+<td>替换文本</td>
+</tr>
+<tr>
+<td><strong>Ctrl+Shift+Space</strong></td>
+<td>自动补全代码</td>
+</tr>
+<tr>
+<td><strong>Ctrl+space</strong></td>
+<td>代码提示</td>
+</tr>
+<tr>
+<td><strong>Ctrl+Alt+space</strong></td>
+<td>类名或者接口名提示</td>
+</tr>
+<tr>
+<td><strong>Ctrl+P</strong></td>
+<td>方法参数提示</td>
+</tr>
+<tr>
+<td>Ctrl+shift+Alt+N</td>
+<td>查找类中的方法或者变量</td>
+</tr>
+<tr>
+<td>Ctrl+J</td>
+<td>自动代码</td>
+</tr>
+<tr>
+<td>Ctrl+E</td>
+<td>最近打开的文件</td>
+</tr>
+<tr>
+<td>Ctrl+H</td>
+<td>显示类结构图</td>
+</tr>
+<tr>
+<td>Ctrl+Q</td>
+<td>显示注释文档</td>
+</tr>
+<tr>
+<td>Alt+F1</td>
+<td>查找代码所在位置</td>
+</tr>
+<tr>
+<td>Alt+left/right</td>
+<td>切换代码视图</td>
+</tr>
+<tr>
+<td><strong>Alt+Up/Down</strong></td>
+<td>在方法间快速移动定位</td>
+</tr>
+<tr>
+<td><strong>Ctrl+Shift+Up/Down</strong></td>
+<td>代码向上/向下移动</td>
+</tr>
+<tr>
+<td>Ctrl+W</td>
+<td>选中代码。连续按有其他效果</td>
+</tr>
+<tr>
+<td>Ctrl+P</td>
+<td>显示参数信息</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2>
                 
             </div>
@@ -1192,7 +1450,7 @@ alias cp='cp -i'
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">139.9k</span>
+                        class="white-color">151.4k</span>
             
             
             
