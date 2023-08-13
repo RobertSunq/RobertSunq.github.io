@@ -517,21 +517,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-12
+                    2023-08-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    10 分
                 </div>
                 
 
@@ -574,6 +574,30 @@ username@hostname's password:
 # mac linux系统中 SSH的配置文件在/etc/ssh/sshd_config
 # win 待查
 [root@qing centos]$ cat /etc/ssh/sshd_config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="配置SSH免密登录"><a href="#配置SSH免密登录" class="headerlink" title="配置SSH免密登录"></a>配置SSH免密登录</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 生成 SSH 密钥对, 将生成一对公钥和私钥文件，默认情况下，它们将保存在 `~/.ssh` 目录下
+[root@qing centos]$ ssh-keygen -t rsa -b 4096
+
+
+# 复制公钥到目标服务器
+# ssh-copy-id user@server_ip
+[root@qing centos]$ ssh-copy-id -i robert@192.168.1.112
+# 这将自动将公钥添加到目标服务器的 `~/.ssh/authorized_keys` 文件中，并为你进行一次免密登录验证。
+# 如果 `ssh-copy-id` 命令不可用，或者你使用的是 Windows 操作系统，可以手动将公钥内容复制到目标服务器的 `~/.ssh/authorized_keys` 文件中。
+
+# 如果 ssh-copy-id 无法使用，也可用手动将文件上传到指定的服务器上
+## $ scp /home/robert/.ssh/id_rsa.pub robert@192.168.1.112:/home/robert/.ssh/authorized_keys_tmp
+
+# 之后到192.168.1.112 将 authorized_keys_tmp 追加到文件 authorized_keys 中
+## $ cat /home/robert/.ssh/authorized_keys_tmp &gt;&gt; /home/robert/.ssh/authorized_keys
+
+
+# 测试免密登录
+# ssh user@server_ip
+[root@qing centos]$ ssh robert@192.168.1.112
+# 如果一切正常，你将能够直接登录到目标服务器而无需输入密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
 
 <h3 id="maven-surefire单元测试"><a href="#maven-surefire单元测试" class="headerlink" title="maven-surefire单元测试"></a>maven-surefire单元测试</h3><blockquote>
 <p>部分命令对版本有所要求，请注意。</p>
@@ -1450,7 +1474,7 @@ $ ps -ef|grep nacos|grep -v grep|wc -l
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">151.4k</span>
+                        class="white-color">160.6k</span>
             
             
             
