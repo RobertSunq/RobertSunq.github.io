@@ -517,21 +517,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-13
+                    2023-09-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    13 分
                 </div>
                 
 
@@ -685,6 +685,65 @@ alias cp='cp -i'
 ### todo 待查证
 [root@qing centos]$ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="修改环境变量"><a href="#修改环境变量" class="headerlink" title="修改环境变量"></a>修改环境变量</h3><h4 id="修改环境变量文件"><a href="#修改环境变量文件" class="headerlink" title="修改环境变量文件"></a>修改环境变量文件</h4><p>一些常见的环境变量相关的文件地址</p>
+<ol>
+<li><p>全局环境变量文件</p>
+<p><code>/etc/profile</code> 或 <code>/etc/environment</code>这些文件包含了全局的环境变量设置，对所有用户都生效。</p>
+</li>
+<li><p>用户特定环境变量文件</p>
+<p><code>~/.bash_profile</code>、<code>~/.bashrc</code> 或 <code>~/.profile</code>这些文件位于用户的主目录下，用于配置用户特定的环境变量。不同的<code>shell</code>使用不同的文件</p>
+</li>
+<li><p>当前会话的环境变量</p>
+<p>在当前会话中设置的环境变量只在该会话中有效，会话结束后就会失效。可以使用<code>export</code>命令临时设置环境变量，例如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MY_VARIABLE</span><span class="token operator">=</span><span class="token string">"custom value"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$PATH</span>:/custom/path"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ol>
+<blockquote>
+<p>如果你需要查看当前环境变量的值，可以使用<code>printenv</code>命令或<code>echo $VARIABLE_NAME</code>来显示特定环境变量的值。</p>
+</blockquote>
+<p>以<code>JAVA</code>的环境变量为例修改， </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 当然也可以修改其他配置文件</span>
+<span class="token punctuation">[</span>robert@cluster01 conf<span class="token punctuation">]</span>$ <span class="token function">sudo</span> <span class="token function">vim</span> /etc/profile 
+<span class="token comment">################## 写入以下内容 ################## </span>
+
+<span class="token comment">### mysql config start ###</span>
+<span class="token assign-left variable">JAVA_HOME_11</span><span class="token operator">=</span>/usr/local/java/jdk-11.0.17
+<span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span><span class="token variable">${JAVA_HOME_11}</span>
+<span class="token assign-left variable">CLASSPATH</span><span class="token operator">=</span><span class="token variable">${JAVA_HOME}</span>/lib:<span class="token variable">${JAVA_HOME}</span>/jre/lib
+<span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">${JAVA_HOME}</span>/bin:<span class="token variable">${JAVA_HOME}</span>/jre/bin
+<span class="token builtin class-name">export</span> CLASSPATH JAVA_HOME
+<span class="token comment">### mysql config end ###</span>
+
+<span class="token builtin class-name">export</span> <span class="token environment constant">PATH</span>
+<span class="token comment">################## 写入以上内容 ################## </span>
+
+
+<span class="token comment"># 使配置文件生效 source /etc/profile</span>
+<span class="token punctuation">[</span>robert@cluster01 conf<span class="token punctuation">]</span>$ <span class="token builtin class-name">source</span> /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="在全局shell脚本文件声明"><a href="#在全局shell脚本文件声明" class="headerlink" title="在全局shell脚本文件声明"></a>在全局shell脚本文件声明</h4><p><code>/etc/profile.d/</code>目录用于存放系统范围的shell脚本文件，这些脚本在用户登录时会自动执行。它们用于设置全局的环境变量、路径和其他系统级别的配置。</p>
+<p>当用户登录时，登录shell会读取<code>/etc/profile</code>文件，并检查<code>/etc/profile.d/</code>目录是否存在。如果该目录存在，登录<code>shell</code>会按照一定顺序执行该目录下的所有脚本文件，以完成系统范围的环境设置。</p>
+<p>通常，每个脚本文件都是独立的，以<code>.sh</code>为文件扩展名，并包含了特定的环境变量或系统配置。这种结构的好处是，系统管理员可以轻松地添加、修改或删除特定的配置文件，而无需修改主要的<code>/etc/profile</code>文件。</p>
+<p>以<code>JAVA</code>的环境变量为例修改， </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 编辑一个脚本文件</span>
+<span class="token punctuation">[</span>robert@cluster01 conf<span class="token punctuation">]</span>$ <span class="token function">vim</span> /etc/profile.d/env_robert.sh
+<span class="token comment">################## 写入以下内容 ################## </span>
+
+<span class="token comment">#!/usr/bin/env bash</span>
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MY_VARIABLE</span><span class="token operator">=</span><span class="token string">"custom value"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$PATH</span>:/custom/path"</span>
+
+<span class="token comment">################## 写入以上内容 ##################</span>
+
+
+<span class="token comment"># 使配置文件生效 source /etc/profile</span>
+<span class="token punctuation">[</span>robert@cluster01 conf<span class="token punctuation">]</span>$ <span class="token builtin class-name">source</span> /etc/profile
+
+<span class="token comment"># 在用户登录时，这些导出的环境变量将被设置，并且/custom/path将被添加到$PATH中。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="Rocky-Linux"><a href="#Rocky-Linux" class="headerlink" title="Rocky Linux"></a>Rocky Linux</h3><h4 id="修改静态IP配置"><a href="#修改静态IP配置" class="headerlink" title="修改静态IP配置"></a>修改静态IP配置</h4><p>修改<code>NetworkManager</code>配置文件()</p>
 <img src="/2021/12/30/cs/command-note/image-20230809010833861.png" class="" title="image-20230809010833861">
 
@@ -782,6 +841,29 @@ $ systemctl is-enabled firewalld.service;echo $?
 $ firewall-cmd --list-all
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="修改IP的映射"><a href="#修改IP的映射" class="headerlink" title="修改IP的映射"></a>修改IP的映射</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">vi</span> /etc/hosts
+
+<span class="token comment">####### 增加如下内容  ######## </span>
+
+<span class="token number">192.168</span>.1.111 cluster01
+<span class="token number">192.168</span>.1.112 cluster02
+<span class="token number">192.168</span>.1.113 cluster03
+
+<span class="token comment">####### 增加如上内容  ######## </span>
+
+
+<span class="token comment"># 保存文件后，重启网络服务或者重新加载DNS配置</span>
+<span class="token punctuation">[</span>robert@cluster03 kafka<span class="token punctuation">]</span>$ <span class="token function">sudo</span> systemctl restart network
+<span class="token comment"># or</span>
+<span class="token punctuation">[</span>robert@cluster03 kafka<span class="token punctuation">]</span>$ <span class="token function">sudo</span> systemctl restart systemd-resolved
+<span class="token comment"># ro</span>
+<span class="token punctuation">[</span>robert@cluster03 kafka<span class="token punctuation">]</span>$ <span class="token function">sudo</span> systemctl restart NetworkManager
+
+<span class="token comment"># 验证</span>
+<span class="token punctuation">[</span>robert@cluster03 kafka<span class="token punctuation">]</span>$ <span class="token function">ping</span> clustert01
+<span class="token punctuation">[</span>robert@cluster03 kafka<span class="token punctuation">]</span>$ <span class="token function">ping</span> clustert02
+<span class="token punctuation">[</span>robert@cluster03 kafka<span class="token punctuation">]</span>$ <span class="token function">ping</span> clustert03<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 查看进程
 $ ps -ef|grep XXX
 
@@ -799,7 +881,7 @@ $ ps -ef|grep nacos|grep -v grep|wc -l
 
 
 
-# ===================== 已暴露的端口 =================
+# ===================== 常用项目端口 =================
 
 # 10010		--------		gitlab
 # 启动：gitlab-ctl restart
@@ -1474,7 +1556,7 @@ $ ps -ef|grep nacos|grep -v grep|wc -l
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">160.6k</span>
+                        class="white-color">195k</span>
             
             
             
